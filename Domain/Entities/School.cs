@@ -35,7 +35,6 @@ namespace Domain.Entities
         public string Email { get; set; }
         public bool HasLeadIntegration { get; set; }
 
-
         public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
     }
 }

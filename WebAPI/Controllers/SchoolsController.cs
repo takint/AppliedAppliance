@@ -3,7 +3,7 @@ using Application.Schools.Queries.GetSchools;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace WebUI.Controllers
+namespace WebAPI.Controllers
 {
     public class SchoolsController : ApiControllerBase
     {

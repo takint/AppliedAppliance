@@ -1,4 +1,5 @@
 ﻿using Application.Common.Mappings;
+using AutoMapper;
 using Domain.Entities;
 using System.Collections.Generic;
 
@@ -42,5 +43,11 @@ namespace Application.Schools.Queries.GetSchools
         public bool HasLeadIntegration { get; set; }
 
         public IList<CampusDto> Campuses { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            // Special map
+            profile.CreateMap<School, SchoolDto>().ForMember(s => s.Campuses, opt => opt.Ignore());
+        }
     }
 }

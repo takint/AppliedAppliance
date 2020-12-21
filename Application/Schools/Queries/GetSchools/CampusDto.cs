@@ -25,9 +25,11 @@ namespace Application.Schools.Queries.GetSchools
         public string Fax { get; set; }
         public decimal ProcessingFee { get; set; }
 
-        public void Mapping(Profile profile)
-        {
-           // Special map
-        }
+        /*
+            public void Mapping(Profile profile)
+            {
+               // Special map
+            }
+        */
     }
 }

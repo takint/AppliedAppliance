@@ -10,7 +10,8 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<SchoolViewModel>> Get()
         {
-            return await Mediator.Send(new GetSchoolQuery());
+            SchoolViewModel vm = await Mediator.Send(new GetSchoolQuery());
+            return vm;
         }
 
         [HttpPost]

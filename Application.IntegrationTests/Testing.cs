@@ -1,4 +1,5 @@
-﻿using Infrastructure.Persistence;
+﻿using Infrastructure.Identity;
+using Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -83,7 +84,7 @@ public class Testing
             return _currentUserId;
         }
 
-        var errors = string.Join(Environment.NewLine, result.Errors);
+        var errors = string.Join(Environment.NewLine, result.ToApplicationResult().Errors);
 
         throw new Exception($"Unable to create {userName}.{Environment.NewLine}{errors}");
     }

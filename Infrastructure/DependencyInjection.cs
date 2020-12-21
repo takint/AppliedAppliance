@@ -1,6 +1,8 @@
 ﻿using Application.Common.Interfaces;
+using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +30,17 @@ namespace Infrastructure
 
             services.AddScoped<IDomainEventService, DomainEventService>();
 
-            // TODO: add identity for authentication later
+            // Identity for authentication
+            services.AddDefaultIdentity<ApplicationUser>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddIdentityServer()
+                    .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+
+            services.AddTransient<IIdentityService, IdentityService>();
+
+            services.AddAuthentication()
+                    .AddIdentityServerJwt();
 
             return services;
         }

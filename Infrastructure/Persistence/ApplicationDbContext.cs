@@ -2,6 +2,7 @@
 using Domain.Common;
 using Domain.Entities;
 using IdentityServer4.EntityFramework.Options;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -15,16 +16,19 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class ApplicationDbContext : DbContext, IApplicationDbContext
+    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
     {
+        private readonly ICurrentUserService _currentUserService;
         private readonly IDomainEventService _domainEventService;
 
         public ApplicationDbContext(
             DbContextOptions options,
             IOptions<OperationalStoreOptions> operationalStoreOptions,
-            IDomainEventService domainEventService) : base(options)
+            ICurrentUserService currentUserService,
+            IDomainEventService domainEventService) : base(options, operationalStoreOptions)
         {
             _domainEventService = domainEventService;
+            _currentUserService = currentUserService;
         }
 
         public DbSet<Campus> Campuses { get; set; }
@@ -38,12 +42,12 @@ namespace Infrastructure.Persistence
                 switch (entry.State)
                 {
                     case EntityState.Added:
-                        entry.Entity.CreatedBy = "Admin";
+                        entry.Entity.CreatedBy = _currentUserService.UserId;
                         entry.Entity.Created = DateTime.Now;
                         break;
 
                     case EntityState.Modified:
-                        entry.Entity.LastModifiedBy = "Admin";
+                        entry.Entity.LastModifiedBy = _currentUserService.UserId;
                         entry.Entity.LastModified = DateTime.Now;
                         break;
                 }

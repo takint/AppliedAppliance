@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Common.Interfaces;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Threading;
@@ -10,12 +11,18 @@ namespace Application.Common.Behaviours
     {
         private readonly Stopwatch _timer;
         private readonly ILogger<TRequest> _logger;
+        private readonly ICurrentUserService _currentUserService;
+        private readonly IIdentityService _identityService;
 
         public PerformanceBehaviour(
-          ILogger<TRequest> logger)
+            ILogger<TRequest> logger,
+            ICurrentUserService currentUserService,
+            IIdentityService identityService)
         {
             _timer = new Stopwatch();
             _logger = logger;
+            _currentUserService = currentUserService;
+            _identityService = identityService;
         }
 
         public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
@@ -31,10 +38,16 @@ namespace Application.Common.Behaviours
             if (elapsedMilliseconds > 500)
             {
                 var requestName = typeof(TRequest).Name;
-                // TODO: Add user name and user id for logging
+                var userId = _currentUserService.UserId ?? string.Empty;
+                string userName = string.Empty;
 
-                _logger.LogWarning("StudyPorter Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@Request}",
-                    requestName, elapsedMilliseconds, request);
+                if (!string.IsNullOrEmpty(userId))
+                {
+                    userName = await _identityService.GetUserNameAsync(userId);
+                }
+
+                _logger.LogWarning("StudyPorter Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
+                    requestName, elapsedMilliseconds, userId, userName, request);
             }
 
             return response;

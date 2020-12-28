@@ -1,4 +1,5 @@
 using Application;
+using Application.Common.Interfaces;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WebAPI.Services;
 
 namespace WebAPI
 {
@@ -24,8 +26,10 @@ namespace WebAPI
         {
             services.AddApplication();
             services.AddInfrastructure(Configuration);
-            services.AddHttpContextAccessor();
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+            services.AddHttpContextAccessor();
 
             services.AddHealthChecks()
                .AddDbContextCheck<ApplicationDbContext>();

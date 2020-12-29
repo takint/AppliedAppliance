@@ -19,5 +19,26 @@ namespace WebAPI.Controllers
         {
             return await Mediator.Send(command);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(int id, UpdateSchoolCommand command)
+        {
+            if (id != command.SchoolData.Id)
+            {
+                return BadRequest();
+            }
+
+            await Mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await Mediator.Send(new DeleteCampusCommand { Id = id });
+
+            return NoContent();
+        }
     }
 }

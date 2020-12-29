@@ -33,6 +33,7 @@ namespace Application.UnitTests.Mapping
         [TestCase(typeof(School), typeof(SchoolDto))]
         [TestCase(typeof(SchoolDto), typeof(School))]
         [TestCase(typeof(Campus), typeof(CampusDto))]
+        [TestCase(typeof(CampusDto), typeof(Campus))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
             var instance = GetInstanceOf(source);

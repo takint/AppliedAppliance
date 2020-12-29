@@ -1,4 +1,5 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Common.Commands;
+using Application.Common.Interfaces;
 using Application.Schools.Queries.GetSchools;
 using AutoMapper;
 using Domain.Entities;
@@ -14,15 +15,11 @@ namespace Application.Schools.Commands
         public SchoolDto SchoolData { get; set; }
     }
 
-    public class CreateSchoolCommandHandler : IRequestHandler<CreateSchoolCommand, int>
+    public class CreateSchoolCommandHandler : BaseCommandHandler, IRequestHandler<CreateSchoolCommand, int>
     {
-        private readonly IApplicationDbContext _context;
-        private readonly IMapper _mapper;
-
         public CreateSchoolCommandHandler(IApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
-            _context = context;
-            _mapper = mapper;
         }
 
         public async Task<int> Handle(CreateSchoolCommand request, CancellationToken cancellationToken)

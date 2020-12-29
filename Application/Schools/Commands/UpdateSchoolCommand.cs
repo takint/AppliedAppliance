@@ -1,4 +1,5 @@
-﻿using Application.Common.Exceptions;
+﻿using Application.Common.Commands;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces;
 using Application.Schools.Queries.GetSchools;
 using AutoMapper;
@@ -14,15 +15,12 @@ namespace Application.Schools.Commands
         public SchoolDto SchoolData { get; set; }
     }
 
-    public class UpdateSchoolCommandHandler : IRequestHandler<UpdateSchoolCommand>
+    public class UpdateSchoolCommandHandler : BaseCommandHandler, IRequestHandler<UpdateSchoolCommand>
     {
-        private readonly IApplicationDbContext _context;
-        private readonly IMapper _mapper;
-
         public UpdateSchoolCommandHandler(IApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
-            _context = context;
-            _mapper = mapper;
+
         }
 
         public async Task<Unit> Handle(UpdateSchoolCommand request, CancellationToken cancellationToken)

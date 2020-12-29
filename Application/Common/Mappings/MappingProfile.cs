@@ -12,15 +12,6 @@ namespace Application.Common.Mappings
         public MappingProfile()
         {
             ApplyMappingsFromAssembly(Assembly.GetExecutingAssembly());
-            CreateMap<SchoolDto, School>()
-                .ForMember(s => s.DomainEvents, opt => opt.Ignore())
-                .ForMember(s => s.Created, opt => opt.Ignore())
-                .ForMember(s => s.CreatedBy, opt => opt.Ignore())
-                .ForMember(s => s.LastModified, opt => opt.Ignore())
-                .ForMember(s => s.LastModifiedBy, opt => opt.Ignore())
-                .ForMember(s => s.Archived, opt => opt.Ignore())
-                .ForMember(s => s.Deleted, opt => opt.Ignore())
-                .IgnoreAllPropertiesWithAnInaccessibleSetter();
         }
 
         private void ApplyMappingsFromAssembly(Assembly assembly)

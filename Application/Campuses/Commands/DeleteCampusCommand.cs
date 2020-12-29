@@ -8,24 +8,24 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Schools.Commands
+namespace Application.Campuses.Commands
 {
     public class DeleteCampusCommand : IRequest
     {
         public int Id { get; set; }
     }
 
-    public class DeleteSchoolCommandHandler : BaseCommandHandler, IRequestHandler<DeleteCampusCommand>
+    public class DeleteCampusCommandHandler : BaseCommandHandler, IRequestHandler<DeleteCampusCommand>
     {
 
-        public DeleteSchoolCommandHandler(IApplicationDbContext context) 
+        public DeleteCampusCommandHandler(IApplicationDbContext context) 
             : base(context)
         {
         }
 
         public async Task<Unit> Handle(DeleteCampusCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Schools
+            var entity = await _context.Campuses
               .Where(s => s.Id == request.Id)
               .SingleOrDefaultAsync(cancellationToken);
 
@@ -34,7 +34,7 @@ namespace Application.Schools.Commands
                 throw new NotFoundException(nameof(School), request.Id);
             }
 
-            _context.Schools.Remove(entity);
+            _context.Campuses.Remove(entity);
 
             await _context.SaveChangesAsync(cancellationToken);
 

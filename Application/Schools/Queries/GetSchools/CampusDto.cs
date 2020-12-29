@@ -25,11 +25,24 @@ namespace Application.Schools.Queries.GetSchools
         public string Fax { get; set; }
         public decimal ProcessingFee { get; set; }
 
-        /*
-            public void Mapping(Profile profile)
-            {
-               // Special map
-            }
-        */
+        public SchoolDto OwnerShool { get; set; }
+
+        public void Mapping(Profile profile)
+        {
+            // Special map
+            profile.CreateMap<Campus, CampusDto>().ForMember(s => s.OwnerShool, opt => opt.Ignore());
+
+            profile.CreateMap<CampusDto, Campus>()
+                .ForMember(s => s.OwnerSchool, opt => opt.Ignore())
+                .ForMember(s => s.DomainEvents, opt => opt.Ignore())
+                .ForMember(s => s.Created, opt => opt.Ignore())
+                .ForMember(s => s.CreatedBy, opt => opt.Ignore())
+                .ForMember(s => s.LastModified, opt => opt.Ignore())
+                .ForMember(s => s.LastModifiedBy, opt => opt.Ignore())
+                .ForMember(s => s.Archived, opt => opt.Ignore())
+                .ForMember(s => s.Deleted, opt => opt.Ignore())
+                .IgnoreAllPropertiesWithAnInaccessibleSetter();
+        }
+
     }
 }

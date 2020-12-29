@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Schools.Commands
 {
-    class UpdateSchoolCommandValidator : AbstractValidator<CreateSchoolCommand>
+    public class UpdateSchoolCommandValidator : AbstractValidator<CreateSchoolCommand>
     {
         private readonly IApplicationDbContext _context;
 

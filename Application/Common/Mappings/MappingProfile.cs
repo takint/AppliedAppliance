@@ -1,6 +1,4 @@
-﻿using Application.Schools.Queries.GetSchools;
-using AutoMapper;
-using Domain.Entities;
+﻿using AutoMapper;
 using System;
 using System.Linq;
 using System.Reflection;

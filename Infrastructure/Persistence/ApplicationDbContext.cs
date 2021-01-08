@@ -4,7 +4,6 @@ using Domain.Entities;
 using IdentityServer4.EntityFramework.Options;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
@@ -35,6 +34,12 @@ namespace Infrastructure.Persistence
 
         public DbSet<School> Schools { get; set; }
 
+        public DbSet<SchoolRequest> SchoolRequests { get; set; }
+
+        public DbSet<Student> Students { get; set; }
+
+        public DbSet<Agent> Agents { get; set; }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (EntityEntry<AuditableEntity> entry in ChangeTracker.Entries<AuditableEntity>())
@@ -63,6 +68,8 @@ namespace Infrastructure.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.Ignore<File>();
+            modelBuilder.Ignore<PandaDocDocument>();
             base.OnModelCreating(modelBuilder);
         }
 

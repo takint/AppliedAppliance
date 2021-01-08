@@ -1,5 +1,5 @@
 ﻿using Application.Schools.Commands;
-using Application.Schools.Queries.GetSchools;
+using Application.Schools.Queries;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Infrastructure.Repository;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,9 @@ namespace Infrastructure
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             services.AddScoped<IDomainEventService, DomainEventService>();
+
+            // Just for testing the using of repository.
+            services.AddScoped<ISchoolRepository, SchoolRepository>();
 
             // Identity for authentication
             services.AddDefaultIdentity<ApplicationUser>()

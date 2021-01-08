@@ -1,8 +1,9 @@
 ﻿using Application.Common.Mappings;
+using Application.Schools.Queries;
 using AutoMapper;
 using Domain.Entities;
 
-namespace Application.Schools.Queries.GetSchools
+namespace Application.Campuses.Queries
 {
     public class CampusDto : IMapFrom<Campus>
     {

@@ -1,4 +1,4 @@
-﻿using Application.Schools.Queries.GetSchools;
+﻿using Application.Schools.Queries;
 using Domain.Entities;
 using FluentAssertions;
 using NUnit.Framework;

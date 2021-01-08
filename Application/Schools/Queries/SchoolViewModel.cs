@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Application.Schools.Queries.GetSchools
+namespace Application.Schools.Queries
 {
     public class SchoolViewModel
     {

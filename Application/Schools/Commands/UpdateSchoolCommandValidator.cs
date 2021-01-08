@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Schools.Commands
 {
-    public class UpdateSchoolCommandValidator : AbstractValidator<CreateSchoolCommand>
+    public class UpdateSchoolCommandValidator : AbstractValidator<UpdateSchoolCommand>
     {
         private readonly IApplicationDbContext _context;
 
@@ -15,8 +15,7 @@ namespace Application.Schools.Commands
             _context = context;
 
             RuleFor(v => v.SchoolData.Name)
-                .NotEmpty().WithMessage("Name is required.")
-                .MustAsync(BeUniqueName).WithMessage("School name already exists.");
+                .NotEmpty().WithMessage("Name is required.");
         }
 
         public async Task<bool> BeUniqueName(string name, CancellationToken cancellationToken)

@@ -15,7 +15,7 @@ namespace Application.Campuses.Commands
         public int Id { get; set; }
     }
 
-    public class DeleteCampusCommandHandler : BaseCommandHandler, IRequestHandler<DeleteCampusCommand>
+    public class DeleteCampusCommandHandler : BaseQueryHandler, IRequestHandler<DeleteCampusCommand>
     {
 
         public DeleteCampusCommandHandler(IApplicationDbContext context) 

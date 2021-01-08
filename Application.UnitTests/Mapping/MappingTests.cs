@@ -1,5 +1,6 @@
+using Application.Campuses.Queries;
 using Application.Common.Mappings;
-using Application.Schools.Queries.GetSchools;
+using Application.Schools.Queries;
 using AutoMapper;
 using Domain.Entities;
 using NUnit.Framework;

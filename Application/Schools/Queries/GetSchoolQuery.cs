@@ -1,4 +1,5 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Common.Commands;
+using Application.Common.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -7,21 +8,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Application.Schools.Queries.GetSchools
+namespace Application.Schools.Queries
 {
     public class GetSchoolQuery : IRequest<SchoolViewModel>
     {
     }
 
-    public class GetSchoolQueryHandler : IRequestHandler<GetSchoolQuery, SchoolViewModel>
+    public class GetSchoolQueryHandler : BaseQueryHandler, IRequestHandler<GetSchoolQuery, SchoolViewModel>
     {
-        private readonly IApplicationDbContext _context;
-        private readonly IMapper _mapper;
-
         public GetSchoolQueryHandler(IApplicationDbContext context, IMapper mapper)
+            : base(context, mapper)
         {
-            _context = context;
-            _mapper = mapper;
         }
 
         public async Task<SchoolViewModel> Handle(GetSchoolQuery request, CancellationToken cancellationToken)
@@ -30,7 +27,7 @@ namespace Application.Schools.Queries.GetSchools
             {
                 Lists = await _context.Schools
                     .ProjectTo<SchoolDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(t => t.Name)
+                    .OrderBy(s => s.Name)
                     .ToListAsync(cancellationToken)
             };
         }

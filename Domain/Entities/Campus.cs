@@ -1,11 +1,7 @@
-﻿using Domain.Common;
-using System.Collections.Generic;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
-    public class Campus : AuditableEntity, IHasDomainEvent
+    public class Campus : BaseEntity<int>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Province { get; set; }
@@ -24,7 +20,5 @@ namespace Domain.Entities
         public string Ext { get; set; }
         public string Fax { get; set; }
         public decimal ProcessingFee { get; set; }
-
-        public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
     }
 }

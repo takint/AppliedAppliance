@@ -1,6 +1,6 @@
 ﻿using Application.Common.Commands;
 using Application.Common.Interfaces;
-using Application.Schools.Queries.GetSchools;
+using Application.Schools.Queries;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -15,7 +15,7 @@ namespace Application.Schools.Commands
         public SchoolDto SchoolData { get; set; }
     }
 
-    public class CreateSchoolCommandHandler : BaseCommandHandler, IRequestHandler<CreateSchoolCommand, int>
+    public class CreateSchoolCommandHandler : BaseQueryHandler, IRequestHandler<CreateSchoolCommand, int>
     {
         public CreateSchoolCommandHandler(IApplicationDbContext context, IMapper mapper)
             : base(context, mapper)

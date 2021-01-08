@@ -1,9 +1,10 @@
-﻿using Application.Common.Mappings;
+﻿using Application.Campuses.Queries;
+using Application.Common.Mappings;
 using AutoMapper;
 using Domain.Entities;
 using System.Collections.Generic;
 
-namespace Application.Schools.Queries.GetSchools
+namespace Application.Schools.Queries
 {
     public class SchoolDto : IMapFrom<School>
     {

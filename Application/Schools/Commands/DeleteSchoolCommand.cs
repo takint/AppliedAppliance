@@ -15,7 +15,7 @@ namespace Application.Schools.Commands
         public int Id { get; set; }
     }
 
-    public class DeleteSchoolCommandHandler : BaseCommandHandler, IRequestHandler<DeleteCampusCommand>
+    public class DeleteSchoolCommandHandler : BaseQueryHandler, IRequestHandler<DeleteCampusCommand>
     {
 
         public DeleteSchoolCommandHandler(IApplicationDbContext context) 

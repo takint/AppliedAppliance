@@ -1,11 +1,7 @@
-﻿using Domain.Common;
-using System.Collections.Generic;
-
-namespace Domain.Entities
+﻿namespace Domain.Entities
 {
-    public class School : AuditableEntity, IHasDomainEvent
+    public class School : BaseEntity<int>
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string CountryID { get; set; }
         public int TOEFLlisten { get; set; }
@@ -34,7 +30,5 @@ namespace Domain.Entities
         public bool IsHighSchool { get; set; }
         public string Email { get; set; }
         public bool HasLeadIntegration { get; set; }
-
-        public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
     }
 }

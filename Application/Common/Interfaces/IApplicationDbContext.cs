@@ -9,7 +9,13 @@ namespace Application.Common.Interfaces
     {
         DbSet<School> Schools { get; set; }
 
+        DbSet<SchoolRequest> SchoolRequests { get; set; }
+
         DbSet<Campus> Campuses { get; set; }
+
+        DbSet<Student> Students { get; set; }
+
+        DbSet<Agent> Agents { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

@@ -1,6 +1,6 @@
-﻿using Application.Common.Commands;
+﻿using Application.Campuses.Queries;
+using Application.Common.Commands;
 using Application.Common.Interfaces;
-using Application.Schools.Queries.GetSchools;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -15,7 +15,7 @@ namespace Application.Campuses.Commands
         public CampusDto CampusData { get; set; }
     }
 
-    public class CreateCampusCommandHandler : BaseCommandHandler, IRequestHandler<CreateCampusCommand, int>
+    public class CreateCampusCommandHandler : BaseQueryHandler, IRequestHandler<CreateCampusCommand, int>
     {
 
         public CreateCampusCommandHandler(IApplicationDbContext context, IMapper mapper)

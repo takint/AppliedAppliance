@@ -1,7 +1,6 @@
 ﻿using Application.Campuses.Commands;
 using Application.Campuses.Queries;
 using Application.Common.Models;
-using Application.Schools.Queries.GetSchools;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 

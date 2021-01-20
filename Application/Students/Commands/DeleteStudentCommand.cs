@@ -1,6 +1,7 @@
 ﻿using Application.Common.Commands;
 using Application.Common.Exceptions;
 using Application.Common.Interfaces;
+using Application.Common.Interfaces.Repository;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -17,26 +18,23 @@ namespace Application.Students.Commands
     }
     public class DeleteStudentCommandHandler : BaseQueryHandler, IRequestHandler<DeleteStudentCommand>
     {
-
-        public DeleteStudentCommandHandler(IApplicationDbContext context)
+        private readonly IStudentRepository _studentRepository;
+        public DeleteStudentCommandHandler(IApplicationDbContext context, IStudentRepository repository)
             : base(context)
         {
+            _studentRepository = repository;
         }
 
         public async Task<Unit> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
-            var entity = await _context.Students
-              .Where(s => s.Id == request.Id)
-              .SingleOrDefaultAsync(cancellationToken);
+            var entity = await _studentRepository.GetByIdAsync(request.Id);
 
             if (entity == null)
             {
                 throw new NotFoundException(nameof(Student), request.Id);
             }
 
-            _context.Students.Remove(entity);
-
-            await _context.SaveChangesAsync(cancellationToken);
+            await _studentRepository.DeleteAsync(entity.Id);
 
             return Unit.Value;
         }

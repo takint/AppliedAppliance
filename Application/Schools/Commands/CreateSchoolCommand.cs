@@ -17,18 +17,19 @@ namespace Application.Schools.Commands
 
     public class CreateSchoolCommandHandler : BaseQueryHandler, IRequestHandler<CreateSchoolCommand, int>
     {
-        public CreateSchoolCommandHandler(IApplicationDbContext context, IMapper mapper)
+        private readonly ISchoolRepository _schoolRepository;
+
+        public CreateSchoolCommandHandler(IApplicationDbContext context, IMapper mapper, ISchoolRepository repository)
             : base(context, mapper)
         {
+            _schoolRepository = repository;
         }
 
         public async Task<int> Handle(CreateSchoolCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<School>(request.SchoolData);
 
-            _context.Schools.Add(entity);
-
-            await _context.SaveChangesAsync(cancellationToken);
+            await _schoolRepository.CreateAsync(entity);
 
             return entity.Id;
         }

@@ -34,23 +34,21 @@ namespace Application.Agents.Commands
             RuleFor(v => v.AgentData.MainSourceStudent)
                 .NotEmpty().WithMessage("Main Source Student is reqired");
 
-            RuleFor(v => v.AgentData.Address)
-                .NotEmpty().WithMessage("Address is required");
 
-            RuleFor(v => v.AgentData.City)
-                .NotEmpty().WithMessage("City is required");
+            //RuleFor(v => v.AgentData.Address)
+            //    .NotEmpty().WithMessage("Address is required");
 
-            RuleFor(v => v.AgentData.Province)
-                .NotEmpty().WithMessage("Province is required");
+            //RuleFor(v => v.AgentData.City)
+            //    .NotEmpty().WithMessage("City is required");
 
-            RuleFor(v => v.AgentData.CountryCode)
-                .MaximumLength(2).WithMessage("Invalid Country Code");
+            //RuleFor(v => v.AgentData.Province)
+            //    .NotEmpty().WithMessage("Province is required");
 
-            RuleFor(v => v.AgentData.PostalCode)
-                .NotEmpty().WithMessage("Postal Code is required");
+            //RuleFor(v => v.AgentData.CountryCode)
+            //    .MaximumLength(2).WithMessage("Invalid Country Code");
 
-            RuleFor(v => v.AgentData.ProvidedService)
-                .NotEmpty().WithMessage("Provided Service is required");
+            //RuleFor(v => v.AgentData.PostalCode)
+            //    .NotEmpty().WithMessage("Postal Code is required");
 
 
         }

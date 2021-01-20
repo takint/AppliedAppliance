@@ -14,14 +14,14 @@ namespace Application.Schools.Commands
         {
             _context = context;
 
-            RuleFor(v => v.SchoolData.Name)
+            RuleFor(v => v.SchoolData.SchoolName)
                 .NotEmpty().WithMessage("Name is required.");
         }
 
         public async Task<bool> BeUniqueName(string name, CancellationToken cancellationToken)
         {
             return await _context.Schools
-                .AllAsync(s => s.Name != name);
+                .AllAsync(s => s.SchoolName != name);
         }
     }
 }

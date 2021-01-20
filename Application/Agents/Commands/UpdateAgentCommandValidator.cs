@@ -14,8 +14,8 @@ namespace Application.Agents.Commands
         {
             _context = context;
 
-            RuleFor(v => v.AgentData.Email)
-                .NotEmpty().WithMessage("Email is required");
+            //RuleFor(v => v.AgentData.Email)
+            //    .NotEmpty().WithMessage("Email is required");
                 
         }
 

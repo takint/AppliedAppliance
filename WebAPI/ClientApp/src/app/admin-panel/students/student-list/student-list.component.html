@@ -1,0 +1,38 @@
+<div *ngIf="!isInitDataLoaded" class="spinner" id="spinner"></div>
+
+<h1 id="tableLabel">Students</h1>
+
+<form>
+  <div class="form-group form-inline">
+    Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+    <span *ngIf="service.loading$ | async">Loading...</span>
+  </div>
+</form>
+
+<table class="table table-bordered panel-data-table" aria-labelledby="tableLabel" *ngIf="isInitDataLoaded">
+  <thead>
+    <tr>
+      <th scope="col" sortable="id" (sort)="onSort($event)" width="20%">Student Id</th>
+      <th scope="col" sortable="firstName" (sort)="onSort($event)">First Name</th>
+      <th scope="col" sortable="lastName" (sort)="onSort($event)">Last Name</th>
+      <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+      <th scope="col" sortable="studentCode" (sort)="onSort($event)">Student Code</th>
+      <th width="20%">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of dataSource$ | async">
+      <td>{{ student.id }}</td>
+      <td>{{ student.firstName }}</td>
+      <td>{{ student.lastName }}</td>
+      <td>{{ student.email }}</td>
+      <td>{{ student.studentCode }}</td>
+      <td>
+        <a [routerLink]="['Details/' + student.id]"><i class="far fa-edit"></i></a>
+        <button (click)="onDeleteClick($event, student)"><i class="far fa-trash-alt"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"></ngb-pagination>

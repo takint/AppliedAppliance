@@ -10,15 +10,15 @@ namespace Infrastructure.Persistence.Configurations
         {
             builder.Ignore(e => e.DomainEvents);
 
-            builder.Property(e => e.Name).HasMaxLength(128).IsRequired();
-            builder.Property(e => e.CountryID).HasMaxLength(2).IsRequired();
+            builder.Property(e => e.SchoolName).HasMaxLength(128).IsRequired();
+            builder.Property(e => e.Email).HasMaxLength(256);
+            builder.Property(e => e.CountryCode).HasMaxLength(4).IsRequired();
 
-            builder.Property(e => e.ApplicationFee).HasColumnType(DatabaseTypes.DECIMAL72);
-            builder.Property(e => e.IELTSAvg).HasColumnType(DatabaseTypes.DECIMAL21);
-            builder.Property(e => e.IELTSlisten).HasColumnType(DatabaseTypes.DECIMAL21);
-            builder.Property(e => e.IELTSread).HasColumnType(DatabaseTypes.DECIMAL21);
-            builder.Property(e => e.IELTSspeak).HasColumnType(DatabaseTypes.DECIMAL21);
-            builder.Property(e => e.IELTSwrite).HasColumnType(DatabaseTypes.DECIMAL21);
+            builder.Property(e => e.ApplicationFee).HasPrecision(7,2);
+            builder.Property(e => e.IELTSlisten).HasPrecision(2, 1);
+            builder.Property(e => e.IELTSread).HasPrecision(2, 1);
+            builder.Property(e => e.IELTSspeak).HasPrecision(2, 1);
+            builder.Property(e => e.IELTSwrite).HasPrecision(2, 1);
         }
     }
 }

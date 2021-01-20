@@ -29,7 +29,7 @@ namespace Application.Campuses.Queries
         {
             return await _context.Campuses
                 .Where(c => c.SchoolId == request.SchoolId)
-                .OrderBy(c => c.Name)
+                .OrderBy(c => c.CampusName)
                 .ProjectTo<CampusDto>(_mapper.ConfigurationProvider)
                 .PaginatedListAsync(request.PageNumber, request.PageSize);
         }

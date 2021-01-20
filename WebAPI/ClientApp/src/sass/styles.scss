@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'styles.variables.scss';
+
+@font-face {
+  font-family: 'PTSansCaption-Regular';
+  src: url('/webfonts/PTSansCaption-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('/webfontsfonts/Roboto-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: 'PTSansCaption-Regular', Arial, sans-serif;
+  background: $colorLightGrey;
+  font-size: 12px;
+}
+
+/* Provide sufficient contrast against white background */
+/*TODO: will change the below later*/
+a {
+  color: $colorDarkBlue;
+}
+
+code {
+  color: #e01a76;
+}
+
+.btn-primary {
+  color: $colorWhite;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+
+/* Sortable table */
+table.panel-data-table {
+  th {
+    background: $colorBlue;
+    color: $colorWhite;
+    vertical-align: middle;
+    height: 50px;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+}
+
+th[sortable] {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+
+  &:before {
+    content: ' ';
+    float: left;
+    margin: 0 0.25rem;
+    display: block;
+    width: 15px;
+    height: 18px;
+  }
+
+  &.desc:before,
+  &.asc:before {
+    content: ' ';
+    display: block;
+    background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sort-down" class="svg-inline--fa fa-sort-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="white" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"></path></svg>') no-repeat;
+    background-size: 15px;
+    width: 15px;
+    height: 18px;
+    float: left;
+    background-position: 0px -5px;
+    margin: 0 0.25rem;
+  }
+
+  &.desc:before {
+    transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+  }
+}

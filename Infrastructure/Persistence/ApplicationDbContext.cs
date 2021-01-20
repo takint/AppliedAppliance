@@ -30,15 +30,30 @@ namespace Infrastructure.Persistence
             _currentUserService = currentUserService;
         }
 
-        public DbSet<Campus> Campuses { get; set; }
-
+        public DbSet<SchoolUser> SchoolUsers { get; set; }
         public DbSet<School> Schools { get; set; }
-
         public DbSet<SchoolRequest> SchoolRequests { get; set; }
+        public DbSet<SchoolPaymentAccount> SchoolPaymentAccounts { get; set; }
+        public DbSet<Campus> Campuses { get; set; }
+        public DbSet<ProgramCategory> ProgramCategories { get; set; }
+        public DbSet<Program> Programs { get; set; }
+        public DbSet<CampusProgram> CampusPrograms { get; set; }
+        public DbSet<PandaDocTemplate> PandaDocTemplates { get; set; }
+        public DbSet<AssignedProgramPandaDocTemplate> AssignedProgramPandaDocTemplates { get; set; }
 
         public DbSet<Student> Students { get; set; }
-
         public DbSet<Agent> Agents { get; set; }
+        public DbSet<StudentApplication> StudentApplications { get; set; }
+        public DbSet<ApplicationPayment> Payments { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<SchoolDocument> SchoolDocuments { get; set; }
+        public DbSet<ApplicationDocument> ApplicationDocuments { get; set; }
+        public DbSet<ApplicationDocumentFile> ApplicationDocumentFiles { get; set; }
+        public DbSet<File> Files { get; set; }
+        public DbSet<PandaDocDocument> PandaDocDocuments { get; set; }
+        public DbSet<StandardGrade> StandardGrades { get; set; }
+        public DbSet<GradingScheme> GradingSchemes { get; set; }
+
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -67,9 +82,9 @@ namespace Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            modelBuilder.Ignore<File>();
-            modelBuilder.Ignore<PandaDocDocument>();
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());      
+            modelBuilder.Ignore<AssignedProgramPandaDocTemplate>();
+
             base.OnModelCreating(modelBuilder);
         }
 

@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Application.Common.Interfaces.Repository;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Repository;
@@ -33,6 +34,12 @@ namespace Infrastructure
 
             // Just for testing the using of repository.
             services.AddScoped<ISchoolRepository, SchoolRepository>();
+            services.AddScoped<ISchoolRequestRepository, SchoolRequestRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IAgentRepository, AgentRepository>();
+            services.AddScoped<ICampusRepository, CampusRepository>();
+            services.AddScoped<IProgramCategoryRepository, ProgramCategoryRepository>();
+            services.AddScoped<IProgramRepository, ProgramRepository>();
 
             // Identity for authentication
             services.AddDefaultIdentity<ApplicationUser>()

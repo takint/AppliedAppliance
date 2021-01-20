@@ -82,12 +82,12 @@ namespace Infrastructure.Repository
 
         public IEnumerable<TEntity> GetAll()
         {
-            return dbSet.ToList();
+            return dbSet.Where(x => !x.Deleted && !x.Archived).ToList();
         }
 
         public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await dbSet.ToListAsync();
+            return await dbSet.Where(x => !x.Deleted && !x.Archived).ToListAsync();
         }
 
         public TEntity GetById(TKey id)
@@ -100,6 +100,11 @@ namespace Infrastructure.Repository
         {
             TEntity entity = await dbSet.FindAsync(id);
             return entity;
+        }
+
+        public async Task<bool> IsExistedEntity(TKey id)
+        {
+            return await dbSet.AnyAsync(e => e.Id.Equals(id));
         }
 
         public IEnumerable<TEntity> List(Expression<Func<TEntity, bool>> predicate)

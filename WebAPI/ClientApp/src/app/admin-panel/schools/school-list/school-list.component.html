@@ -1,0 +1,33 @@
+<div *ngIf="!isInitDataLoaded" class="spinner" id="spinner"></div>
+
+<h1 id="tableLabel">Schools</h1>
+<form>
+  <div class="form-group form-inline">
+    Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+    <span *ngIf="service.loading$ | async">Loading...</span>
+  </div>
+</form>
+
+<table class="table table-bordered panel-data-table" aria-labelledby="tableLabel" *ngIf="isInitDataLoaded">
+  <thead>
+    <tr>
+      <th scope="col" sortable="id" (sort)="onSort($event)" width="20%">School Id</th>
+      <th scope="col" sortable="name" (sort)="onSort($event)">School Name</th>
+      <th scope="col" sortable="countryCode" (sort)="onSort($event)">Country</th>
+      <th width="20%">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let school of dataSource$ | async">
+      <td>{{ school.id }}</td>
+      <td>{{ school.schoolName }}</td>
+      <td>{{ school.countryCode }}</td>
+      <td>
+        <a [routerLink]="['Details/' + school.id]"><i class="far fa-edit"></i></a>
+        <button (click)="onDeleteClick($event, school)"><i class="far fa-trash-alt"></i></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+</ngb-pagination>

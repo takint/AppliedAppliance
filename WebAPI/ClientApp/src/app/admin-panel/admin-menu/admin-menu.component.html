@@ -1,0 +1,14 @@
+<div class=""
+     id="navbarCollapse"
+     [ngClass]="{ show: isExpanded }">
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item"
+        [routerLinkActive]="['link-active']"
+        [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" [routerLink]="['/Admin']"><i class="fa fa-fw fa-home"></i> <span>Home</span></a>
+    </li>
+    <li *ngFor="let item of menuItems" class="nav-item" [routerLinkActive]="['link-active']">
+      <a class="nav-link" [routerLink]="[item.url]"><i class="{{item.icon}}"></i> <span>{{item.title}}</span></a>
+    </li>
+  </ul>
+</div>

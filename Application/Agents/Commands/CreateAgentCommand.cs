@@ -1,6 +1,7 @@
 ﻿using Application.Agents.Queries;
 using Application.Common.Commands;
 using Application.Common.Interfaces;
+using Application.Common.Interfaces.Repository;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -16,18 +17,20 @@ namespace Application.Agents.Commands
 
     public class CreateAgentCommandHandler : BaseQueryHandler, IRequestHandler<CreateAgentCommand, int>
     {
-        public CreateAgentCommandHandler(IApplicationDbContext context, IMapper mapper)
+        private readonly IAgentRepository _agentRepository;
+        public CreateAgentCommandHandler(IApplicationDbContext context, IMapper mapper, IAgentRepository repository)
             : base(context, mapper)
         {
+            _agentRepository = repository;
         }
 
         public async Task<int> Handle(CreateAgentCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<Agent>(request.AgentData);
 
-            _context.Agents.Add(entity);
-
-            await _context.SaveChangesAsync(cancellationToken);
+            await _agentRepository.CreateAsync(entity);
+            //_context.Agents.Add(entity);
+            //await _context.SaveChangesAsync(cancellationToken);
 
             return entity.Id;
         }

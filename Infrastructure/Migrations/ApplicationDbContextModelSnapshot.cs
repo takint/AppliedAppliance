@@ -26,20 +26,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("AccountName")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("AccountNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("AmericanRepresented")
-                        .HasColumnType("bit");
 
                     b.Property<bool>("Approved")
                         .HasColumnType("bit");
@@ -47,19 +36,7 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
-                    b.Property<string>("BankAddress")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("BankName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<bool>("CanadianRepresented")
-                        .HasColumnType("bit");
-
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
@@ -67,14 +44,12 @@ namespace Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyName")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("CountryCode")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -90,10 +65,6 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("FacebookUrl")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(128)
@@ -101,18 +72,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("Guid")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InstagramAt")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("InstitutionNumber")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("InstitutionRepresenting")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -125,94 +84,27 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("LinkedinUrl")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
                     b.Property<string>("MainSourceStudent")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<int?>("ManagerId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MinimumStudentRefer")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MinimumStudentSend")
                         .HasColumnType("int");
 
                     b.Property<bool>("Notify")
                         .HasColumnType("bit");
 
-                    b.Property<string>("OrganizationBelong")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("OthersRepresented")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Phone")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("PostalCode")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("ProvidedService")
-                        .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
 
                     b.Property<string>("Province")
-                        .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
-
-                    b.Property<DateTime?>("RecruitStartTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReferenceEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("ReferenceInstitution")
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
-
-                    b.Property<string>("ReferenceName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("ReferencePhone")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("ReferenceWebsite")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<int?>("ReferralStaffID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SkypeId")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("SwiftCode")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("TransitNumber")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("TwitterAt")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("UserNoticeMessage")
                         .HasColumnType("nvarchar(max)");
@@ -221,15 +113,161 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("WhatsAppId")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ManagerId");
 
                     b.ToTable("Agents");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ApplicationDocument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DocumentKey")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PandaDocId")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("RequirePandaDoc")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Required")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<int>("StudentApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentApplicationId");
+
+                    b.ToTable("ApplicationDocuments");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ApplicationDocumentFile", b =>
+                {
+                    b.Property<int>("ApplicationDocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("FileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ApplicationDocumentId", "FileId");
+
+                    b.HasIndex("FileId")
+                        .IsUnique();
+
+                    b.ToTable("ApplicationDocumentFiles");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ApplicationPayment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("ApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("PaymentAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PaymentType")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("ReferenceId")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationId");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("Domain.Entities.Campus", b =>
@@ -250,15 +288,15 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CampusName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
                     b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -269,13 +307,7 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Ext")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Fax")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
@@ -284,27 +316,19 @@ namespace Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Latitude")
-                        .HasColumnType("decimal(9,6)");
-
                     b.Property<int?>("LeadCampusId")
                         .HasColumnType("int");
 
-                    b.Property<decimal?>("Longtitude")
-                        .HasColumnType("decimal(9,6)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("PostalCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<decimal>("ProcessingFee")
+                        .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
 
                     b.Property<string>("Province")
@@ -325,41 +349,16 @@ namespace Infrastructure.Migrations
                     b.ToTable("Campuses");
                 });
 
-            modelBuilder.Entity("Domain.Entities.School", b =>
+            modelBuilder.Entity("Domain.Entities.CampusProgram", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<int>("CampusId")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("ApplicationFee")
-                        .HasColumnType("decimal(7,2)");
+                    b.Property<int>("ProgramId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
-
-                    b.Property<bool>("CAEAccepted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("CAEAvg")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CAElisten")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CAEread")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CAEspeak")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CAEwrite")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CountryID")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -370,41 +369,374 @@ namespace Infrastructure.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Email")
+                    b.Property<decimal>("DomTuition")
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("IntlTuition")
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("HasLeadIntegration")
+                    b.Property<string>("StartDates")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CampusId", "ProgramId");
+
+                    b.HasIndex("ProgramId");
+
+                    b.ToTable("CampusPrograms");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Document", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IELTSAccepted")
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<decimal>("IELTSAvg")
-                        .HasColumnType("decimal(2,1)");
+                    b.Property<string>("Group")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
-                    b.Property<decimal>("IELTSlisten")
-                        .HasColumnType("decimal(2,1)");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<decimal>("IELTSread")
-                        .HasColumnType("decimal(2,1)");
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("IELTSspeak")
-                        .HasColumnType("decimal(2,1)");
+                    b.Property<string>("Name")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
-                    b.Property<decimal>("IELTSwrite")
-                        .HasColumnType("decimal(2,1)");
+                    b.Property<string>("Type")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
-                    b.Property<bool>("IsCollege")
+                    b.HasKey("Id");
+
+                    b.ToTable("Documents");
+                });
+
+            modelBuilder.Entity("Domain.Entities.File", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsEnglishInstitute")
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsHighSchool")
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Path")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Files");
+                });
+
+            modelBuilder.Entity("Domain.Entities.GradingScheme", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsUniversity")
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GradingSchemeName")
+                        .IsRequired()
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LetterGrade")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LevelId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MaxScale")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinScale")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Rank")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Step")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GradingSchemes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PandaDocDocument", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ApplicationDocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("FileId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Process")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationDocumentId")
+                        .IsUnique();
+
+                    b.HasIndex("FileId")
+                        .IsUnique()
+                        .HasFilter("[FileId] IS NOT NULL");
+
+                    b.ToTable("PandaDocDocuments");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PandaDocTemplate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TemplateId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("PandaDocTemplates");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Program", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("AdditionalDocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("EATemplateId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("LeadProgramId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProgramCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProgramLength")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProgramLevel")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProgramName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdditionalDocumentId");
+
+                    b.HasIndex("EATemplateId");
+
+                    b.HasIndex("ProgramCategoryId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("Programs");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ProgramCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("LastModified")
                         .HasColumnType("datetime2");
@@ -417,30 +749,199 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<int>("StudyPermit")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.Property<bool>("TOEFLAccepted")
+                    b.ToTable("ProgramCategories");
+                });
+
+            modelBuilder.Entity("Domain.Entities.School", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<decimal>("ApplicationFee")
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
+
+                    b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
-                    b.Property<int>("TOEFLSum")
-                        .HasColumnType("int");
+                    b.Property<string>("CountryCode")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
 
-                    b.Property<int>("TOEFLlisten")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("TOEFLread")
-                        .HasColumnType("int");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TOEFLspeak")
-                        .HasColumnType("int");
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("TOEFLwrite")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("HasLeadIntegration")
+                        .HasColumnType("bit");
+
+                    b.Property<decimal>("IELTSlisten")
+                        .HasPrecision(2, 1)
+                        .HasColumnType("decimal(2,1)");
+
+                    b.Property<decimal>("IELTSread")
+                        .HasPrecision(2, 1)
+                        .HasColumnType("decimal(2,1)");
+
+                    b.Property<decimal>("IELTSspeak")
+                        .HasPrecision(2, 1)
+                        .HasColumnType("decimal(2,1)");
+
+                    b.Property<decimal>("IELTSwrite")
+                        .HasPrecision(2, 1)
+                        .HasColumnType("decimal(2,1)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PGWP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SchoolName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Schools");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolDocument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DocumentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PreTemplate")
+                        .HasMaxLength(512)
+                        .HasColumnType("nvarchar(512)");
+
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("SchoolDocuments");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolPaymentAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("AccountClientId")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("AccountId")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<byte>("AccountType")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("AccountVendorCode")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("ApplicationServiceId")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Province")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TuitionServiceId")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("SchoolPaymentAccounts");
                 });
 
             modelBuilder.Entity("Domain.Entities.SchoolRequest", b =>
@@ -463,10 +964,10 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("CountryID")
+                    b.Property<string>("CountryCode")
                         .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -520,7 +1021,173 @@ namespace Infrastructure.Migrations
                     b.ToTable("SchoolRequests");
                 });
 
+            modelBuilder.Entity("Domain.Entities.SchoolUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Approved")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Ext")
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Guid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<bool>("Notify")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Phone")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<int>("SchoolId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SchoolId");
+
+                    b.ToTable("SchoolUsers");
+                });
+
+            modelBuilder.Entity("Domain.Entities.StandardGrade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("nvarchar(4)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StandardGrades");
+                });
+
             modelBuilder.Entity("Domain.Entities.Student", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Archived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Guid")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("MiddleName")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
+
+                    b.Property<string>("StudentCode")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AgentId");
+
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("Domain.Entities.StudentApplication", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -531,12 +1198,13 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int>("AgentID")
-                        .HasColumnType("int");
-
                     b.Property<string>("ApartmentNumber")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
+
+                    b.Property<decimal>("ApplicationFee")
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
@@ -548,19 +1216,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateTime?>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("CAEDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("CAElisten")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CAEread")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CAEspeak")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CAEwrite")
+                    b.Property<int>("CampusId")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -571,7 +1227,7 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
-                    b.Property<string>("CountryID")
+                    b.Property<string>("CountryCode")
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
 
@@ -580,6 +1236,9 @@ namespace Infrastructure.Migrations
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte?>("DashboardStep")
+                        .HasColumnType("tinyint");
 
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
@@ -591,65 +1250,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("EducationLevel")
                         .HasColumnType("int");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
                     b.Property<string>("FirstLanguage")
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
-                    b.Property<DateTime?>("GMATDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("GMATQuantitative")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GMATQuantitativeRank")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GMATTotal")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GMATTotalRank")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GMATVerbal")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GMATVerbalRank")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GMATWriting")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GMATWritingRank")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<DateTime?>("GREDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal?>("GREQuantitative")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GREQuantitativeRank")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GREVerbal")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GREVerbalRank")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GREWriting")
-                        .HasColumnType("decimal(7,2)");
-
-                    b.Property<decimal?>("GREWritingRank")
-                        .HasColumnType("decimal(7,2)");
 
                     b.Property<string>("Gender")
                         .HasMaxLength(32)
@@ -659,38 +1262,17 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
-                    b.Property<int?>("GradingSchemeID")
+                    b.Property<int>("GradingSchemeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Guid")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HasPermit")
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
-
-                    b.Property<DateTime?>("IELTSDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("IELTSTRFNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal?>("IELTSlisten")
-                        .HasColumnType("decimal(2,1)");
-
-                    b.Property<decimal?>("IELTSread")
-                        .HasColumnType("decimal(2,1)");
-
-                    b.Property<decimal?>("IELTSspeak")
-                        .HasColumnType("decimal(2,1)");
-
-                    b.Property<decimal?>("IELTSwrite")
-                        .HasColumnType("decimal(2,1)");
-
-                    b.Property<bool>("IsCompleted")
-                        .HasColumnType("bit");
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<bool>("IsGraduated")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsProfileCompleted")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("LastModified")
@@ -699,39 +1281,47 @@ namespace Infrastructure.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
-
                     b.Property<string>("MaritalStatus")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("MiddleName")
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("POBox")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("PassportNumber")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
-                    b.Property<string>("Postal")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("PostalCode")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Process")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("ProgramId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Province")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
-                    b.Property<string>("RefusedVisa")
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
+                    b.Property<string>("SchoolAttended")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SchoolID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("StreetNumber")
                         .HasMaxLength(32)
@@ -741,36 +1331,27 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<DateTime?>("TOEFLDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("TOEFLlisten")
+                    b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TOEFLread")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TOEFLspeak")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TOEFLwrite")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("TuitionFee")
+                        .HasPrecision(7, 2)
+                        .HasColumnType("decimal(7,2)");
 
                     b.Property<string>("UserNoticeMessage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("YesMoreInfo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("hasApplication")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("isProfileStarted")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.HasIndex("CampusId");
+
+                    b.HasIndex("ProgramId");
+
+                    b.HasIndex("SchoolID");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentApplications");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
@@ -1085,6 +1666,55 @@ namespace Infrastructure.Migrations
                     b.Navigation("AgentManager");
                 });
 
+            modelBuilder.Entity("Domain.Entities.ApplicationDocument", b =>
+                {
+                    b.HasOne("Domain.Entities.StudentApplication", "StudentApplication")
+                        .WithMany()
+                        .HasForeignKey("StudentApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StudentApplication");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ApplicationDocumentFile", b =>
+                {
+                    b.HasOne("Domain.Entities.ApplicationDocument", "ApplicationDocument")
+                        .WithMany()
+                        .HasForeignKey("ApplicationDocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.File", "File")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.ApplicationDocumentFile", "FileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationDocument");
+
+                    b.Navigation("File");
+                });
+
+            modelBuilder.Entity("Domain.Entities.ApplicationPayment", b =>
+                {
+                    b.HasOne("Domain.Entities.StudentApplication", "StudentApplication")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
+
+                    b.Navigation("StudentApplication");
+                });
+
             modelBuilder.Entity("Domain.Entities.Campus", b =>
                 {
                     b.HasOne("Domain.Entities.School", "OwnerSchool")
@@ -1094,6 +1724,229 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("OwnerSchool");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CampusProgram", b =>
+                {
+                    b.HasOne("Domain.Entities.Campus", "Campus")
+                        .WithMany()
+                        .HasForeignKey("CampusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Program", "Program")
+                        .WithMany()
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Campus");
+
+                    b.Navigation("Program");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PandaDocDocument", b =>
+                {
+                    b.HasOne("Domain.Entities.ApplicationDocument", "ApplicationDocument")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.PandaDocDocument", "ApplicationDocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.File", "File")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.PandaDocDocument", "FileId");
+
+                    b.OwnsOne("Domain.ValueObjects.PandaDocShareInfo", "ADOAShareInfo", b1 =>
+                        {
+                            b1.Property<string>("PandaDocDocumentId")
+                                .HasColumnType("nvarchar(450)");
+
+                            b1.Property<DateTime>("ExpiresAt")
+                                .HasColumnType("datetime2")
+                                .HasColumnName("ADOAShareLinkExpiresAt");
+
+                            b1.Property<string>("Link")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)")
+                                .HasColumnName("ADOAShareLink");
+
+                            b1.Property<string>("Recipient")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("SessionId")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("PandaDocDocumentId");
+
+                            b1.ToTable("PandaDocDocuments");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PandaDocDocumentId");
+                        });
+
+                    b.OwnsOne("Domain.ValueObjects.PandaDocShareInfo", "StudentShareInfo", b1 =>
+                        {
+                            b1.Property<string>("PandaDocDocumentId")
+                                .HasColumnType("nvarchar(450)");
+
+                            b1.Property<DateTime>("ExpiresAt")
+                                .HasColumnType("datetime2")
+                                .HasColumnName("StudentShareLinkExpiresAt");
+
+                            b1.Property<string>("Link")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)")
+                                .HasColumnName("StudentShareLink");
+
+                            b1.Property<string>("Recipient")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("SessionId")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("PandaDocDocumentId");
+
+                            b1.ToTable("PandaDocDocuments");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PandaDocDocumentId");
+                        });
+
+                    b.Navigation("ADOAShareInfo");
+
+                    b.Navigation("ApplicationDocument");
+
+                    b.Navigation("File");
+
+                    b.Navigation("StudentShareInfo");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PandaDocTemplate", b =>
+                {
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Program", b =>
+                {
+                    b.HasOne("Domain.Entities.PandaDocTemplate", "AdditionalDocument")
+                        .WithMany()
+                        .HasForeignKey("AdditionalDocumentId");
+
+                    b.HasOne("Domain.Entities.PandaDocTemplate", "EATemplate")
+                        .WithMany()
+                        .HasForeignKey("EATemplateId");
+
+                    b.HasOne("Domain.Entities.ProgramCategory", "ProgramCategory")
+                        .WithMany()
+                        .HasForeignKey("ProgramCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AdditionalDocument");
+
+                    b.Navigation("EATemplate");
+
+                    b.Navigation("ProgramCategory");
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolDocument", b =>
+                {
+                    b.HasOne("Domain.Entities.Document", "Document")
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Document");
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolPaymentAccount", b =>
+                {
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Domain.Entities.SchoolUser", b =>
+                {
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("School");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Student", b =>
+                {
+                    b.HasOne("Domain.Entities.Agent", "Agent")
+                        .WithMany()
+                        .HasForeignKey("AgentId");
+
+                    b.Navigation("Agent");
+                });
+
+            modelBuilder.Entity("Domain.Entities.StudentApplication", b =>
+                {
+                    b.HasOne("Domain.Entities.Campus", "Campus")
+                        .WithMany()
+                        .HasForeignKey("CampusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Program", "Program")
+                        .WithMany()
+                        .HasForeignKey("ProgramId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.School", "School")
+                        .WithMany()
+                        .HasForeignKey("SchoolID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Student", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Campus");
+
+                    b.Navigation("Program");
+
+                    b.Navigation("School");
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

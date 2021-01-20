@@ -17,14 +17,32 @@ namespace Infrastructure.Persistence.Configurations
                 .WithOne()
                 .HasForeignKey<PandaDocDocument>(p => p.FileId);
 
+            builder.HasOne(p => p.ApplicationDocument).WithOne().HasForeignKey<PandaDocDocument>(p => p.ApplicationDocumentId);
+
             builder.Property(p => p.Name).HasMaxLength(256);
 
             builder.Property(p => p.Process)
                 .HasMaxLength(256)
                 .HasConversion(new EnumToStringConverter<PandaDocProcess>());
 
-            builder.Property(p => p.StudentShareLink).HasMaxLength(256);
-            builder.Property(p => p.ADOAShareLink).HasMaxLength(256);
+            // map the properties of value object "PandaDocShareInfo" to columns in PandaDocDocument
+            builder.OwnsOne(e => e.StudentShareInfo)
+                .Property(p => p.Link)
+                .HasColumnName("StudentShareLink")
+                .HasMaxLength(256);
+
+            builder.OwnsOne(e => e.StudentShareInfo)
+              .Property(p => p.ExpiresAt)
+              .HasColumnName("StudentShareLinkExpiresAt");
+
+            builder.OwnsOne(e => e.ADOAShareInfo)
+                .Property(p => p.Link)
+                .HasColumnName("ADOAShareLink")
+                .HasMaxLength(256);
+
+            builder.OwnsOne(e => e.ADOAShareInfo)
+             .Property(p => p.ExpiresAt)
+             .HasColumnName("ADOAShareLinkExpiresAt");
         }
     }
 }

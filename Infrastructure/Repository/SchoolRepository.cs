@@ -1,6 +1,8 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using Infrastructure.Persistence;
+using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {

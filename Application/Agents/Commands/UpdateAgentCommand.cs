@@ -2,6 +2,7 @@
 using Application.Common.Commands;
 using Application.Common.Exceptions;
 using Application.Common.Interfaces;
+using Application.Common.Interfaces.Repository;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -18,23 +19,27 @@ namespace Application.Agents.Commands
 
     public class UpdateAgentCommandHandler : BaseQueryHandler, IRequestHandler<UpdateAgentCommand>
     {
-        public UpdateAgentCommandHandler(IApplicationDbContext context, IMapper mapper)
+        private readonly IAgentRepository _agentRepository;
+        public UpdateAgentCommandHandler(IApplicationDbContext context, IMapper mapper, IAgentRepository repository)
             : base(context, mapper)
         {
+            _agentRepository = repository;
         }
 
         public async Task<Unit> Handle(UpdateAgentCommand request, CancellationToken cancellationToken)
         {
             Agent entity = _mapper.Map<Agent>(request.AgentData);
-            bool existedEntity = await _context.Agents.AnyAsync(e => e.Id == entity.Id, cancellationToken);
+            bool existedEntity = await _agentRepository.IsExistedEntity(entity.Id);
 
             if (!existedEntity)
             {
                 throw new NotFoundException(nameof(Agents), request.AgentData.Id);
             }
 
-            _context.Agents.Update(entity);
-            await _context.SaveChangesAsync(cancellationToken);
+            await _agentRepository.UpdateAsync(entity);
+
+            //_context.Agents.Update(entity);
+            //await _context.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
         }

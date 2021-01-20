@@ -27,8 +27,9 @@ namespace Application.Schools.Queries
             {
                 Lists = await _context.Schools
                     .ProjectTo<SchoolDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(s => s.Name)
-                    .ToListAsync(cancellationToken)
+                    .OrderBy(s => s.SchoolName)
+                    .ToListAsync(cancellationToken),
+                Total = await _context.Schools.CountAsync(cancellationToken)
             };
         }
     }

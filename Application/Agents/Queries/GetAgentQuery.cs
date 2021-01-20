@@ -28,6 +28,7 @@ namespace Application.Agents.Queries
             {
                 Lists = await _context.Agents
                     .ProjectTo<AgentDto>(_mapper.ConfigurationProvider)
+                    .AsNoTracking()
                     .OrderBy(s => s.FirstName)
                     .ToListAsync(cancellationToken)
             };

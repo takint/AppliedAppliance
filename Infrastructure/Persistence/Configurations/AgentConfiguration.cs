@@ -11,40 +11,39 @@ namespace Infrastructure.Persistence.Configurations
             builder.Ignore(e => e.DomainEvents);
 
             //foreign key
-            builder.HasOne(a => a.AgentManager).WithMany().HasForeignKey(e => e.ManagerId).IsRequired(false);
+            builder.HasOne(a => a.AgentManager).WithMany().HasForeignKey(e => e.ManagerId);
 
-            builder.Property(a => a.ProvidedService).HasMaxLength(512).IsRequired();
-            builder.Property(a => a.InstitutionRepresenting).HasMaxLength(512);
-            builder.Property(a => a.LinkedinUrl).HasMaxLength(512);
-            builder.Property(a => a.FacebookUrl).HasMaxLength(512);
-            builder.Property(a => a.ReferenceInstitution).HasMaxLength(512);
             builder.Property(a => a.Email).HasMaxLength(256).IsRequired();
-            builder.Property(a => a.CompanyName).HasMaxLength(256).IsRequired();
-            builder.Property(a => a.Address).HasMaxLength(256).IsRequired();
+            builder.Property(a => a.CompanyName).HasMaxLength(256);
+            builder.Property(a => a.BusinessLicense).HasMaxLength(128);
             builder.Property(a => a.Website).HasMaxLength(256);
-            builder.Property(a => a.ReferenceEmail).HasMaxLength(256);
-            builder.Property(a => a.ReferenceWebsite).HasMaxLength(256);
-            builder.Property(a => a.BankAddress).HasMaxLength(256);
             builder.Property(a => a.FirstName).HasMaxLength(128).IsRequired();
             builder.Property(a => a.LastName).HasMaxLength(128).IsRequired();
-            builder.Property(a => a.BankName).HasMaxLength(128);
-            builder.Property(a => a.ReferenceName).HasMaxLength(128);
-            builder.Property(a => a.TwitterAt).HasMaxLength(128);
-            builder.Property(a => a.InstagramAt).HasMaxLength(128);
-            builder.Property(a => a.SkypeId).HasMaxLength(128);
-            builder.Property(a => a.WhatsAppId).HasMaxLength(128);
-            builder.Property(a => a.AccountName).HasMaxLength(128);
-            builder.Property(a => a.Phone).HasMaxLength(32).IsRequired();
-            builder.Property(a => a.City).HasMaxLength(32).IsRequired();
-            builder.Property(a => a.Province).HasMaxLength(32).IsRequired();
-            builder.Property(a => a.CountryCode).HasMaxLength(32).IsRequired();
-            builder.Property(a => a.PostalCode).HasMaxLength(32).IsRequired();
-            builder.Property(a => a.InstitutionNumber).HasMaxLength(32);
-            builder.Property(a => a.TransitNumber).HasMaxLength(32);
-            builder.Property(a => a.AccountName).HasMaxLength(32);
-            builder.Property(a => a.SwiftCode).HasMaxLength(32);
-            builder.Property(a => a.ReferencePhone).HasMaxLength(32);
-            builder.Property(a => a.MainSourceStudent).HasMaxLength(2).IsRequired();
+            builder.Property(a => a.Phone).HasMaxLength(32);
+            builder.Property(a => a.MainSourceStudent).HasMaxLength(4);
+
+            //map the properties of value object "Address" to columns in Agent
+            builder.OwnsOne(e => e.Address)
+                .Property(a => a.StreetName).HasMaxLength(128);
+
+            builder.OwnsOne(e => e.Address)
+                .Property(a => a.StreetNumber).HasMaxLength(64);
+
+            builder.OwnsOne(e => e.Address)
+                .Property(e => e.City).HasMaxLength(64);
+
+            builder.OwnsOne(e => e.Address)
+                .Property(e => e.Province).HasMaxLength(64);
+
+            builder.OwnsOne(e => e.Address)
+                .Property(e => e.Country).HasMaxLength(4);
+
+            builder.OwnsOne(e => e.Address)
+                .Property(e => e.PostalCode).HasMaxLength(32);
+
+            builder.OwnsOne(e => e.Address)
+                .Ignore(e => e.Address1);
+
         }
     }
 }

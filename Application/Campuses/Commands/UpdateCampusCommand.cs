@@ -2,6 +2,7 @@
 using Application.Common.Commands;
 using Application.Common.Exceptions;
 using Application.Common.Interfaces;
+using Application.Common.Interfaces.Repository;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -19,22 +20,31 @@ namespace Application.Campuses.Commands
 
     public class UpdateCampusCommandHandler : BaseQueryHandler, IRequestHandler<UpdateCampusCommand>
     {
-        public UpdateCampusCommandHandler(IApplicationDbContext context, IMapper mapper)
+        private readonly ICampusRepository _campusRepository;
+        public UpdateCampusCommandHandler(IApplicationDbContext context, IMapper mapper, ICampusRepository repository)
             : base(context, mapper)
-        { }
-
+        {
+            _campusRepository = repository;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<Unit> Handle(UpdateCampusCommand request, CancellationToken cancellationToken)
         {
+            //TODO: Check if SchoolId is assigned by mapping
             Campus entity = _mapper.Map<Campus>(request.CampusData);
-            bool existedEntity = await _context.Campuses.AnyAsync(e => e.Id == entity.Id, cancellationToken);
+
+            bool existedEntity = await _campusRepository.IsExistedEntity(entity.Id);
 
             if (!existedEntity)
             {
                 throw new NotFoundException(nameof(Campuses), request.CampusData.Id);
             }
 
-            _context.Campuses.Update(entity);
-            await _context.SaveChangesAsync(cancellationToken);
+            await _campusRepository.UpdateAsync(entity);
 
             return Unit.Value;
         }

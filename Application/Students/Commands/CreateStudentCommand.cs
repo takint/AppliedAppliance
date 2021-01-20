@@ -1,5 +1,6 @@
 ﻿using Application.Common.Commands;
 using Application.Common.Interfaces;
+using Application.Common.Interfaces.Repository;
 using Application.Students.Queries;
 using AutoMapper;
 using Domain.Entities;
@@ -16,18 +17,18 @@ namespace Application.Students.Commands
 
     public class CreateStudentCommandHandler : BaseQueryHandler, IRequestHandler<CreateStudentCommand, int>
     {
-        public CreateStudentCommandHandler(IApplicationDbContext context, IMapper mapper)
+        private readonly IStudentRepository _studentRepository;
+        public CreateStudentCommandHandler(IApplicationDbContext context, IMapper mapper, IStudentRepository repository)
             : base(context, mapper)
         {
+            _studentRepository = repository;
         }
 
         public async Task<int> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<Student>(request.StudentData);
 
-            _context.Students.Add(entity);
-
-            await _context.SaveChangesAsync(cancellationToken);
+            await _studentRepository.CreateAsync(entity);
 
             return entity.Id;
         }

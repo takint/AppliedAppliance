@@ -14,7 +14,7 @@ namespace Application.SchoolRequests.Commands
         {
             _context = context;
 
-            RuleFor(v => v.SchoolRequestData.CountryID)
+            RuleFor(v => v.SchoolRequestData.CountryCode)
                 .NotEmpty().WithMessage("Country is required");
 
             RuleFor(v => v.SchoolRequestData.SchoolName)

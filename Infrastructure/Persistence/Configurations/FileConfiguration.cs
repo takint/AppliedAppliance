@@ -9,6 +9,7 @@ namespace Infrastructure.Persistence.Configurations
         public void Configure(EntityTypeBuilder<File> builder)
         {
             builder.Ignore(f => f.DomainEvents);
+
             builder.Property(f => f.Name).HasMaxLength(256);
             builder.Property(f => f.Path).HasMaxLength(512);
         }

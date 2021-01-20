@@ -1,36 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain.Common
 {
-    public abstract class ValueObject
+    public abstract class ValueObject : IEquatable<ValueObject>
     {
-        protected static bool EqualOperator(ValueObject left, ValueObject right)
-        {
-            if (left is null ^ right is null)
-            {
-                return false;
-            }
-
-            return left?.Equals(right) != false;
-        }
-
-        protected static bool NotEqualOperator(ValueObject left, ValueObject right)
-        {
-            return !(EqualOperator(left, right));
-        }
-
         protected abstract IEnumerable<object> GetEqualityComponents();
 
         public override bool Equals(object obj)
         {
-            if (obj == null || obj.GetType() != GetType())
-            {
-                return false;
-            }
-
-            var other = (ValueObject)obj;
-            return GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+            return Equals(obj as ValueObject);
         }
 
         public override int GetHashCode()
@@ -38,6 +18,42 @@ namespace Domain.Common
             return GetEqualityComponents()
                 .Select(x => x != null ? x.GetHashCode() : 0)
                 .Aggregate((x, y) => x ^ y);
+        }
+
+        public bool Equals(ValueObject other)
+        {
+            if (other is null || this.GetType() != other.GetType())
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return this.GetEqualityComponents().SequenceEqual(other.GetEqualityComponents());
+        }
+
+        public static bool operator ==(ValueObject lhs, ValueObject rhs)
+        {
+            if (lhs is null && rhs is null)
+            {
+                return true;
+            }
+
+            // only one side is null
+            if (lhs is null || rhs is null)
+            {
+                return false;
+            }
+
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(ValueObject lhs, ValueObject rhs)
+        {
+            return !(lhs == rhs);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Campuses.Queries;
 using Application.Common.Commands;
 using Application.Common.Interfaces;
+using Application.Common.Interfaces.Repository;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -17,10 +18,11 @@ namespace Application.Campuses.Commands
 
     public class CreateCampusCommandHandler : BaseQueryHandler, IRequestHandler<CreateCampusCommand, int>
     {
-
-        public CreateCampusCommandHandler(IApplicationDbContext context, IMapper mapper)
+        private readonly ICampusRepository _campusRepository;
+        public CreateCampusCommandHandler(IApplicationDbContext context, IMapper mapper, ICampusRepository repository)
             : base(context, mapper)
         {
+            _campusRepository = repository;
         }
 
         public async Task<int> Handle(CreateCampusCommand request, CancellationToken cancellationToken)
@@ -28,9 +30,7 @@ namespace Application.Campuses.Commands
             var entity = _mapper.Map<Campus>(request.CampusData);
             entity.SchoolId = request.SchoolId;
 
-            _context.Campuses.Add(entity);
-
-            await _context.SaveChangesAsync(cancellationToken);
+            await _campusRepository.CreateAsync(entity);
 
             return entity.Id;
         }

@@ -5,7 +5,6 @@ using Application.Schools.Queries;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,7 +12,7 @@ namespace Application.Schools.Commands
 {
     public class UpdateSchoolCommand : IRequest
     {
-        public SchoolDto SchoolData { get; set; }
+        public SchoolDto School { get; set; }
     }
 
     public class UpdateSchoolCommandHandler : BaseQueryHandler, IRequestHandler<UpdateSchoolCommand>
@@ -27,12 +26,12 @@ namespace Application.Schools.Commands
 
         public async Task<Unit> Handle(UpdateSchoolCommand request, CancellationToken cancellationToken)
         {
-            School entity = _mapper.Map<School>(request.SchoolData);
+            School entity = _mapper.Map<School>(request.School);
             bool existedEntity = await _schoolRepository.IsExistedEntity(entity.Id);
             
             if (!existedEntity)
             {
-                throw new NotFoundException(nameof(Schools), request.SchoolData.Id);
+                throw new NotFoundException(nameof(Schools), request.School.Id);
             }
 
             await _schoolRepository.UpdateAsync(entity);

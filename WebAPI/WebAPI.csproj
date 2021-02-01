@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,13 +23,13 @@
     <Content Remove="ClientApp\src\tsconfig.server.json" />
     <Content Remove="ClientApp\src\tsconfig.spec.json" />
     <Content Remove="ClientApp\src\tslint.json" />
-    <Content Remove="ClientApp\tsconfig.json" />
     <Content Remove="ClientApp\tslint.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\common\models\campus-models.ts" />
-    <None Remove="ClientApp\src\app\common\models\school-models.ts" />
+    <None Remove="ClientApp\src\app\common\models\campus-model.ts" />
+    <None Remove="ClientApp\src\app\common\models\school-model.ts" />
+    <None Remove="ClientApp\src\app\common\models\user-model.ts" />
     <None Remove="ClientApp\src\assets\favicon.svg" />
   </ItemGroup>
 
@@ -42,26 +43,29 @@
   <ItemGroup>
     <None Include="ClientApp\angular.json" />
     <None Include="ClientApp\e2e\tsconfig.e2e.json" />
-    <None Include="ClientApp\package-lock.json" />
-    <None Include="ClientApp\package.json" />
+    <None Include="ClientApp\package-lock.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ClientApp\package.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="ClientApp\src\tsconfig.app.json" />
     <None Include="ClientApp\src\tsconfig.server.json" />
     <None Include="ClientApp\src\tsconfig.spec.json" />
     <None Include="ClientApp\src\tslint.json" />
-    <None Include="ClientApp\tsconfig.json" />
     <None Include="ClientApp\tslint.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Alachisoft.NCache.OpenSource.SDK" Version="5.0.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.1" NoWarn="NU1605" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.2" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.2" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="NCache.Microsoft.Extensions.Caching" Version="5.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
@@ -72,14 +76,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\common\models\campus-models.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\common\models\school-models.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\models\campus-model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\models\school-model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\models\user-model.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="client.ncconf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="config.ncconf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

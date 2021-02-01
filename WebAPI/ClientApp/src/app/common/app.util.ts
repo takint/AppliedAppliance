@@ -1,7 +1,11 @@
 import { environment } from '../../environments/environment';
 
+
 export class AppUtil {
   public static apiHost: string = environment.apiEnpoint;
+
+  public static toastSuccessClass: string = 'bg-success text-light';
+  public static toastErrorClass: string = 'bg-danger text-light';
 
   public static isNullOrEmpty(input): boolean {
     // Null or empty

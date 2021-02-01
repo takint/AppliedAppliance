@@ -4,6 +4,6 @@ namespace Application.Agents.Queries
 {
     public class AgentViewModel
     {
-        public IList<AgentDto> Lists { get; set; }
+        public AgentDto Agent { get; set; }
     }
 }

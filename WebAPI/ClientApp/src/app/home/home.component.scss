@@ -1,0 +1,85 @@
+@import '../../sass/styles.variables.scss';
+@import '../../sass/styles.mixin.scss';
+
+/* Login */
+.login-block {
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,1) 75%, rgba(63,63,63,1) 75%);
+
+  @include respond-to('min-large') {
+    background: rgb(63,63,63);
+    background: linear-gradient(90deg, rgba(63,63,63,1) 50%, rgba(255,255,255,1) 50%);
+  }
+
+  .login-wrapper {
+    max-width: 1380px;
+    margin: 0 auto;
+
+    .login-section-wrapper {
+      flex-direction: column;
+
+      @include respond-to('min-large') {
+        flex-direction: row;
+      }
+    }
+
+    .login-img {
+      display: flex;
+
+      @include respond-to('min-large') {
+        transform: translateX(4rem);
+      }
+
+      @include respond-to('min-xlarge') {
+        transform: translateX(6rem);
+      }
+
+      img {
+        margin: 0 auto;
+        max-width: 65%;
+
+        @include respond-to('min-small') {
+          max-width: 85%;
+        }
+
+        @include respond-to('min-large') {
+          margin: unset;
+          width: 85%;
+          max-width: unset;
+        }
+
+        @include respond-to('min-xlarge') {
+          width: 95%;
+        }
+
+        @include respond-to('min-xxlarge') {
+          width: 100%;
+        }
+      }
+    }
+
+    .login-contact-card-mobile {
+      display: flex;
+
+      @include respond-to('min-large') {
+        display: none;
+      }
+    }
+
+    .login-contact-card-desktop {
+      display: none;
+
+      @include respond-to('min-large') {
+        display: flex;
+      }
+    }
+
+    .login-copywrite {
+      @include respond-to('min-large') {
+        position: absolute;
+        right: 300px;
+        bottom: 0;
+      }
+    }
+  }
+}

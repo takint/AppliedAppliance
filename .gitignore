@@ -348,3 +348,9 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+*.ncconf
+WebAPI/ClientApp/src/app/common/models/*.js
+WebAPI/ClientApp/src/app/common/models/*.map
+*.js.map
+*.spec.js
+WebAPI/ClientApp/src/main.js

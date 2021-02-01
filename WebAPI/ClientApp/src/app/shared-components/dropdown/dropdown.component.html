@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <a class="btn border-0 p-0" id="dropdownBasic1" ngbDropdownToggle><i class="fas fa-lg fa-user-circle secondary-color-blue"></i>{{dropDownHeader}}</a>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button *ngFor="let item of dropDownItems" ngbDropdownItem [routerLink]="[item.url]"><i class="{{item.icon}}"></i>{{item.title}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--FROM OLD PROJECT-->
+<!--<div class="ml-1 dropdown">
+  <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1" aria-expanded="false" aria-haspopup="true">
+    <i class="fas fa-lg fa-user-circle secondary-color-blue"></i>
+    <span>admin@email.com</span>
+    <i class="fas fa-lg fa-caret-down"></i>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a class="dropdown-item" href="/admin/user/@currentUser.Id"><i class="far fa-user fms-fa-user-icon fms-panels-top-menu-dropdown-item"></i>Profile</a></li>
+    <li><a class="dropdown-item" href="/admin/settings"><i class="fas fa-wrench fms-panels-top-menu-dropdown-item"></i>Settings</a></li>
+    <li><a class="dropdown-item" href="/account/logout"><i class="fas fa-sign-out-alt fms-panels-top-menu-dropdown-item"></i>Log Out</a></li>
+  </ul>
+</div>-->

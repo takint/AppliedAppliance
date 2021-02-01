@@ -14,19 +14,25 @@ import {
   HttpSentEvent,
   HttpHeaderResponse,
   HttpProgressEvent,
-  HttpUserEvent
+  HttpUserEvent,
+  HttpParams
 } from '@angular/common/http';
 import { Injectable, TemplateRef } from '@angular/core';
 import { Observable, BehaviorSubject, of, Subject } from 'rxjs';
 import { map, catchError, switchMap, tap, debounceTime, delay } from 'rxjs/operators';
 
-import { parseResponse } from './app.util';
+import { AppUtil, parseResponse } from './app.util';
+import { LoginViewModel } from './models/user-model';
 import { SortColumn, SortDirection } from './sortable.directive'
 
 
-interface SearchResult {
-  lists: any[];
-  total: number;
+interface SearchResult<T> {
+  items: T[];
+  pageIndex: number;
+  totalPages: number;
+  totalCount: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
 }
 
 export interface QueryState<T> {
@@ -39,17 +45,17 @@ export interface QueryState<T> {
 }
 
 // TODO: all http will change to AuthHttp when authentication is implemented
-export abstract class AppService extends BehaviorSubject<any> {
-  constructor(protected _http: HttpClient) {
+export abstract class AppService<T> extends BehaviorSubject<T> {
+  constructor(protected _http: HttpClient, public apiUrl: string) {
     super(null);
   }
 
   public getData(
     sourceUrl: string,
-    params?: any
-  ): Observable<HttpResponse<any>> {
+    params?: HttpParams
+  ): Observable<HttpResponse<T> | T> {
     return this._http
-      .get(sourceUrl, params)
+      .get(sourceUrl, { params })
       .pipe(
         map(response => parseResponse(response)),
         catchError(ex => {
@@ -62,10 +68,10 @@ export abstract class AppService extends BehaviorSubject<any> {
   public putData(
     sourceUrl: string,
     data: any,
-    params?: any
-  ): Observable<HttpResponse<any>> {
+    params?: HttpParams
+  ): Observable<HttpResponse<T>> {
     return this._http
-      .put(sourceUrl, data, params)
+      .put(sourceUrl, data, { params })
       .pipe(
         map(response => parseResponse(response)),
         catchError(ex => {
@@ -78,10 +84,10 @@ export abstract class AppService extends BehaviorSubject<any> {
   public postData(
     sourceUrl: string,
     data: any,
-    params?: any
-  ): Observable<HttpResponse<any>> {
+    params?: HttpParams
+  ): Observable<HttpResponse<T>> {
     return this._http
-      .post(sourceUrl, data, params)
+      .post(sourceUrl, data, { params })
       .pipe(
         map(response => parseResponse(response)),
         catchError(ex => {
@@ -93,10 +99,10 @@ export abstract class AppService extends BehaviorSubject<any> {
 
   public deleteData(
     sourceUrl: string,
-    params?: any
+    params?: HttpParams
   ): Observable<HttpResponse<any>> {
     return this._http
-      .delete(sourceUrl, params)
+      .delete(sourceUrl, { params })
       .pipe(
         map(response => parseResponse(response)),
         catchError(ex => {
@@ -107,16 +113,16 @@ export abstract class AppService extends BehaviorSubject<any> {
   }
 }
 
-export abstract class ListService<T> extends BehaviorSubject<SearchResult> {
+export abstract class ListService<T> extends BehaviorSubject<SearchResult<T>> {
 
   private _loading$ = new BehaviorSubject<boolean>(true);
   private _search$ = new Subject<void>();
-  private _results$ = new BehaviorSubject<any[]>([])
+  private _results$ = new BehaviorSubject<T[]>([])
   private _total$ = new BehaviorSubject<number>(0);
 
   private _state: QueryState<T> = {
     page: 1,
-    pageSize: 20,
+    pageSize: 10,
     searchTerm: '',
     sortColumn: '',
     sortDirection: ''
@@ -145,8 +151,8 @@ export abstract class ListService<T> extends BehaviorSubject<SearchResult> {
       delay(200),
       tap(() => this._loading$.next(false))
     ).subscribe(result => {
-      this._results$.next(result.lists);
-      this._total$.next(result.total || result.lists.length);
+      this._results$.next(result.items);
+      this._total$.next(result.totalCount || result.items.length);
     });
 
     this._search$.next();
@@ -157,22 +163,17 @@ export abstract class ListService<T> extends BehaviorSubject<SearchResult> {
     this._search$.next();
   }
 
-  public _search(): Observable<SearchResult> {
-    const { sortColumn, sortDirection, pageSize, page, searchTerm } = this._state;
-    // TODO: put param for state filter and paging
-    console.log(sortColumn);
-    console.log(sortDirection);
-    console.log(pageSize);
-    console.log(page);
-    return this.getData(this.apiUrl, {});
+  public _search(): Observable<SearchResult<T>> {
+    const state = this._state;
+    return this.getData(this.apiUrl, new HttpParams().append('state', JSON.stringify(state)));
   }
 
   public getData(
     sourceUrl: string,
-    params?: any
-  ): Observable<SearchResult> {
+    params?: HttpParams
+  ): Observable<SearchResult<T>> {
     return this._http
-      .get(sourceUrl, params)
+      .get(sourceUrl, { params })
       .pipe(
         map(response => parseResponse(response)),
         catchError(ex => {
@@ -180,6 +181,10 @@ export abstract class ListService<T> extends BehaviorSubject<SearchResult> {
           return Observable.throw(ex);
         })
       );
+  }
+
+  public deleteData(params): Promise<Object> {
+    return this._http.delete(`${this.apiUrl}/${params.id}`).toPromise();
   }
 }
 
@@ -198,5 +203,14 @@ export class AppNotificationService {
 
   remove(toast) {
     this.toasts = this.toasts.filter(t => t !== toast);
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginFormService extends AppService<LoginViewModel> {
+  constructor(http: HttpClient) {
+    super(http, `${AppUtil.apiHost}schools`);
   }
 }

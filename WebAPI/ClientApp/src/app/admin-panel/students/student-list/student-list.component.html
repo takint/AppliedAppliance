@@ -1,38 +1,46 @@
-<div *ngIf="!isInitDataLoaded" class="spinner" id="spinner"></div>
+<div *ngIf="service.loading$ | async" class="spinner" id="spinner"></div>
 
-<h1 id="tableLabel">Students</h1>
+<div class="d-flex flex-column w-100 pt-5 p-4">
+  <h1 class="page-title" id="tableLabel">Students</h1>
+  <div class="border rounded-lg mt-3 mb-3">
+    <form class="d-flex flex-row justify-content-between p-2">
+      <div class="form-inline">
+        <b>Filter Results</b><i class="fas fa-lg fa-sliders-h ml-3"></i>
+      </div>
+      <div class="form-inline">
+        <b>Full text search: </b><input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+        <span *ngIf="service.loading$ | async">Loading...</span>
+      </div>
+    </form>
 
-<form>
-  <div class="form-group form-inline">
-    Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
-    <span *ngIf="service.loading$ | async">Loading...</span>
+    <table class="table table-borderless mb-0 panel-data-table" aria-labelledby="tableLabel">
+      <thead>
+        <tr>
+          <th scope="col" sortable="id" (sort)="onSort($event)">Student Id</th>
+          <th scope="col" sortable="studentCode" (sort)="onSort($event)">Student Code</th>
+          <th scope="col" sortable="firstName" (sort)="onSort($event)">First Name</th>
+          <th scope="col" sortable="lastName" (sort)="onSort($event)">Last Name</th>
+          <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+          <th width="15%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of dataSource$ | async" class="m-2">
+          <td>{{ student.id }}</td>
+          <td>{{ student.studentCode }}</td>
+          <td>{{ student.firstName }}</td>
+          <td>{{ student.lastName }}</td>
+          <td>{{ student.email }}</td>
+          <td>
+            <a class="secondary-color-blue table-action-icon" [routerLink]="['Details/' + student.id]"><i class="fas fa-lg fa-edit"></i></a>
+            <a class="danger-color table-action-icon ml-3" (click)="onDeleteClick($event, student)"><i class="fas fa-lg fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</form>
 
-<table class="table table-bordered panel-data-table" aria-labelledby="tableLabel" *ngIf="isInitDataLoaded">
-  <thead>
-    <tr>
-      <th scope="col" sortable="id" (sort)="onSort($event)" width="20%">Student Id</th>
-      <th scope="col" sortable="firstName" (sort)="onSort($event)">First Name</th>
-      <th scope="col" sortable="lastName" (sort)="onSort($event)">Last Name</th>
-      <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
-      <th scope="col" sortable="studentCode" (sort)="onSort($event)">Student Code</th>
-      <th width="20%">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of dataSource$ | async">
-      <td>{{ student.id }}</td>
-      <td>{{ student.firstName }}</td>
-      <td>{{ student.lastName }}</td>
-      <td>{{ student.email }}</td>
-      <td>{{ student.studentCode }}</td>
-      <td>
-        <a [routerLink]="['Details/' + student.id]"><i class="far fa-edit"></i></a>
-        <button (click)="onDeleteClick($event, student)"><i class="far fa-trash-alt"></i></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"></ngb-pagination>
+  <ngb-pagination class="d-flex flex-row-reverse" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+  </ngb-pagination>
+</div>
+<app-confirm-modal (onOpenModal)="onOpenModal($event)" [openModal]="isOpenConfirmModal"></app-confirm-modal>

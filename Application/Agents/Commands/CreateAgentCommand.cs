@@ -12,7 +12,7 @@ namespace Application.Agents.Commands
 {
     public class CreateAgentCommand : IRequest<int>
     {
-        public AgentDto AgentData { get; set; }
+        public AgentDto Agent { get; set; }
     }
 
     public class CreateAgentCommandHandler : BaseQueryHandler, IRequestHandler<CreateAgentCommand, int>
@@ -26,7 +26,7 @@ namespace Application.Agents.Commands
 
         public async Task<int> Handle(CreateAgentCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<Agent>(request.AgentData);
+            var entity = _mapper.Map<Agent>(request.Agent);
 
             await _agentRepository.CreateAsync(entity);
             //_context.Agents.Add(entity);

@@ -2,16 +2,26 @@
 using Application.Students.Commands;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Application.Common.Models;
+using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
     public class StudentsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<StudentViewModel>> Get()
+        public async Task<ActionResult<PaginatedList<StudentDto>>> Get(string state)
         {
-            StudentViewModel vm = await Mediator.Send(new GetStudentQuery());
-            return vm;
+            QueryStateModel queryState = new QueryStateModel();
+            if (!string.IsNullOrEmpty(state))
+            {
+                queryState = JsonConvert.DeserializeObject<QueryStateModel>(state);
+            }
+
+            PaginatedList<StudentDto> results = await Mediator.Send(
+                new GetStudentsListQuery(queryState));
+
+            return results;
         }
 
         [HttpPost]

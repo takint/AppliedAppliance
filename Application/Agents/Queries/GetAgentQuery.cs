@@ -12,6 +12,14 @@ namespace Application.Agents.Queries
 {
     public class GetAgentQuery : IRequest<AgentViewModel>
     {
+        public int AgentId { get; set; }
+
+        public GetAgentQuery() { }
+
+        public GetAgentQuery(int id)
+        {
+            AgentId = id;
+        }
     }
 
     public class GetAgentQueryHandler : BaseQueryHandler, IRequestHandler<GetAgentQuery, AgentViewModel>
@@ -26,11 +34,11 @@ namespace Application.Agents.Queries
         {
             return new AgentViewModel
             {
-                Lists = await _context.Agents
+                Agent = await _context.Agents
+                    .Where(s => s.Id == request.AgentId)
                     .ProjectTo<AgentDto>(_mapper.ConfigurationProvider)
-                    .AsNoTracking()
                     .OrderBy(s => s.FirstName)
-                    .ToListAsync(cancellationToken)
+                    .SingleOrDefaultAsync(cancellationToken)
             };
         }
     }

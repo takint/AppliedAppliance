@@ -14,7 +14,7 @@ namespace Application.Schools.Commands
         {
             _context = context;
 
-            RuleFor(v => v.SchoolData.SchoolName)
+            RuleFor(v => v.School.SchoolName)
                 .NotEmpty().WithMessage("Name is required.");
         }
 

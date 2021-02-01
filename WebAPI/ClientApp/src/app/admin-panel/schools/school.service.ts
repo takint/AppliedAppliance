@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AppUtil } from '../../common/app.util';
 import { AppService, ListService } from '../../common/app.service';
-import { SchoolModel } from '../../common/models/school-models';
+import { SchoolModel, SchoolFormViewModel } from '../../common/models/school-model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,8 @@ export class SchoolListService extends ListService<SchoolModel> {
 @Injectable({
   providedIn: 'root'
 })
-export class SchoolFormService extends AppService {
-
-  public apiUrl: string = `${AppUtil.apiHost}schools`;
-
+export class SchoolFormService extends AppService<SchoolFormViewModel> {
   constructor(http: HttpClient) {
-    super(http);
+    super(http, `${AppUtil.apiHost}schools`);
   }
 }

@@ -12,7 +12,7 @@ namespace Application.Schools.Commands
 
     public class CreateSchoolCommand : IRequest<int>
     {
-        public SchoolDto SchoolData { get; set; }
+        public SchoolDto School { get; set; }
     }
 
     public class CreateSchoolCommandHandler : BaseQueryHandler, IRequestHandler<CreateSchoolCommand, int>
@@ -27,7 +27,7 @@ namespace Application.Schools.Commands
 
         public async Task<int> Handle(CreateSchoolCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<School>(request.SchoolData);
+            var entity = _mapper.Map<School>(request.School);
 
             await _schoolRepository.CreateAsync(entity);
 

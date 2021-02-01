@@ -26,19 +26,15 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Address")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
                     b.Property<bool>("Approved")
                         .HasColumnType("bit");
 
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
-                    b.Property<string>("City")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
+                    b.Property<string>("BusinessLicense")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Comments")
                         .HasColumnType("nvarchar(max)");
@@ -46,10 +42,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("CompanyName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("CountryCode")
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -95,14 +87,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Phone")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("PostalCode")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("Province")
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
@@ -277,11 +261,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
@@ -292,11 +271,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -323,18 +297,9 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
-                    b.Property<string>("PostalCode")
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
-
                     b.Property<decimal>("ProcessingFee")
                         .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
-
-                    b.Property<string>("Province")
-                        .IsRequired()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)");
 
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
@@ -1081,6 +1046,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserNoticeMessage")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SchoolId");
@@ -1179,6 +1147,9 @@ namespace Infrastructure.Migrations
                     b.Property<string>("StudentCode")
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("UserNoticeMessage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1663,6 +1634,53 @@ namespace Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("ManagerId");
 
+                    b.OwnsOne("Domain.ValueObjects.Address", "Address", b1 =>
+                        {
+                            b1.Property<int>("AgentId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<string>("City")
+                                .HasMaxLength(64)
+                                .HasColumnType("nvarchar(64)")
+                                .HasColumnName("City");
+
+                            b1.Property<string>("Country")
+                                .HasMaxLength(4)
+                                .HasColumnType("nvarchar(4)")
+                                .HasColumnName("Country");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(32)
+                                .HasColumnType("nvarchar(32)")
+                                .HasColumnName("PostalCode");
+
+                            b1.Property<string>("Province")
+                                .HasMaxLength(64)
+                                .HasColumnType("nvarchar(64)")
+                                .HasColumnName("Province");
+
+                            b1.Property<string>("StreetName")
+                                .HasMaxLength(128)
+                                .HasColumnType("nvarchar(128)")
+                                .HasColumnName("StreetName");
+
+                            b1.Property<string>("StreetNumber")
+                                .HasMaxLength(64)
+                                .HasColumnType("nvarchar(64)")
+                                .HasColumnName("StreetNumber");
+
+                            b1.HasKey("AgentId");
+
+                            b1.ToTable("Agents");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AgentId");
+                        });
+
+                    b.Navigation("Address");
+
                     b.Navigation("AgentManager");
                 });
 
@@ -1722,6 +1740,44 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.OwnsOne("Domain.ValueObjects.Address", "CampusAddress", b1 =>
+                        {
+                            b1.Property<int>("CampusId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<string>("Address1")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)")
+                                .HasColumnName("Address");
+
+                            b1.Property<string>("City")
+                                .IsRequired()
+                                .HasMaxLength(64)
+                                .HasColumnType("nvarchar(64)")
+                                .HasColumnName("City");
+
+                            b1.Property<string>("PostalCode")
+                                .HasMaxLength(32)
+                                .HasColumnType("nvarchar(32)")
+                                .HasColumnName("PostalCode");
+
+                            b1.Property<string>("Province")
+                                .HasMaxLength(64)
+                                .HasColumnType("nvarchar(64)")
+                                .HasColumnName("Province");
+
+                            b1.HasKey("CampusId");
+
+                            b1.ToTable("Campuses");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CampusId");
+                        });
+
+                    b.Navigation("CampusAddress");
 
                     b.Navigation("OwnerSchool");
                 });

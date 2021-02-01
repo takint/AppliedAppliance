@@ -1,6 +1,8 @@
 ﻿using Application.Agents.Commands;
 using Application.Agents.Queries;
+using Application.Common.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 
 
@@ -9,9 +11,24 @@ namespace WebAPI.Controllers
     public class AgentsController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<AgentViewModel>> Get()
+        public async Task<ActionResult<PaginatedList<AgentDto>>> Get(string state)
         {
-            AgentViewModel vm = await Mediator.Send(new GetAgentQuery());
+            QueryStateModel queryState = new QueryStateModel();
+            if (!string.IsNullOrEmpty(state))
+            {
+                queryState = JsonConvert.DeserializeObject<QueryStateModel>(state);
+            }
+
+            PaginatedList<AgentDto> results = await Mediator.Send(new GetAgentsListQuery(queryState));
+
+            //AgentViewModel vm = await Mediator.Send(new GetAgentQuery());
+            return results;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AgentViewModel>> Get(int id)
+        {
+            var vm = await Mediator.Send(new GetAgentQuery(id));
             return vm;
         }
 
@@ -24,7 +41,7 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, UpdateAgentCommand command)
         {
-            if (id != command.AgentData.Id)
+            if (id != command.Agent.Id)
             {
                 return BadRequest();
             }

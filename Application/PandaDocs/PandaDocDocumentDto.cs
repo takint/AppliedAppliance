@@ -5,7 +5,7 @@ using System;
 
 namespace Application.PandaDocs
 {
-    public class PandaDocDocumentDto : IMapFrom<PandaDocDocument>
+    public class PandaDocDocumentDto //: IMapFrom<PandaDocDocument>
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -2,7 +2,6 @@
 using Application.Common.Mappings;
 using AutoMapper;
 using Domain.Entities;
-using System;
 
 namespace Application.Students.Queries
 {
@@ -16,6 +15,7 @@ namespace Application.Students.Queries
         public string Guid { get; set; }
         public string StudentCode { get; set; }
         public int? AgentId { get; set; }
+        public string UserNoticeMessage { get; set; }
 
         //public string PostalCode { get; set; }
         //public string Phone { get; set; }

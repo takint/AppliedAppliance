@@ -1,29 +1,13 @@
 <header>
-  <nav class="navbar navbar-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" [routerLink]="['/']"><img src="assets/logo.png" /></a>
-      <div>
-        <div class="d-sm-inline-flex just-content-end">
-          <a id="userNotifyBadge" class="notification fms-panels-top-menu-text">
-            <i class="fas fa-lg fa-bell"></i><span class="badge"></span>
-          </a>
-          <div id="userNotifyMessages" class="fms-notify-message-box">
-            <ul></ul>
-          </div>
-        </div>
-        <div class="d-sm-inline-flex just-content-end">
-          <a href="javascript:;" class="dropdown-toggle fms-dropdown-toggle fms-panels-top-menu-text fms-panels-top-menu-right-text" data-toggle="dropdown">
-            <i class="fas fa-user-circle fms-primary-color"></i>
-            <span class="fms-desktop">admin@email.com</span>
-            <i class="fas fa-caret-down"></i>
-          </a>
-          <ul class="dropdown-menu fms-panels-top-menu-dropdown">
-            <li><a class="fms-webiste-dropdown-menu-item" href="/admin/user/@currentUser.Id"><i class="far fa-user fms-fa-user-icon fms-panels-top-menu-dropdown-item"></i>Profile</a></li>
-            <li><a class="fms-webiste-dropdown-menu-item" href="/admin/settings"><i class="fas fa-wrench fms-panels-top-menu-dropdown-item"></i>Settings</a></li>
-            <li><a class="fms-webiste-dropdown-menu-item" href="/account/logout"><i class="fas fa-sign-out-alt fms-panels-top-menu-dropdown-item"></i>Log Out</a></li>
-          </ul>
-        </div>
+  <nav class="navbar justify-content-end mt-4 p-0">
+    <div class="mr-2">
+      <a id="userNotifyBadge" class="notification">
+        <i class="fas fa-lg fa-bell secondary-color-blue"></i><span class="d-flex badge">5</span>
+      </a>
+      <div id="userNotifyMessages" class="fms-notify-message-box d-none">
+        <ul></ul>
       </div>
     </div>
+   <app-dropdown [dropDownHeader]="[dropDownTitle]" [dropDownItems]="dropDownList"></app-dropdown>
   </nav>
 </header>

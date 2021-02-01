@@ -14,12 +14,6 @@ namespace Domain.Entities
         public string Website { get; set; }
         public string MainSourceStudent { get; set; }
         public Address Address { get; set; }
-        //public string StreetName { get; set; }
-        //public string StreetNumber { get; set; }
-        //public string City { get; set; }
-        //public string Province { get; set; }
-        //public string CountryCode { get; set; }
-        //public string PostalCode { get; set; }
         public bool Notify { get; set; }
         public bool Approved { get; set; }
         public string Comments { get; set; }

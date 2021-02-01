@@ -54,7 +54,6 @@ namespace Infrastructure.Persistence
         public DbSet<StandardGrade> StandardGrades { get; set; }
         public DbSet<GradingScheme> GradingSchemes { get; set; }
 
-
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (EntityEntry<AuditableEntity> entry in ChangeTracker.Entries<AuditableEntity>())

@@ -12,6 +12,14 @@ namespace Application.Students.Queries
 {
     public class GetStudentQuery : IRequest<StudentViewModel>
     {
+        public int StudentId { get; set; }
+
+        public GetStudentQuery() { }
+
+        public GetStudentQuery(int id)
+        {
+            StudentId = id;
+        }
     }
 
     public class GetStudentQueryHandler : BaseQueryHandler, IRequestHandler<GetStudentQuery, StudentViewModel>
@@ -25,10 +33,11 @@ namespace Application.Students.Queries
         {
             return new StudentViewModel
             {
-                Lists = await _context.Students
+                Student = await _context.Students
+                    .Where(s => s.Id == request.StudentId)
                     .ProjectTo<StudentDto>(_mapper.ConfigurationProvider)
                     .OrderBy(s => s.FirstName)
-                    .ToListAsync(cancellationToken)
+                    .SingleOrDefaultAsync(cancellationToken)
             };
         }
     }

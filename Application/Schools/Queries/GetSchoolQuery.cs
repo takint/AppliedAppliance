@@ -12,6 +12,14 @@ namespace Application.Schools.Queries
 {
     public class GetSchoolQuery : IRequest<SchoolViewModel>
     {
+        public int SchoolId { get; set; }
+
+        public GetSchoolQuery() { }
+
+        public GetSchoolQuery(int id)
+        {
+            SchoolId = id;
+        }
     }
 
     public class GetSchoolQueryHandler : BaseQueryHandler, IRequestHandler<GetSchoolQuery, SchoolViewModel>
@@ -25,11 +33,11 @@ namespace Application.Schools.Queries
         {
             return new SchoolViewModel
             {
-                Lists = await _context.Schools
-                    .ProjectTo<SchoolDto>(_mapper.ConfigurationProvider)
-                    .OrderBy(s => s.SchoolName)
-                    .ToListAsync(cancellationToken),
-                Total = await _context.Schools.CountAsync(cancellationToken)
+                School = await _context.Schools
+                .Where(s => s.Id == request.SchoolId)
+                .ProjectTo<SchoolDto>(_mapper.ConfigurationProvider)
+                .OrderBy(s => s.SchoolName)
+                .SingleOrDefaultAsync(cancellationToken)
             };
         }
     }

@@ -15,23 +15,23 @@ namespace Application.Agents.Commands
         {
             _context = context;
 
-            RuleFor(v => v.AgentData.Email)
+            RuleFor(v => v.Agent.Email)
                 .EmailAddress().NotEmpty().WithMessage("Email is required.")
                 .MustAsync(BeUniqueEmail).WithMessage("Another profile with this email already exists.");
 
-            RuleFor(v => v.AgentData.FirstName)
+            RuleFor(v => v.Agent.FirstName)
                 .NotEmpty().WithMessage("First Name is required.");
 
-            RuleFor(v => v.AgentData.LastName)
+            RuleFor(v => v.Agent.LastName)
                 .NotEmpty().WithMessage("Last Name is required.");
 
-            RuleFor(v => v.AgentData.Phone)
+            RuleFor(v => v.Agent.Phone)
                 .NotEmpty().WithMessage("Phone Number is required");
 
-            RuleFor(v => v.AgentData.CompanyName)
+            RuleFor(v => v.Agent.CompanyName)
                 .NotEmpty().WithMessage("Company Name is required");
 
-            RuleFor(v => v.AgentData.MainSourceStudent)
+            RuleFor(v => v.Agent.MainSourceStudent)
                 .NotEmpty().WithMessage("Main Source Student is reqired");
 
 

@@ -3,14 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedComponentsModule } from '../../shared-components/shared-components.module';
 import { NgbdSortableHeader } from '../../common/sortable.directive';
-import { SchoolListService } from './school.service';
+import { SchoolFormService, SchoolListService } from './school.service';
 import { SchoolListComponent } from './school-list/school-list.component';
 import { SchoolFormsComponent } from './school-forms/school-forms.component';
 
 const ADMIN_PANEL_SCHOOL_ROUTE = [
   { path: '', component: SchoolListComponent, pathMatch: 'full' },
-  { path: 'Details/:id', component: SchoolFormsComponent },
+  { path: 'Details/:id/:mode', component: SchoolFormsComponent },
 ];
 
 
@@ -20,6 +21,7 @@ const ADMIN_PANEL_SCHOOL_ROUTE = [
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    SharedComponentsModule,
     RouterModule.forChild(ADMIN_PANEL_SCHOOL_ROUTE)
   ],
   declarations: [
@@ -28,7 +30,8 @@ const ADMIN_PANEL_SCHOOL_ROUTE = [
     NgbdSortableHeader
   ],
   providers: [
-    SchoolListService
+    SchoolListService,
+    SchoolFormService
   ]
 })
 export class SchoolsModule { }

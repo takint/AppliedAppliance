@@ -14,9 +14,9 @@ namespace Application.Agents.Commands
         {
             _context = context;
 
-            //RuleFor(v => v.AgentData.Email)
-            //    .NotEmpty().WithMessage("Email is required");
-                
+            RuleFor(v => v.Agent.Email)
+                .NotEmpty().WithMessage("Email is required");
+
         }
 
         public async Task<bool> BeUniqueEmail(string email, CancellationToken cancellationToken)

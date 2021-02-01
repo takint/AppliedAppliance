@@ -2,6 +2,7 @@
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +16,8 @@ namespace Application.Common.Mappings
 
         public static Task<List<TDestination>> ProjectToListAsync<TDestination>(this IQueryable queryable, IConfigurationProvider configuration)
             => queryable.ProjectTo<TDestination>(configuration).ToListAsync();
+
+        public static IQueryable<TDestination> OrderedBy<TDestination>(this IQueryable<TDestination> queryable, Func<IQueryable<TDestination>, IOrderedQueryable<TDestination>> orderQuery)
+            => OrderedList<TDestination>.CreateAsync(queryable, orderQuery);
     }
 }

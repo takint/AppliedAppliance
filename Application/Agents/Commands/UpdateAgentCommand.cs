@@ -14,7 +14,7 @@ namespace Application.Agents.Commands
 {
     public class UpdateAgentCommand : IRequest
     {
-        public AgentDto AgentData { get; set; }
+        public AgentDto Agent { get; set; }
     }
 
     public class UpdateAgentCommandHandler : BaseQueryHandler, IRequestHandler<UpdateAgentCommand>
@@ -28,12 +28,12 @@ namespace Application.Agents.Commands
 
         public async Task<Unit> Handle(UpdateAgentCommand request, CancellationToken cancellationToken)
         {
-            Agent entity = _mapper.Map<Agent>(request.AgentData);
+            Agent entity = _mapper.Map<Agent>(request.Agent);
             bool existedEntity = await _agentRepository.IsExistedEntity(entity.Id);
 
             if (!existedEntity)
             {
-                throw new NotFoundException(nameof(Agents), request.AgentData.Id);
+                throw new NotFoundException(nameof(Agents), request.Agent.Id);
             }
 
             await _agentRepository.UpdateAsync(entity);

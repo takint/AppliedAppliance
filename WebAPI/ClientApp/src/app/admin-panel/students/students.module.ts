@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { StudentListService } from './student.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedComponentsModule } from '../../shared-components/shared-components.module';
 
 
 const ADMIN_PANEL_STUDENT_ROUTE = [
@@ -23,6 +24,7 @@ const ADMIN_PANEL_STUDENT_ROUTE = [
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    SharedComponentsModule,
     RouterModule.forChild(ADMIN_PANEL_STUDENT_ROUTE)
   ],
   providers: [

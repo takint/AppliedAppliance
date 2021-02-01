@@ -1,38 +1,52 @@
-<div *ngIf="!isInitDataLoaded" class="spinner" id="spinner"></div>
+<div *ngIf="service.loading$ | async" class="spinner" id="spinner"></div>
 
-<h1 id="tableLabel">Agents</h1>
+<div class="d-flex flex-column w-100 pt-3 mt-4">
+  <h1 class="page-title m-0">Agents</h1>
+  <a class="text-right primary-color" [routerLink]="['Details/', 0, 'add']">Add new agent<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>
 
-<form>
-  <div class="form-group form-inline">
-    Full text search: <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
-    <span *ngIf="service.loading$ | async">Loading...</span>
+  <div class="border rounded-lg mt-2 mb-3">
+    <form class="d-flex flex-row justify-content-between p-2">
+      <div class="form-inline">
+        <b>Filter Results</b><i class="fas fa-lg fa-sliders-h ml-3"></i>
+      </div>
+      <div class="form-inline">
+        <b>Full text search: </b><input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+        <span *ngIf="service.loading$ | async">Loading...</span>
+      </div>
+    </form>
+
+    <table class="table table-borderless mb-0 panel-data-table" aria-labelledby="tableLabel">
+      <thead>
+        <tr>
+          <th scope="col" sortable="id" (sort)="onSort($event)">Agent ID</th>
+          <th scope="col" sortable="firstName" (sort)="onSort($event)">First Name</th>
+          <th scope="col" sortable="lastLame" (sort)="onSort($event)">Last Name</th>
+          <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+          <th scope="col" sortable="phone" (sort)="onSort($event)">Phone</th>
+          <th scope="col" sortable="approved" (sort)="onSort($event)">Approved</th>
+          <th scope="col" sortable="manager" (sort)="onSort($event)">Manager</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let agent of dataSource$ | async" class="mr-2">
+          <td>{{ agent.id }}</td>
+          <td>{{ agent.firstName }}</td>
+          <td>{{ agent.lastName }}</td>
+          <td>{{ agent.email }}</td>
+          <td>{{ agent.phone }}</td>
+          <td>{{ agent.approved }}</td>
+          <td>{{ agent.manager }}</td>
+          <td>
+            <a class="secondary-color-blue table-action-icon" [routerLink]="['Details/' + agent.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>
+            <a class="danger-color table-action-icon ml-3" (click)="onDeleteClick($event, agent)"><i class="fas fa-lg fa-trash-alt"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</form>
 
-<table class="table table-bordered panel-data-table" aria-labelledby="tableLabel" *ngIf="isInitDataLoaded">
-  <thead>
-    <tr>
-      <th scope="col" sortable="id" (sort)="onSort($event)" width="20%">Agent Id</th>
-      <th scope="col" sortable="firstname" (sort)="onSort($event)">First Name</th>
-      <th scope="col" sortable="lastname" (sort)="onSort($event)">Last Name</th>
-      <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
-      <th scope="col" sortable="phone" (sort)="onSort($event)">Phone</th>
-      <th width="20%">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let agent of dataSource$ | async">
-      <td>{{ agent.id }}</td>
-      <td>{{ agent.firstName }}</td>
-      <td>{{ agent.lastName }}</td>
-      <td>{{ agent.email }}</td>
-      <td>{{ agent.phone }}</td>
-      <td>
-        <a [routerLink]="['Details/' + agent.id]"><i class="far fa-edit"></i></a>
-        <button (click)="onDeleteClick($event, agent)"><i class="far fa-trash-alt"></i></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <ngb-pagination class="d-flex flex-row-reverse" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"></ngb-pagination>
+</div>
 
-<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"></ngb-pagination>
+<app-confirm-modal (onOpenModal)="onOpenModal($event)" [openModal]="isOpenConfirmModal"></app-confirm-modal>

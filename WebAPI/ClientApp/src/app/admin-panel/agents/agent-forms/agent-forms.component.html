@@ -1,0 +1,118 @@
+<form #mainForm="ngForm" novalidate (ngSubmit)="onSubmit(mainForm.valid)" *ngIf="isInitDataLoaded">
+  <div class="d-flex flex-column">
+    <div><a [routerLink]="[listUrl]" class="color-grayLighter"><i class="fas fa-lg fa-chevron-left mr-2"></i>Back</a></div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="[listUrl]">Agents</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ model.agent.firstName }} {{ model.agent.lastName }}</li>
+      </ol>
+    </nav>
+    <div class="d-flex justify-content-between mb-2">
+        <h1 class="page-title mb-0 align-self-end">{{ model.agent.firstName }} {{ model.agent.lastName }} details</h1>
+        <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-lg fa-edit secondary-color-blue ml-2"></i></a>
+    </div>
+
+    <div class="border rounded-lg p-4">
+      <div class="d-flex justify-content-between">
+        <h6 class="page-sub-title px-2 mt-3">General Information</h6>
+        <div class="checkbox checkbox-info checkbox-circle text-right pr-2">
+          <input type="checkbox"
+                 id="approved"
+                 [disabled]="isViewMode"
+                 name="approved"
+                 class="align-text-top mr-2"
+                 [(ngModel)]="model.agent.approved" />
+          <label *ngIf="model.agent.approved">Agent Approved</label>
+          <label *ngIf="!model.agent.approved">Approve Agent</label>
+        </div>
+      </div>
+      <div class="form-input-container d-flex flex-wrap justify-content-between no-gutters px-2 py-3">
+          <div class="form-group col-12 col-sm-6">
+            <label>First Name</label>
+            <input type="text"
+                   required
+                   [disabled]="isViewMode"
+                   name="firstName"
+                   class="form-control"
+                   placeholder="First Name"
+                   [(ngModel)]="model.agent.firstName" />
+            <div *ngIf="formErrors.firstName" class="has-error">
+              {{ formErrors.firstName }}
+            </div>
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Email</label>
+            <input type="text"
+                   required
+                   [disabled]="isViewMode"
+                   name="email"
+                   class="form-control"
+                   placeholder="Email"
+                   [(ngModel)]="model.agent.email" />
+            <div *ngIf="formErrors.email" class="has-error">
+              {{ formErrors.email }}
+            </div>
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Company Name</label>
+            <input type="text"
+                   required
+                   [disabled]="isViewMode"
+                   name="companyName"
+                   class="form-control"
+                   placeholder="Company Name"
+                   [(ngModel)]="model.agent.companyName" />
+            <div *ngIf="formErrors.companyName" class="has-error">
+              {{ formErrors.companyName }}
+            </div>
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Last Name</label>
+            <input type="text"
+                   required
+                   [disabled]="isViewMode"
+                   name="lastName"
+                   class="form-control"
+                   placeholder="Last Name"
+                   [(ngModel)]="model.agent.lastName" />
+            <div *ngIf="formErrors.lastName" class="has-error">
+              {{ formErrors.lastName }}
+            </div>
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Phone</label>
+            <input type="text"
+                   required
+                   [disabled]="isViewMode"
+                   name="phone"
+                   class="form-control"
+                   placeholder="Phone"
+                   [(ngModel)]="model.agent.phone" />
+            <div *ngIf="formErrors.phone" class="has-error">
+              {{ formErrors.phone }}
+            </div>
+          </div>
+          <div class="form-group col-12 col-sm-6">
+            <label>Main Source Student</label>
+            <input type="text"
+                   required
+                   [disabled]="isViewMode"
+                   name="mainSourceStudent"
+                   class="form-control"
+                   placeholder="Main Source Student"
+                   [(ngModel)]="model.agent.mainSourceStudent" />
+            <div *ngIf="formErrors.mainSourceStudent" class="has-error">
+              {{ formErrors.mainSourceStudent }}
+            </div>
+          </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-end px-2 py-4">
+        <button *ngIf="isEditMode || isAddMode" [disabled]="isViewMode" class="btn btn-primary" type="submit">Save Changes</button>
+        <a *ngIf="isEditMode" [routerLink]="[formUrl, modelId, 'view']" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+        <a *ngIf="isAddMode" [routerLink]="[listUrl]" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>

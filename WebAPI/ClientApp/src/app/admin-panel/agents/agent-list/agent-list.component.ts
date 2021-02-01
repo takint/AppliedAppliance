@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AppNotificationService } from '../../../common/app.service';
 import { ListComponent } from '../../../common/base.component';
-import { AgentModel } from '../../../common/models/agent-models';
+import { AgentModel } from '../../../common/models/agent-model';
 import { AgentListService } from '../agent.service';
 
 @Component({
@@ -13,7 +14,8 @@ import { AgentListService } from '../agent.service';
 export class AgentListComponent extends ListComponent<AgentModel> implements OnInit {
 
   constructor(protected route: ActivatedRoute,
-    public service: AgentListService) {
-    super(route, service);
+    public service: AgentListService,
+    protected notiService: AppNotificationService) {
+    super(route, service, notiService);
   }
 }

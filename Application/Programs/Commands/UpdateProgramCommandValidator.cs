@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-using FluentValidation;
-using Application.Programs.Queries;
+﻿using FluentValidation;
 using Application.Common.Interfaces;
 
 namespace Application.Programs.Commands
@@ -13,16 +11,16 @@ namespace Application.Programs.Commands
         {
             _context = context;
 
-            RuleFor(p => p.ProgramData.SchoolId)
+            RuleFor(p => p.Program.SchoolId)
                .NotEmpty().WithMessage("SchoolId is required");
 
-            RuleFor(p => p.ProgramData.ProgramCategoryId)
+            RuleFor(p => p.Program.ProgramCategoryId)
                 .NotEmpty().WithMessage("ProgramCatergoryId is required");
 
-            RuleFor(p => p.ProgramData.ProgramName)
+            RuleFor(p => p.Program.ProgramName)
                .NotEmpty().WithMessage("Program Name is required");
 
-            RuleFor(p => p.ProgramData.ProgramLevel)
+            RuleFor(p => p.Program.ProgramLevel)
                .NotEmpty().WithMessage("Program Level is required");
         }
 

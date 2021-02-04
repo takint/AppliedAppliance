@@ -12,7 +12,7 @@ namespace Application.Students.Commands
 {
     public class CreateStudentCommand : IRequest<int>
     {
-        public StudentDto StudentData { get; set; }
+        public StudentDto Student { get; set; }
     }
 
     public class CreateStudentCommandHandler : BaseQueryHandler, IRequestHandler<CreateStudentCommand, int>
@@ -26,7 +26,7 @@ namespace Application.Students.Commands
 
         public async Task<int> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<Student>(request.StudentData);
+            var entity = _mapper.Map<Student>(request.Student);
 
             await _studentRepository.CreateAsync(entity);
 

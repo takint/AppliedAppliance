@@ -33,9 +33,10 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<int>> Create(CreateAgentCommand command)
+        public async Task<ActionResult> Create(CreateAgentCommand command)
         {
-            return await Mediator.Send(command);
+            int result = await Mediator.Send(command);
+            return result > 0 ? Accepted() : BadRequest();
         }
 
         [HttpPut("{id}")]

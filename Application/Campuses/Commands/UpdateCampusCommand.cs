@@ -15,7 +15,7 @@ namespace Application.Campuses.Commands
     public class UpdateCampusCommand : IRequest
     {
         public int SchoolId { get; set; }
-        public CampusDto CampusData { get; set; }
+        public CampusDto Campus { get; set; }
     }
 
     public class UpdateCampusCommandHandler : BaseQueryHandler, IRequestHandler<UpdateCampusCommand>
@@ -35,13 +35,12 @@ namespace Application.Campuses.Commands
         public async Task<Unit> Handle(UpdateCampusCommand request, CancellationToken cancellationToken)
         {
             //TODO: Check if SchoolId is assigned by mapping
-            Campus entity = _mapper.Map<Campus>(request.CampusData);
-
+            Campus entity = _mapper.Map<Campus>(request.Campus);
             bool existedEntity = await _campusRepository.IsExistedEntity(entity.Id);
 
             if (!existedEntity)
             {
-                throw new NotFoundException(nameof(Campuses), request.CampusData.Id);
+                throw new NotFoundException(nameof(Campuses), request.Campus.Id);
             }
 
             await _campusRepository.UpdateAsync(entity);

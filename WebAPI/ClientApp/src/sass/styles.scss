@@ -1,5 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'styles.variables.scss';
+@import 'styles.mixin.scss';
+@import 'styles.common.scss';
+@import 'styles.login.scss';
 
 @font-face {
   font-family: 'PTSansCaption-Regular';
@@ -43,52 +46,120 @@ body {
 
 
 /* Sortable table */
-table.panel-data-table {
-  thead, th {
-    background: $color-lynx-white;
-    color: $primary-color;
-    vertical-align: middle;
-    padding: 0px;
+.data-list-container {
+  border: none;
+
+  @include respond-to('min-medium') {
+    border: 1px solid $color-grayLight;
   }
 
-  th, td {
-    padding: 1rem;
-    vertical-align: unset;
-  }
+  table.data-list-table {
+    table-layout: fixed;
 
-  tr:not(:last-child) {
-    vertical-align: middle;
-    border-bottom: 1px solid $color-grayLight;
-  }
-}
+    thead {
+      display: none;
 
-th[sortable] {
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
+      @include respond-to('min-medium') {
+        background: $color-lynx-white;
+        color: $primary-color;
+        display: table-row-group;
+      }
+    }
 
-  &:after {
-    content: ' ';
-    margin: 0 0.25rem;
-    display: initial;
-    width: 0px;
-    height: 18px;
-    display: inline-block;
-  }
+    th, td {
+      word-wrap: break-word;
+      padding: 1rem;
+      vertical-align: middle;
+    }
 
-  &.desc:after,
-  &.asc:after {
-    content: ' ';
-    background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sort-down" class="svg-inline--fa fa-sort-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="grey" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"></path></svg>') no-repeat;
-    width: 15px;
-    height: 16px;
-    background-position: 2px 0px;
-    margin: 0 0.25rem;
-  }
+    tr {
+      display: block;
+      margin-bottom: 1rem;
+      border: 1px solid $color-grayLight;
+      //border-bottom: none;
+      border-radius: 0.5rem;
+      //position: relative;
 
-  &.desc:after {
-    transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    background-position: 2px -5px;
+      @include respond-to('min-medium') {
+        border: none;
+        display: table-row;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $color-grayLight;
+        }
+      }
+    }
+
+    td {
+      border-bottom: 1px solid $color-grayLight;
+      display: block;
+      text-align: right;
+      //position: relative;
+      //top: 50px;
+
+      &:last-child {
+        border-bottom: 0;
+        //position: absolute;
+        //top: 0px;
+        //right: 0px;
+      }
+
+      &::before {
+        content: attr(aria-label);
+        float: left;
+        font-weight: bold;
+
+        @include respond-to('min-medium') {
+          display: none;
+        }
+      }
+
+      //&:nth-last-child(2) {
+      //  border-left: 1px solid $color-grayLight;
+      //  border-right: 1px solid $color-grayLight;
+      //  border-radius: 8px;
+      //}
+
+      @include respond-to('min-medium') {
+        display: table-cell;
+        border-bottom: none;
+        text-align: left;
+
+        &:last-child {
+          position: unset;
+        }
+      }
+    }
+
+    th[sortable] {
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+
+      &:after {
+        content: ' ';
+        margin: 0 0.25rem;
+        display: initial;
+        width: 0px;
+        height: 18px;
+        display: inline-block;
+      }
+
+      &.desc:after,
+      &.asc:after {
+        content: ' ';
+        background: url('data:image/svg+xml;utf8,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sort-down" class="svg-inline--fa fa-sort-down fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="grey" d="M41 288h238c21.4 0 32.1 25.9 17 41L177 448c-9.4 9.4-24.6 9.4-33.9 0L24 329c-15.1-15.1-4.4-41 17-41z"></path></svg>') no-repeat;
+        width: 15px;
+        height: 16px;
+        background-position: 2px 0px;
+        margin: 0 0.25rem;
+      }
+
+      &.desc:after {
+        transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        background-position: 2px -5px;
+      }
+    }
   }
 }

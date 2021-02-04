@@ -12,7 +12,7 @@ import { SharedComponentsModule } from '../../shared-components/shared-component
 
 const ADMIN_PANEL_AGENT_ROUTE = [
   { path: '', component: AgentListComponent, pathMatch: 'full' },
-  { path: 'Details/:id/:mode', component: AgentFormsComponent },
+  { path: 'details/:id/:mode', component: AgentFormsComponent },
 ];
 
 

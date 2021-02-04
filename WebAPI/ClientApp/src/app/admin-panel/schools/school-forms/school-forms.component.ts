@@ -13,9 +13,9 @@ import { SchoolFormService } from '../school.service';
 })
 export class SchoolFormsComponent extends FormComponent<SchoolFormViewModel> implements OnInit {
 
-  modelName = 'Schools';
-  listUrl = `/Admin/${this.modelName}`;
-  formUrl = `${this.listUrl}/Details/`;
+  modelName = 'schools';
+  listUrl = `/admin/${this.modelName}`;
+  formUrl = `${this.listUrl}/details/`;
 
   constructor(protected route: ActivatedRoute,
     protected router: Router,

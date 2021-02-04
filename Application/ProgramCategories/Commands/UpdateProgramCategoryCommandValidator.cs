@@ -11,7 +11,7 @@ namespace Application.ProgramCategories.Commands
         {
             _context = context;
 
-            RuleFor(v => v.ProgramCategoryData.Name)
+            RuleFor(v => v.ProgramCategory.Name)
                 .NotEmpty().WithMessage("Program Category Name is required");
         }
 

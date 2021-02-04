@@ -13,7 +13,7 @@ namespace Application.ProgramCategories.Commands
 {
     public class UpdateProgramCategoryCommand : IRequest
     {
-        public ProgramCategoryDto ProgramCategoryData { get; set; }
+        public ProgramCategoryDto ProgramCategory { get; set; }
     }
 
     public class UpdateProgramCategoryCommandHandler : BaseQueryHandler, IRequestHandler<UpdateProgramCategoryCommand>
@@ -28,12 +28,12 @@ namespace Application.ProgramCategories.Commands
 
         public async Task<Unit> Handle(UpdateProgramCategoryCommand request, CancellationToken cancellationToken)
         {
-            ProgramCategory entity = _mapper.Map<ProgramCategory>(request.ProgramCategoryData);
+            ProgramCategory entity = _mapper.Map<ProgramCategory>(request.ProgramCategory);
             bool existedEntity = await _programCategoryRepository.IsExistedEntity(entity.Id);
 
             if (!existedEntity)
             {
-                throw new NotFoundException(nameof(ProgramCategory), request.ProgramCategoryData.Id);
+                throw new NotFoundException(nameof(ProgramCategory), request.ProgramCategory.Id);
             }
 
             await _programCategoryRepository.UpdateAsync(entity);

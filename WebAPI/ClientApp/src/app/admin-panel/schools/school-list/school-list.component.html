@@ -2,9 +2,9 @@
 
 <div class="d-flex flex-column w-100 pt-3 mt-4">
   <h1 class="page-title m-0" id="tableLabel">Schools</h1>
-  <a class="text-right primary-color" [routerLink]="['Details/', 0, 'add']">Add new school<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>
+  <a class="text-right primary-color" [routerLink]="['details/', 0, 'add']">Add new school<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>
 
-  <div class="border rounded-lg mt-2 mb-3">
+  <div class="data-list-container rounded-lg mt-2 mb-3">
     <form class="d-flex flex-row justify-content-between p-2">
       <div class="form-inline">
         <b>Filter Results</b><i class="fas fa-lg fa-sliders-h ml-3"></i>
@@ -14,7 +14,8 @@
         <span *ngIf="service.loading$ | async">Loading...</span>
       </div>
     </form>
-    <table class="table table-borderless mb-0 panel-data-table" aria-labelledby="tableLabel">
+
+    <table class="table table-borderless data-list-table mb-0" aria-labelledby="tableLabel">
       <thead>
         <tr>
           <th scope="col" sortable="id" (sort)="onSort($event)">School ID</th>
@@ -24,12 +25,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let school of dataSource$ | async" class="m-2">
-          <td>{{ school.id }}</td>
-          <td>{{ school.schoolName }}</td>
-          <td>{{ school.countryCode }}</td>
-          <td>
-            <a class="secondary-color-blue table-action-icon" [routerLink]="['Details/', school.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>
+        <tr *ngFor="let school of dataSource$ | async" class="m-lg-2">
+          <td aria-label="School ID">{{ school.id }}</td>
+          <td aria-label="School Name">{{ school.schoolName }}</td>
+          <td aria-label="School Country">{{ school.countryCode }}</td>
+          <td aria-label=" ">
+            <a class="secondary-color-blue table-action-icon" [routerLink]="['details/', school.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>
             <a class="danger-color table-action-icon ml-3" (click)="onDeleteClick($event, school)"><i class="fas fa-lg fa-trash-alt"></i></a>
           </td>
         </tr>

@@ -12,7 +12,7 @@ namespace Application.Programs.Commands
 {
     public class CreateProgramCommand : IRequest<int>
     {
-        public ProgramDto ProgramData { get; set; }
+        public ProgramDto Program { get; set; }
     }
 
     public class CreateProgramCommandHandler : BaseQueryHandler, IRequestHandler<CreateProgramCommand, int>
@@ -27,7 +27,7 @@ namespace Application.Programs.Commands
 
         public async Task<int> Handle(CreateProgramCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<Program>(request.ProgramData);
+            var entity = _mapper.Map<Program>(request.Program);
 
             await _programRepository.CreateAsync(entity);
 

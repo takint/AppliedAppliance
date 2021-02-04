@@ -1,10 +1,11 @@
 ﻿using Application.Common.Mappings;
+using Application.Common.Models;
 using AutoMapper;
 using Domain.Entities;
 
 namespace Application.Agents.Queries
 {
-    public class AgentDto : IMapFrom<Agent>
+    public class AgentDto : BaseDto, IMapFrom<Agent>
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -44,12 +45,6 @@ namespace Application.Agents.Queries
 
             profile.CreateMap<AgentDto, Agent>()
                 .ForMember(s => s.DomainEvents, opt => opt.Ignore())
-                .ForMember(s => s.Created, opt => opt.Ignore())
-                .ForMember(s => s.CreatedBy, opt => opt.Ignore())
-                .ForMember(s => s.LastModified, opt => opt.Ignore())
-                .ForMember(s => s.LastModifiedBy, opt => opt.Ignore())
-                .ForMember(s => s.Archived, opt => opt.Ignore())
-                .ForMember(s => s.Deleted, opt => opt.Ignore())
                 .ForMember(s => s.AgentManager, opt => opt.Ignore())
                 .ForMember(s => s.Address, opt => opt.Ignore()) //TODO
                 .IgnoreAllPropertiesWithAnInaccessibleSetter();

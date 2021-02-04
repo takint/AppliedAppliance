@@ -6,18 +6,20 @@ import { RouterModule } from '@angular/router';
 import { StudentListService } from './student.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedComponentsModule } from '../../shared-components/shared-components.module';
+import { StudentFormsComponent } from './student-forms/student-forms.component';
 
 
 const ADMIN_PANEL_STUDENT_ROUTE = [
   { path: '', component: StudentListComponent, pathMatch: 'full' },
-  //{ path: '', component: }
+  { path: 'details/:id/:mode', component: StudentFormsComponent },
 ];
 
 
 @NgModule({
 
   declarations: [
-    StudentListComponent
+    StudentListComponent,
+    StudentFormsComponent
   ],
   imports: [
     CommonModule,

@@ -13,7 +13,7 @@ namespace Application.Programs.Commands
 {
     public class UpdateProgramCommand : IRequest
     {
-        public ProgramDto ProgramData { get; set; }
+        public ProgramDto Program { get; set; }
     }
 
     public class UpdateProgramCommandHandler : BaseQueryHandler, IRequestHandler<UpdateProgramCommand>
@@ -26,12 +26,12 @@ namespace Application.Programs.Commands
         }
         public async Task<Unit> Handle(UpdateProgramCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<Program>(request.ProgramData);
+            var entity = _mapper.Map<Program>(request.Program);
             bool existedEntity = await _programRepository.IsExistedEntity(entity.Id);
 
             if (!existedEntity)
             {
-                throw new NotFoundException(nameof(Program), request.ProgramData.Id);
+                throw new NotFoundException(nameof(Program), request.Program.Id);
             }
 
             await _programRepository.UpdateAsync(entity);

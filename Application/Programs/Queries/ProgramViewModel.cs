@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace Application.Programs.Queries
+﻿namespace Application.Programs.Queries
 {
     public class ProgramViewModel
     {
-        public IList<ProgramDto> List { get; set; }
-        public int Total { get; set; }
+        public ProgramDto Program { get; set; }
     }
 }

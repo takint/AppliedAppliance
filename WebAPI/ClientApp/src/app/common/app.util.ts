@@ -1,5 +1,5 @@
+import { DefaultUrlSerializer, UrlTree } from '@angular/router';
 import { environment } from '../../environments/environment';
-
 
 export class AppUtil {
   public static apiHost: string = environment.apiEnpoint;
@@ -49,4 +49,12 @@ export function parseResponse(response, isObject: boolean = false) {
   }
 
   return jsonResponse;
+}
+
+export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
+  parse(url: string): UrlTree {
+    // Optional Step: Do some stuff with the url if needed.
+
+    return super.parse(url.toLowerCase());
+  }
 }

@@ -2,13 +2,10 @@
 
 namespace Application.Campuses.Queries
 {
-    public class GetCampusesWithPaginationQueryValidator : AbstractValidator<GetCampusesWithPaginationQuery>
+    public class GetCampusesWithPaginationQueryValidator : AbstractValidator<GetCampusesListQuery>
     {
         public GetCampusesWithPaginationQueryValidator()
         {
-            RuleFor(x => x.SchoolId)
-                .NotNull()
-                .NotEmpty().WithMessage("SchoolId is required.");
 
             RuleFor(x => x.PageNumber)
                 .GreaterThanOrEqualTo(1).WithMessage("PageNumber at least greater than or equal to 1.");

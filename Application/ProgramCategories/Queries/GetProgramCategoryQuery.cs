@@ -12,9 +12,18 @@ namespace Application.ProgramCategories.Queries
 {
     public class GetProgramCategoryQuery : IRequest<ProgramCategoryViewModel>
     {
+
+        public int ProgramCategoryId { get; set; }
+
+        public GetProgramCategoryQuery() { }
+
+        public GetProgramCategoryQuery(int id)
+        {
+            ProgramCategoryId = id;
+        }
     }
 
-    public class GetProgramCategoryQueryHandler : BaseQueryHandler, IRequestHandler<GetProgramCategoryQuery, ProgramCategoryViewModel> 
+    public class GetProgramCategoryQueryHandler : BaseQueryHandler, IRequestHandler<GetProgramCategoryQuery, ProgramCategoryViewModel>
     {
         public GetProgramCategoryQueryHandler(IApplicationDbContext context, IMapper mapper)
             : base(context, mapper)
@@ -22,15 +31,15 @@ namespace Application.ProgramCategories.Queries
 
         }
 
-        public async Task<ProgramCategoryViewModel> Handle(GetProgramCategoryQuery request, CancellationToken cancellationToken) 
+        public async Task<ProgramCategoryViewModel> Handle(GetProgramCategoryQuery request, CancellationToken cancellationToken)
         {
             return new ProgramCategoryViewModel
             {
-                Lists = await _context.ProgramCategories
+                ProgramCategory = await _context.ProgramCategories
+                    .Where(p => p.Id == request.ProgramCategoryId)
                     .ProjectTo<ProgramCategoryDto>(_mapper.ConfigurationProvider)
                     .OrderBy(p => p.Name)
-                    .ToListAsync(cancellationToken),
-                Total = await _context.ProgramCategories.CountAsync(cancellationToken)
+                    .SingleOrDefaultAsync(cancellationToken)
             };
         }
     }

@@ -11,9 +11,9 @@ export class PanelHeaderComponent implements OnInit {
   dropDownTitle: string = 'admin@admin.com';
 
   dropDownList: Array<DropDownItems> = [
-    { title: 'Schools', url: 'Schools', icon: 'far fa-user mr-2' },
-    { title: 'Students', url: 'Students', icon: 'fas fa-wrench mr-2' },
-    { title: 'Agents', url: 'Agents', icon: 'fa-sign-out-alt mr-2' },
+    { title: 'Profile', url: 'authentication/profile', icon: 'far fa-user mr-2' },
+    { title: 'Settings', url: 'admin/settings', icon: 'fas fa-wrench mr-2' },
+    { title: 'Logout', url: 'authentication/logout', icon: 'fa-sign-out mr-2' }
   ];
 
   constructor() { }

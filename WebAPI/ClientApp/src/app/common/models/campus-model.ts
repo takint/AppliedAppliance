@@ -1,4 +1,6 @@
-export interface CampusModel {
+import { BaseModel } from "./base-model";
+
+export interface CampusModel extends BaseModel {
   id: number,
   campusName: string,
   address: string,
@@ -12,4 +14,8 @@ export interface CampusModel {
   brandId: number,
   submissionCode: number,
   leadCampusId: number
+}
+
+export interface CampusFormViewModel {
+  campus: CampusModel;
 }

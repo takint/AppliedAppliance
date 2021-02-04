@@ -23,17 +23,23 @@ namespace WebAPI.Controllers
 
             return results;
         }
-
+        [HttpGet("{id}")]
+        public async Task<ActionResult<StudentViewModel>> Get(int id)
+        {
+            var vm = await Mediator.Send(new GetStudentQuery(id));
+            return vm;
+        }
         [HttpPost]
         public async Task<ActionResult<int>> Create(CreateStudentCommand command)
         {
-            return await Mediator.Send(command);
+            int result = await Mediator.Send(command);
+            return result > 0 ? Accepted() : BadRequest();
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, UpdateStudentCommand command)
         {
-            if (id != command.StudentData.Id)
+            if (id != command.Student.Id)
             {
                 return BadRequest();
             }

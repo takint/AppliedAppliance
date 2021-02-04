@@ -1,19 +1,17 @@
+using Alachisoft.NCache.Caching.Distributed;
 using Application;
 using Application.Common.Interfaces;
 using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using WebAPI.Services;
-using Microsoft.Extensions.Caching.Distributed;
-using Alachisoft.NCache.Caching.Distributed;
-using System;
-using System.Text;
 
 namespace WebAPI
 {
@@ -40,7 +38,11 @@ namespace WebAPI
             services.AddHealthChecks()
                .AddDbContextCheck<ApplicationDbContext>();
 
-            services.AddControllers();
+            services.AddControllersWithViews();
+
+            services.AddRazorPages()
+                .AddRazorRuntimeCompilation();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebUI", Version = "v1" });
@@ -65,18 +67,20 @@ namespace WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebUI v1"));
             }
 
-            lifetime.ApplicationStarted.Register(() =>
-            {
-                var currentTimeUTC = DateTime.UtcNow.ToString();
-                byte[] encodedCurrentTimeUTC = Encoding.UTF8.GetBytes(currentTimeUTC);
-                var options = new DistributedCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromMinutes(5))
-                .SetAbsoluteExpiration(DateTime.Now.AddHours(6));
-                cache.Set("cachedTimeUTC", encodedCurrentTimeUTC, options);
-            });
+            //lifetime.ApplicationStarted.Register(() =>
+            //{
+            //    var currentTimeUTC = DateTime.UtcNow.ToString();
+            //    byte[] encodedCurrentTimeUTC = Encoding.UTF8.GetBytes(currentTimeUTC);
+            //    var options = new DistributedCacheEntryOptions()
+            //    .SetSlidingExpiration(TimeSpan.FromMinutes(5))
+            //    .SetAbsoluteExpiration(DateTime.Now.AddHours(6));
+            //    cache.Set("cachedTimeUTC", encodedCurrentTimeUTC, options);
+            //});
 
             app.UseHealthChecks("/health");
+
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
@@ -85,6 +89,8 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -93,6 +99,7 @@ namespace WebAPI
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             app.UseSpa(spa =>

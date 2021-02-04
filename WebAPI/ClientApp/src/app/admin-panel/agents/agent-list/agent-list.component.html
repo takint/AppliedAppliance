@@ -2,9 +2,9 @@
 
 <div class="d-flex flex-column w-100 pt-3 mt-4">
   <h1 class="page-title m-0">Agents</h1>
-  <a class="text-right primary-color" [routerLink]="['Details/', 0, 'add']">Add new agent<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>
+  <a class="text-right primary-color" [routerLink]="['details/', 0, 'add']">Add new agent<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>
 
-  <div class="border rounded-lg mt-2 mb-3">
+  <div class="data-list-container rounded-lg mt-2 mb-3">
     <form class="d-flex flex-row justify-content-between p-2">
       <div class="form-inline">
         <b>Filter Results</b><i class="fas fa-lg fa-sliders-h ml-3"></i>
@@ -15,7 +15,7 @@
       </div>
     </form>
 
-    <table class="table table-borderless mb-0 panel-data-table" aria-labelledby="tableLabel">
+    <table class="table table-borderless data-list-table mb-0" aria-labelledby="tableLabel">
       <thead>
         <tr>
           <th scope="col" sortable="id" (sort)="onSort($event)">Agent ID</th>
@@ -29,16 +29,16 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let agent of dataSource$ | async" class="mr-2">
-          <td>{{ agent.id }}</td>
-          <td>{{ agent.firstName }}</td>
-          <td>{{ agent.lastName }}</td>
-          <td>{{ agent.email }}</td>
-          <td>{{ agent.phone }}</td>
-          <td>{{ agent.approved }}</td>
-          <td>{{ agent.manager }}</td>
+        <tr *ngFor="let agent of dataSource$ | async" class="m-lg-2">
+          <td aria-label="Agent ID">{{ agent.id }}</td>
+          <td aria-label="First Name">{{ agent.firstName }}</td>
+          <td aria-label="Last Name">{{ agent.lastName }}</td>
+          <td aria-label="Email">{{ agent.email }}</td>
+          <td aria-label="Phone">{{ agent.phone }}</td>
+          <td aria-label="Approved">{{ agent.approved }}</td>
+          <td aria-label="Manager">{{ agent.manager }}</td>
           <td>
-            <a class="secondary-color-blue table-action-icon" [routerLink]="['Details/' + agent.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>
+            <a class="secondary-color-blue table-action-icon" [routerLink]="['details/' + agent.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>
             <a class="danger-color table-action-icon ml-3" (click)="onDeleteClick($event, agent)"><i class="fas fa-lg fa-trash-alt"></i></a>
           </td>
         </tr>
@@ -49,4 +49,4 @@
   <ngb-pagination class="d-flex flex-row-reverse" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize"></ngb-pagination>
 </div>
 
-<app-confirm-modal (onOpenModal)="onOpenModal($event)" [openModal]="isOpenConfirmModal"></app-confirm-modal>
+<app-confirm-modal entityName="Agent Profile" (onOpenModal)="onOpenModal($event)" [openModal]="isOpenConfirmModal"></app-confirm-modal>

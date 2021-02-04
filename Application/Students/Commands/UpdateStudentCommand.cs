@@ -14,7 +14,7 @@ namespace Application.Students.Commands
 {
     public class UpdateStudentCommand : IRequest
     {
-        public StudentDto StudentData { get; set; }
+        public StudentDto Student { get; set; }
     }
 
     public class UpdateStudentCommandHandler : BaseQueryHandler, IRequestHandler<UpdateStudentCommand>
@@ -28,12 +28,12 @@ namespace Application.Students.Commands
 
         public async Task<Unit> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
-            Student entity = _mapper.Map<Student>(request.StudentData);
+            Student entity = _mapper.Map<Student>(request.Student);
             bool existedEntity = await _studentRepository.IsExistedEntity(entity.Id);
 
             if (!existedEntity)
             {
-                throw new NotFoundException(nameof(Students), request.StudentData.Id);
+                throw new NotFoundException(nameof(Students), request.Student.Id);
             }
 
             await _studentRepository.UpdateAsync(entity);

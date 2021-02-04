@@ -12,7 +12,7 @@ namespace Application.ProgramCategories.Commands
 {
     public class CreateProgramCategoryCommand : IRequest<int>
     {
-        public ProgramCategoryDto ProgramCategoryData { get; set; }
+        public ProgramCategoryDto ProgramCategory { get; set; }
     }
 
     public class CreateProgramCategoryCommandHandler : BaseQueryHandler, IRequestHandler<CreateProgramCategoryCommand, int>
@@ -27,7 +27,7 @@ namespace Application.ProgramCategories.Commands
 
         public async Task<int> Handle(CreateProgramCategoryCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<ProgramCategory>(request.ProgramCategoryData);
+            var entity = _mapper.Map<ProgramCategory>(request.ProgramCategory);
 
             await _programCategoryRepository.CreateAsync(entity);
 

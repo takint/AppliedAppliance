@@ -1,83 +1,146 @@
+<div class="d-flex flex-column" *ngIf="isInitDataLoaded">
+  <div><a [routerLink]="[listUrl]" class="color-grayLighter"><i class="fas fa-lg fa-chevron-left mr-2"></i>Back</a></div>
 
-<form #mainForm="ngForm" novalidate (ngSubmit)="onSubmit(mainForm.valid)" *ngIf="isInitDataLoaded">
-  <div class="d-flex flex-column">
-    <div><a [routerLink]="[listUrl]" class="color-grayLighter"><i class="fas fa-lg fa-chevron-left mr-2"></i>Back</a></div>
-
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a [routerLink]="[listUrl]">Schools</a></li>
-        <li class="breadcrumb-item active" aria-current="page">{{model.school.schoolName}}</li>
-      </ol>
-    </nav>
-    <div class="d-flex justify-content-between mb-2">
-      <h1 class="page-title mb-0 align-self-end">{{model.school.schoolName}} details</h1>
-      <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-lg fa-edit secondary-color-blue ml-2"></i></a>
-    </div>
-
-    <div class="border rounded-lg p-4">
-      <h6 class="page-sub-title px-2 mt-3">General Information</h6>
-      <div class="form-input-container d-flex flex-wrap justify-content-between no-gutters px-2 py-3">
-        <div class="form-group col-12 col-sm-6">
-          <label>School Name</label>
-          <input type="text"
-                 required
-                 [disabled]="isViewMode"
-                 name="schoolName"
-                 class="form-control"
-                 placeholder="My College"
-                 [(ngModel)]="model.school.schoolName" />
-          <div *ngIf="formErrors.schoolName" class="has-error">
-            {{ formErrors.schoolName }}
-          </div>
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Email</label>
-          <input type="email"
-                 required
-                 [disabled]="isViewMode"
-                 name="email"
-                 class="form-control"
-                 placeholder="school@email.com"
-                 [(ngModel)]="model.school.email" />
-          <div *ngIf="formErrors.email" class="has-error">
-            {{ formErrors.email }}
-          </div>
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Country Code</label>
-          <input type="text"
-                 required
-                 [disabled]="isViewMode"
-                 name="countryCode"
-                 class="form-control"
-                 placeholder="CA"
-                 [(ngModel)]="model.school.countryCode" />
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>Application Fee</label>
-          <input type="number"
-                 [disabled]="isViewMode"
-                 name="applicationFee"
-                 class="form-control"
-                 placeholder="150.00"
-                 [(ngModel)]="model.school.applicationFee" />
-        </div>
-        <div class="form-group col-12 col-sm-6">
-          <label>PGWP</label>
-          <input type="text"
-                 [disabled]="isViewMode"
-                 name="pgwp"
-                 class="form-control"
-                 placeholder="Yes or No"
-                 [(ngModel)]="model.school.pgwp" />
-        </div>
-      </div>
-
-      <div class="col-12 d-flex justify-content-end px-2 py-4">
-        <button *ngIf="isEditMode || isAddMode" [disabled]="isViewMode" class="btn-primary" type="submit">Save Changes</button>
-        <a *ngIf="isEditMode" [routerLink]="[formUrl, modelId, 'view']" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
-        <a *ngIf="isAddMode" [routerLink]="[listUrl]" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
-      </div>
-    </div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="[listUrl]">Schools</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{model.school.schoolName}}</li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-between mb-2">
+    <h1 class="page-title mb-0 align-self-end">{{model.school.schoolName}} details</h1>
+    <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-2x fa-edit secondary-color-blue ml-2"></i></a>
   </div>
-</form>
+</div>
+
+<ul ngbNav #nav="ngbNav" class="nav-tabs">
+  <li ngbNavItem>
+    <a ngbNavLink>School Details</a>
+    <ng-template ngbNavContent>
+      <form #mainForm="ngForm" novalidate (ngSubmit)="onSubmit(mainForm.valid)" *ngIf="isInitDataLoaded">
+        <div class="d-flex flex-column">
+          <!--<div><a [routerLink]="[listUrl]" class="color-grayLighter"><i class="fas fa-lg fa-chevron-left mr-2"></i>Back</a></div>
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="[listUrl]">Schools</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{model.school.schoolName}}</li>
+            </ol>
+          </nav>
+          <div class="d-flex justify-content-between mb-2">
+            <h1 class="page-title mb-0 align-self-end">{{model.school.schoolName}} details</h1>
+            <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-2x fa-edit secondary-color-blue ml-2"></i></a>
+          </div>-->
+
+          <div class="border rounded-lg p-4">
+            <h6 class="page-sub-title px-2 mt-3">General Information</h6>
+            <div class="form-input-container d-flex flex-wrap justify-content-between no-gutters px-2 py-3">
+              <div class="form-group col-12 col-sm-6">
+                <label>School Name</label>
+                <input type="text"
+                       required
+                       [disabled]="isViewMode"
+                       name="schoolName"
+                       class="form-control"
+                       [(ngModel)]="model.school.schoolName" />
+                <div *ngIf="formErrors.schoolName" class="has-error">
+                  {{ formErrors.schoolName }}
+                </div>
+              </div>
+              <div class="form-group col-12 col-sm-6">
+                <label>Email</label>
+                <input type="email"
+                       required
+                       [disabled]="isViewMode"
+                       name="email"
+                       class="form-control"
+                       [(ngModel)]="model.school.email" />
+                <div *ngIf="formErrors.email" class="has-error">
+                  {{ formErrors.email }}
+                </div>
+              </div>
+              <div class="form-group col-12 col-sm-6">
+                <label>Country Code</label>
+                <input type="text"
+                       required
+                       [disabled]="isViewMode"
+                       name="countryCode"
+                       class="form-control"
+                       [(ngModel)]="model.school.countryCode" />
+              </div>
+              <div class="form-group col-12 col-sm-6">
+                <label>Application Fee</label>
+                <input type="number"
+                       [disabled]="isViewMode"
+                       name="applicationFee"
+                       class="form-control"
+                       [(ngModel)]="model.school.applicationFee" />
+              </div>
+              <div class="form-group col-12 col-sm-6">
+                <label>PGWP</label>
+                <input type="text"
+                       [disabled]="isViewMode"
+                       name="pgwp"
+                       class="form-control"
+                       [(ngModel)]="model.school.pgwp" />
+              </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end px-2 py-4">
+              <button *ngIf="isEditMode || isAddMode" [disabled]="isViewMode" class="btn-primary" type="submit">Save Changes</button>
+              <a *ngIf="isEditMode" [routerLink]="[formUrl, modelId, 'view']" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+              <a *ngIf="isAddMode" [routerLink]="[listUrl]" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>Campuses</a>
+    <ng-template ngbNavContent>
+      <app-campus-list></app-campus-list>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>Programs</a>
+    <ng-template ngbNavContent>
+      <app-program-list></app-program-list>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>Start Dates</a>
+    <ng-template ngbNavContent>
+
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>Documents</a>
+    <ng-template ngbNavContent>
+
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>PandaDoc Templates</a>
+    <ng-template ngbNavContent>
+
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>Users</a>
+    <ng-template ngbNavContent>
+
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink>Payments</a>
+    <ng-template ngbNavContent>
+
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="nav"></div>
+
+
+

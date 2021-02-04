@@ -1,0 +1,105 @@
+
+<form #mainForm="ngForm" novalidate (ngSubmit)="onSubmit(mainForm.valid)" *ngIf="isInitDataLoaded">
+  <div class="d-flex flex-column">
+    <div><a class="color-grayLighter" [routerLink]="[listUrl]"><i class="fas fa-lg fa-chevron-left mr-2"></i>Back</a></div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="[listUrl]">Programs</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ model.program.programName }}</li>
+      </ol>
+    </nav>
+    <div class="d-flex justify-content-between mb-2">
+      <h1 class="page-title mb-0 align-self-end">{{ model.program.programName }} details</h1>
+      <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-2x fa-edit secondary-color-blue ml-2"></i></a>
+    </div>
+
+    <div class="border rounded-lg p-4">
+      <h6 class="page-sub-title px-2 mt-3">General Information</h6>
+      <div class="form-input-container d-flex flex-wrap justify-content-between no-gutters px-2 py-3">
+        <div class="form-group col-12 col-sm-6">
+          <label>Program Name</label>
+          <input type="text"
+                 required
+                 [disabled]="isViewMode"
+                 name="name"
+                 class="form-control"
+                 [(ngModel)]="model.program.programName" />
+          <!--<div *ngIf="formErrors.name" class="has-error">
+      {{ formErrors.name }}
+    </div>-->
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>Category</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="programCategoryId"
+                 class="form-control"
+                 [(ngModel)]="model.program.programCategoryId" />
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>Program Level</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="programLevel"
+                 class="form-control"
+                 [(ngModel)]="model.program.programLevel" />
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>Program Length</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="programLength"
+                 class="form-control"
+                 [(ngModel)]="model.program.programLength" />
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>Start Date</label>
+          <input type="date"
+                 [disabled]="isViewMode"
+                 name="startDate"
+                 class="form-control"
+                 [(ngModel)]="model.program.startDate" />
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>EATemplateId</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="eaTemplateId"
+                 class="form-control"
+                 [(ngModel)]="model.program.eaTemplateId" />
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>AdditionalDocumentId</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="additionalDocumentId"
+                 class="form-control"
+                 [(ngModel)]="model.program.additionalDocumentId" />
+        </div>
+        <div class="form-group col-12 col-sm-6" *ngIf="model.program.hasLeadIntegration">
+          <label>LeadProgramId</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="leadProgramId"
+                 class="form-control"
+                 [(ngModel)]="model.program.leadProgramId" />
+        </div>
+        <div class="form-group col-12 col-sm-6" *ngIf="model.program.hasLeadIntegration">
+          <label>BrandId</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="brandId"
+                 class="form-control"
+                 [(ngModel)]="model.program.brandId" />
+        </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-end px-2 py-4">
+        <button *ngIf="isEditMode || isAddMode" [disabled]="isViewMode" class="btn-primary" type="submit">Save Changes</button>
+        <a *ngIf="isEditMode" [routerLink]="[formUrl, modelId, 'view']" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+        <a *ngIf="isAddMode" [routerLink]="[listUrl]" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>

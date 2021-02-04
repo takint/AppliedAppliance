@@ -13,6 +13,9 @@ namespace Application.Campuses.Commands
 
             RuleFor(v => v.SchoolId)
                 .NotNull().WithMessage("School id is required.");
+
+            RuleFor(v => v.Campus.CampusName)
+                .NotNull().WithMessage("Campus name is required.");
         }
     }
 }

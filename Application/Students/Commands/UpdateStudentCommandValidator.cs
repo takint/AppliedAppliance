@@ -14,7 +14,7 @@ namespace Application.Students.Commands
         {
             _context = context;
 
-            RuleFor(v => v.StudentData.Email)
+            RuleFor(v => v.Student.Email)
                 .NotEmpty().WithMessage("Email is required.");
         }
 

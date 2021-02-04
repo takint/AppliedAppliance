@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AppNotificationService } from '../../../common/app.service';
 import { AppUtil } from '../../../common/app.util';
 import { FormComponent } from '../../../common/base.component';
-import { AgentModel } from '../../../common/models/agent-model';
+import { AgentFormViewModel, AgentModel } from '../../../common/models/agent-model';
 import { AgentFormService } from '../agent.service';
 
 @Component({
@@ -13,9 +13,9 @@ import { AgentFormService } from '../agent.service';
 })
 export class AgentFormsComponent extends FormComponent<AgentFormViewModel> implements OnInit {
 
-  modelName = 'Agents';
-  listUrl = `/Admin/${this.modelName}`;
-  formUrl = `${this.listUrl}/Details/`;
+  modelName = 'agents';
+  listUrl = `/admin/${this.modelName}`;
+  formUrl = `${this.listUrl}/details/`;
 
   constructor(protected route: ActivatedRoute,
     protected router: Router,
@@ -67,8 +67,4 @@ export class AgentFormsComponent extends FormComponent<AgentFormViewModel> imple
   ngOnInit(): void {
   }
 
-}
-
-export interface AgentFormViewModel {
-  agent: AgentModel;
 }

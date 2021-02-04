@@ -8,10 +8,18 @@ import { NgbdSortableHeader } from '../../common/sortable.directive';
 import { SchoolFormService, SchoolListService } from './school.service';
 import { SchoolListComponent } from './school-list/school-list.component';
 import { SchoolFormsComponent } from './school-forms/school-forms.component';
+import { CampusListComponent } from '../campuses/campus-list/campus-list.component';
+import { CampusesModule } from '../campuses/campuses.module';
+import { ProgramsModule } from '../programs/programs.module';
+import { ProgramFormsComponent } from '../programs/program-forms/program-forms.component';
+import { ProgramListComponent } from '../programs/program-list/program-list.component';
 
 const ADMIN_PANEL_SCHOOL_ROUTE = [
   { path: '', component: SchoolListComponent, pathMatch: 'full' },
-  { path: 'Details/:id/:mode', component: SchoolFormsComponent },
+  { path: 'details/:id/:mode', component: SchoolFormsComponent },
+  //{ path: 'Campuses', component: CampusListComponent },
+  { path: 'programs', component: ProgramListComponent },
+  { path: 'programs/details/:id/:mode', component: ProgramFormsComponent }
 ];
 
 
@@ -22,6 +30,8 @@ const ADMIN_PANEL_SCHOOL_ROUTE = [
     ReactiveFormsModule,
     NgbModule,
     SharedComponentsModule,
+    CampusesModule,
+    ProgramsModule,
     RouterModule.forChild(ADMIN_PANEL_SCHOOL_ROUTE)
   ],
   declarations: [

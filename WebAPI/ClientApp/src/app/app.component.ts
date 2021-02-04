@@ -9,7 +9,6 @@ export class AppComponent {
   title = 'Study Porter';
 }
 
-
 @Component({
   selector: 'app-notification',
   template: `

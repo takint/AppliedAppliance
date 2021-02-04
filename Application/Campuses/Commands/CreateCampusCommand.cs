@@ -13,7 +13,7 @@ namespace Application.Campuses.Commands
     public class CreateCampusCommand : IRequest<int>
     {
         public int SchoolId { get; set; }
-        public CampusDto CampusData { get; set; }
+        public CampusDto Campus { get; set; }
     }
 
     public class CreateCampusCommandHandler : BaseQueryHandler, IRequestHandler<CreateCampusCommand, int>
@@ -27,7 +27,7 @@ namespace Application.Campuses.Commands
 
         public async Task<int> Handle(CreateCampusCommand request, CancellationToken cancellationToken)
         {
-            var entity = _mapper.Map<Campus>(request.CampusData);
+            var entity = _mapper.Map<Campus>(request.Campus);
             entity.SchoolId = request.SchoolId;
 
             await _campusRepository.CreateAsync(entity);

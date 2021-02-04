@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AppService, ListService } from '../../common/app.service';
 import { AppUtil } from '../../common/app.util';
-import { AgentModel } from '../../common/models/agent-model';
-import { AgentFormViewModel } from './agent-forms/agent-forms.component';
+import { AgentFormViewModel, AgentModel } from '../../common/models/agent-model';
 
 @Injectable({
   providedIn: 'root'

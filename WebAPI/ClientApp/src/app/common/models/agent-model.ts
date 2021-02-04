@@ -1,5 +1,6 @@
+import { BaseModel } from "./base-model";
 
-export interface AgentModel {
+export interface AgentModel extends BaseModel {
   id: number;
   firstName: string;
   lastName: string;
@@ -9,4 +10,8 @@ export interface AgentModel {
   mainSourceStudent: string;
   approved: boolean;
   manager: number;
+}
+
+export interface AgentFormViewModel {
+  agent: AgentModel;
 }

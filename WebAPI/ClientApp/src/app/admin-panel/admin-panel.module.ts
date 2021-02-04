@@ -11,11 +11,12 @@ import { SharedComponentsModule } from '../shared-components/shared-components.m
 const ADMIN_PANEL_ROUTE = [
   {
     path: '', component: AdminPanelComponent, children: [
-      { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-      { path: 'Dashboard', component: DashboardComponent },
-      { path: 'Schools', loadChildren: () => import('./schools/schools.module').then(m => m.SchoolsModule) },
-      { path: 'Agents', loadChildren: () => import('./agents/agents.module').then(m => m.AgentsModule) },
-      { path: 'Students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) }
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'schools', loadChildren: () => import('./schools/schools.module').then(m => m.SchoolsModule) },
+      { path: 'agents', loadChildren: () => import('./agents/agents.module').then(m => m.AgentsModule) },
+      { path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) },
+      { path: 'program-categories', loadChildren: () => import('./program-categories/program-categories.module').then(m => m.ProgramCategoriesModule) }
     ]
   },
 ];

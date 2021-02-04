@@ -13,6 +13,14 @@ namespace Application.Programs.Queries
     public class GetProgramQuery : IRequest<ProgramViewModel>
     {
         public int SchoolId { get; set; }
+        public int ProgramId { get; set; }
+
+        public GetProgramQuery() { }
+
+        public GetProgramQuery(int id)
+        {
+            ProgramId = id;
+        }
     }
 
     public class GetProgramQueryHandler : BaseQueryHandler, IRequestHandler<GetProgramQuery, ProgramViewModel>
@@ -26,12 +34,11 @@ namespace Application.Programs.Queries
         {
             return new ProgramViewModel
             {
-                List = await _context.Programs
-                .Where(p => p.SchoolId == request.SchoolId)
-                .ProjectTo<ProgramDto>(_mapper.ConfigurationProvider)
-                .OrderBy(s => s.ProgramName)
-                .ToListAsync(cancellationToken),
-                Total = await _context.Programs.CountAsync(cancellationToken)
+                Program = await _context.Programs
+                    .Where(s => s.Id == request.ProgramId)
+                    .ProjectTo<ProgramDto>(_mapper.ConfigurationProvider)
+                    .OrderBy(s => s.ProgramName)
+                    .SingleOrDefaultAsync(cancellationToken)
             };
         }
     }

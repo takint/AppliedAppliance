@@ -18,18 +18,18 @@ namespace Application.Students.Commands
         {
             _context = context;
 
-            RuleFor(v => v.StudentData.Email)
+            RuleFor(v => v.Student.Email)
                 .NotEmpty().WithMessage("Email is required.")
                 .MustAsync(BeUniqueEmail).WithMessage("Another profile with this email already exists.");
 
-            RuleFor(v => v.StudentData.FirstName)
+            RuleFor(v => v.Student.FirstName)
                 .NotEmpty().WithMessage("First Name is required.");
 
-            RuleFor(v => v.StudentData.LastName)
+            RuleFor(v => v.Student.LastName)
                 .NotEmpty().WithMessage("Last Name is required.");
 
-            RuleFor(v => v.StudentData.AgentId)
-                .NotEmpty().WithMessage("AgentID is required.");
+            //RuleFor(v => v.Student.AgentId)
+            //    .NotEmpty().WithMessage("AgentID is required.");
 
             //RuleFor(v => v.StudentData.CountryCode)
             //    .MaximumLength(2).WithMessage("Invalid Country code.");

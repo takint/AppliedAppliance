@@ -1,8 +1,10 @@
 <div *ngIf="service.loading$ | async" class="spinner" id="spinner"></div>
 
-<div class="d-flex flex-column w-100 pt-5 p-4">
-  <h1 class="page-title" id="tableLabel">Students</h1>
-  <div class="border rounded-lg mt-3 mb-3">
+<div class="d-flex flex-column w-100 pt-3 mt-4">
+  <h1 class="page-title m-0">Students</h1>
+  <a class="text-right primary-color" [routerLink]="['details/', 0, 'add']">Add New Student<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>
+
+  <div class="data-list-container rounded-lg mt-2 mb-3">
     <form class="d-flex flex-row justify-content-between p-2">
       <div class="form-inline">
         <b>Filter Results</b><i class="fas fa-lg fa-sliders-h ml-3"></i>
@@ -13,7 +15,7 @@
       </div>
     </form>
 
-    <table class="table table-borderless mb-0 panel-data-table" aria-labelledby="tableLabel">
+    <table class="table table-borderless data-list-table mb-0" aria-labelledby="tableLabel">
       <thead>
         <tr>
           <th scope="col" sortable="id" (sort)="onSort($event)">Student Id</th>
@@ -25,14 +27,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let student of dataSource$ | async" class="m-2">
-          <td>{{ student.id }}</td>
-          <td>{{ student.studentCode }}</td>
-          <td>{{ student.firstName }}</td>
-          <td>{{ student.lastName }}</td>
-          <td>{{ student.email }}</td>
+        <tr *ngFor="let student of dataSource$ | async" class="m-lg-2">
+          <td aria-label="Student ID">{{ student.id }}</td>
+          <td aria-label="Student Code">{{ student.studentCode }}</td>
+          <td aria-label="First Name">{{ student.firstName }}</td>
+          <td aria-label="Last Name">{{ student.lastName }}</td>
+          <td aria-label="Email">{{ student.email }}</td>
           <td>
-            <a class="secondary-color-blue table-action-icon" [routerLink]="['Details/' + student.id]"><i class="fas fa-lg fa-edit"></i></a>
+            <a class="secondary-color-blue table-action-icon" [routerLink]="['details/' + student.id , 'view']"><i class="fas fa-lg fa-edit"></i></a>
             <a class="danger-color table-action-icon ml-3" (click)="onDeleteClick($event, student)"><i class="fas fa-lg fa-trash-alt"></i></a>
           </td>
         </tr>
@@ -40,7 +42,7 @@
     </table>
   </div>
 
-  <ngb-pagination class="d-flex flex-row-reverse" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
+  <ngb-pagination class="d-flex justify-content-end" [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
   </ngb-pagination>
 </div>
-<app-confirm-modal (onOpenModal)="onOpenModal($event)" [openModal]="isOpenConfirmModal"></app-confirm-modal>
+<app-confirm-modal entityName="Student Profile" (onOpenModal)="onOpenModal($event)" [openModal]="isOpenConfirmModal"></app-confirm-modal>

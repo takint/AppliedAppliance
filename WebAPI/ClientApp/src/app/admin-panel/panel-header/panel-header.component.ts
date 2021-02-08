@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DropDownItems } from '../../shared-components/dropdown/dropdown.component';
+import { NavigationDropDownItems } from '../../shared-components/navigation-dropdown/navigation-dropdown.component';
 
 @Component({
   selector: 'app-panel-header',
@@ -8,9 +8,9 @@ import { DropDownItems } from '../../shared-components/dropdown/dropdown.compone
 })
 export class PanelHeaderComponent implements OnInit {
 
-  dropDownTitle: string = 'admin@admin.com';
+  navDropDownTitle: string = 'admin@admin.com';
 
-  dropDownList: Array<DropDownItems> = [
+  navDropDownList: Array<NavigationDropDownItems> = [
     { title: 'Profile', url: 'authentication/profile', icon: 'far fa-user mr-2' },
     { title: 'Settings', url: 'admin/settings', icon: 'fas fa-wrench mr-2' },
     { title: 'Logout', url: 'authentication/logout', icon: 'fa-sign-out mr-2' }

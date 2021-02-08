@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SharedComponentsModule } from '../../shared-components/shared-components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CampusFormsComponent } from './campus-forms/campus-forms.component';
 
 const ADMIN_PANEL_CAMPUS_ROUTE = [
   //{ path: '', component: CampusListComponent, pathMatch: 'full' }
@@ -13,7 +14,8 @@ const ADMIN_PANEL_CAMPUS_ROUTE = [
 
 @NgModule({
   declarations: [
-    CampusListComponent
+    CampusListComponent,
+    CampusFormsComponent
   ],
   imports: [
     CommonModule,

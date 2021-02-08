@@ -3,7 +3,7 @@
     <div ngbDropdown class="d-inline-block">
       <a class="btn border-0 p-0" id="dropdownBasic1" ngbDropdownToggle><i class="fas fa-lg fa-user-circle secondary-color-blue"></i>{{dropDownHeader}}</a>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-        <button *ngFor="let item of dropDownItems" ngbDropdownItem [routerLink]="[item.url]"><i class="{{item.icon}}"></i>{{item.title}}</button>
+        <button *ngFor="let item of dropDownItems" ngbDropdownItem [routerLink]="[item.url]"><i class="{{item.id}}"></i>{{item.value}}</button>
       </div>
     </div>
   </div>

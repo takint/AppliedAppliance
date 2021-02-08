@@ -2,7 +2,7 @@
 
 <div class="d-flex flex-column w-100 pt-3 mt-4">
   <h1 class="page-title m-0" id="tableLabel">Campuses</h1>
-  <!--<a class="text-right primary-color" [routerLink]="['Details/', 0, 'add']">Add new school<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>-->
+  <a class="text-right primary-color align-self-end" [routerLink]="['/admin/schools/campuses/details/', 0, 'add']">Add new campus<i class="fas fa-lg fa-plus-circle secondary-color-blue ml-2"></i></a>
 
   <div class="data-list-container rounded-lg mt-2 mb-3">
     <form class="d-flex flex-row justify-content-between p-2">
@@ -34,7 +34,7 @@
           <td aria-label="Province">{{ campus.province }}</td>
           <td aria-label="LeadCampus">{{ campus.leadCampusId }}</td>
           <td aria-label=" ">
-            <!--<a class="secondary-color-blue table-action-icon" [routerLink]="['Details/', school.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>-->
+            <a class="secondary-color-blue table-action-icon" [routerLink]="['/admin/schools/campuses/details/', campus.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>
             <a class="danger-color table-action-icon ml-3" (click)="onDeleteClick($event, campus)"><i class="fas fa-lg fa-trash-alt"></i></a>
           </td>
         </tr>

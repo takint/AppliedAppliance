@@ -26,7 +26,6 @@ export class ProgramFormsComponent extends FormComponent<ProgramFormViewModel> i
 
   prepareModelForViewOrEditMode() {
     this.initData.push({ sourceUrl: `${this.service.apiUrl}/${this.modelId}` })
-    console.log(this.initData);
   }
 
   prepareModelForAddMode() {
@@ -55,7 +54,15 @@ export class ProgramFormsComponent extends FormComponent<ProgramFormViewModel> i
 
   /* === VALIDATION ===*/
   validationRules = {
-
+    schoolId: {
+      required: 'Shool Id is required'
+    },
+    programName: {
+      required: 'Program name is required'
+    },
+    programCategoryId: {
+      required: 'Program Category is required'
+    }
   };
 
 }

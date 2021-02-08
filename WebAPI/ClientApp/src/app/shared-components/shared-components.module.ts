@@ -8,11 +8,13 @@ import {
   NgbActiveModal,
   NgbModule
 } from '@ng-bootstrap/ng-bootstrap';
+import { NavigationDropdownComponent } from './navigation-dropdown/navigation-dropdown.component';
 
 @NgModule({
   declarations: [
     DropdownComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    NavigationDropdownComponent
   ],
   providers: [
     NgbModal,
@@ -25,7 +27,8 @@ import {
   ],
   exports: [
     DropdownComponent,
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    NavigationDropdownComponent
   ]
 })
 export class SharedComponentsModule { }

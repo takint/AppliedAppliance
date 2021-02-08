@@ -136,7 +136,7 @@ export class ListComponent<T> extends BaseComponent implements OnInit {
 }
 
 @Directive()
-export class FormComponent<T> extends BaseComponent implements AfterViewChecked, OnInit {
+export class FormComponent<T> extends BaseComponent implements AfterViewChecked {
   mainForm: NgForm;
   @ViewChild('mainForm') currentForm: NgForm;
 
@@ -171,10 +171,6 @@ export class FormComponent<T> extends BaseComponent implements AfterViewChecked,
     this.routingHandler();
   }
 
-  ngOnInit() {
-    this.prepareModel();
-  }
-
   /* Will be implement in the concrete class */
   onInitDataLoaded(data) { }
   onSubmitSuccess() { }
@@ -185,7 +181,6 @@ export class FormComponent<T> extends BaseComponent implements AfterViewChecked,
     return null;
   }
 
-  // TODO has this been called/used anywhere?
   onEditClick() {
     this.route.params['mode'] = 'edit';
   }
@@ -206,6 +201,8 @@ export class FormComponent<T> extends BaseComponent implements AfterViewChecked,
       this.isModelSubmitted = false;
     });
   }
+
+  ngOnInit() { }
 
   loadInitData() {
     this.isInitDataLoaded = this.initData.length === 0;

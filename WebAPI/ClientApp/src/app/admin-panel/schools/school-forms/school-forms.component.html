@@ -15,7 +15,7 @@
 
 <ul ngbNav #nav="ngbNav" class="nav-tabs">
   <li ngbNavItem>
-    <a ngbNavLink>School Details</a>
+    <a ngbNavLink><i class="fas fa-lg fa-info-circle mr-1"></i>School Details</a>
     <ng-template ngbNavContent>
       <form #mainForm="ngForm" novalidate (ngSubmit)="onSubmit(mainForm.valid)" *ngIf="isInitDataLoaded">
         <div class="d-flex flex-column">
@@ -32,7 +32,7 @@
             <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-2x fa-edit secondary-color-blue ml-2"></i></a>
           </div>-->
 
-          <div class="border rounded-lg p-4">
+          <div class="border rounded-lg border-top-0 p-4">
             <h6 class="page-sub-title px-2 mt-3">General Information</h6>
             <div class="form-input-container d-flex flex-wrap justify-content-between no-gutters px-2 py-3">
               <div class="form-group col-12 col-sm-6">
@@ -61,12 +61,14 @@
               </div>
               <div class="form-group col-12 col-sm-6">
                 <label>Country Code</label>
-                <input type="text"
-                       required
-                       [disabled]="isViewMode"
-                       name="countryCode"
-                       class="form-control"
-                       [(ngModel)]="model.school.countryCode" />
+                <select name="countryCode"
+                        [disabled]="isViewMode"
+                        [(ngModel)]="model.school.countryCode"
+                        class="form-control">
+                  <option *ngFor="let dropdownItem of countryDropdownItems" value="{{dropdownItem.value}}">
+                    {{dropdownItem.label}}
+                  </option>
+                </select>
               </div>
               <div class="form-group col-12 col-sm-6">
                 <label>Application Fee</label>
@@ -77,6 +79,38 @@
                        [(ngModel)]="model.school.applicationFee" />
               </div>
               <div class="form-group col-12 col-sm-6">
+                <label>Ielts Listen</label>
+                <input type="text"
+                       [disabled]="isViewMode"
+                       name="ieltSlisten"
+                       class="form-control"
+                       [(ngModel)]="model.school.ieltSlisten" />
+              </div>
+              <div class="form-group col-12 col-sm-6">
+                <label>Ielts Read</label>
+                <input type="text"
+                       [disabled]="isViewMode"
+                       name="ieltSread"
+                       class="form-control"
+                       [(ngModel)]="model.school.ieltSread" />
+              </div>
+              <div class="form-group col-12 col-sm-6">
+                <label>Ielts Write</label>
+                <input type="text"
+                       [disabled]="isViewMode"
+                       name="ieltSwrite"
+                       class="form-control"
+                       [(ngModel)]="model.school.ieltSwrite" />
+              </div>
+              <div class="form-group col-12 col-sm-6">
+                <label>Ielts Speak</label>
+                <input type="text"
+                       [disabled]="isViewMode"
+                       name="ieltSspeak"
+                       class="form-control"
+                       [(ngModel)]="model.school.ieltSspeak" />
+              </div>
+              <div class="form-group col-12 col-sm-6">
                 <label>PGWP</label>
                 <input type="text"
                        [disabled]="isViewMode"
@@ -84,8 +118,19 @@
                        class="form-control"
                        [(ngModel)]="model.school.pgwp" />
               </div>
+              <div class="form-group  col-12 col-sm-6 margin-bottom-0 align-self-center">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox"
+                         id="customSwitch1"
+                         [disabled]="isViewMode"
+                         name="hasLeadIntegration"
+                         class="custom-control-input"
+                         [(ngModel)]="model.school.hasLeadIntegration" />
+                  <label class="custom-control-label" for="customSwitch1">HasLeadIntegration</label>
+                  <span class="slider round"></span>
+                </div>
+              </div>
             </div>
-
             <div class="col-12 d-flex justify-content-end px-2 py-4">
               <button *ngIf="isEditMode || isAddMode" [disabled]="isViewMode" class="btn-primary" type="submit">Save Changes</button>
               <a *ngIf="isEditMode" [routerLink]="[formUrl, modelId, 'view']" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
@@ -97,43 +142,49 @@
     </ng-template>
   </li>
   <li ngbNavItem>
-    <a ngbNavLink>Campuses</a>
+    <a ngbNavLink><i class="fas fa-lg fa-building mr-1"></i>Campuses</a>
     <ng-template ngbNavContent>
       <app-campus-list></app-campus-list>
     </ng-template>
   </li>
   <li ngbNavItem>
-    <a ngbNavLink>Programs</a>
+    <a ngbNavLink><i class="fas fa-lg fa-book-open mr-1"></i>Programs</a>
     <ng-template ngbNavContent>
       <app-program-list></app-program-list>
     </ng-template>
   </li>
   <li ngbNavItem>
-    <a ngbNavLink>Start Dates</a>
+    <a ngbNavLink><i class="fas fa-lg fa-info-circle mr-1"></i>CampusPrograms</a>
+    <ng-template ngbNavContent>
+      <app-campus-program-list></app-campus-program-list>
+    </ng-template>
+  </li>
+  <li ngbNavItem>
+    <a ngbNavLink><i class="fas fa-lg fa-calendar-check mr-1"></i>Start Dates</a>
     <ng-template ngbNavContent>
 
     </ng-template>
   </li>
   <li ngbNavItem>
-    <a ngbNavLink>Documents</a>
+    <a ngbNavLink><i class="fas fa-lg fa-copy mr-1"></i>Documents</a>
     <ng-template ngbNavContent>
 
     </ng-template>
   </li>
   <li ngbNavItem>
-    <a ngbNavLink>PandaDoc Templates</a>
+    <a ngbNavLink><i class="fas fa-lg fa-folder-open mr-1"></i>PandaDoc Templates</a>
     <ng-template ngbNavContent>
 
     </ng-template>
   </li>
   <li ngbNavItem>
-    <a ngbNavLink>Users</a>
+    <a ngbNavLink><i class="fas fa-lg fa-id-badge mr-1"></i>Users</a>
     <ng-template ngbNavContent>
 
     </ng-template>
   </li>
   <li ngbNavItem>
-    <a ngbNavLink>Payments</a>
+    <a ngbNavLink><i class="fas fa-lg fa-file-invoice-dollar mr-1"></i>Payments</a>
     <ng-template ngbNavContent>
 
     </ng-template>

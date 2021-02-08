@@ -4,6 +4,7 @@ import { AppNotificationService } from '../../../common/app.service';
 import { AppUtil } from '../../../common/app.util';
 import { FormComponent } from '../../../common/base.component';
 import { SchoolFormViewModel } from '../../../common/models/school-model';
+import { DropdownModel } from '../../../common/models/dropdown-model';
 import { SchoolFormService } from '../school.service';
 
 @Component({
@@ -17,6 +18,8 @@ export class SchoolFormsComponent extends FormComponent<SchoolFormViewModel> imp
   listUrl = `/admin/${this.modelName}`;
   formUrl = `${this.listUrl}/details/`;
 
+  countryDropdownItems: Array<DropdownModel>;
+
   constructor(protected route: ActivatedRoute,
     protected router: Router,
     public service: SchoolFormService,
@@ -24,8 +27,21 @@ export class SchoolFormsComponent extends FormComponent<SchoolFormViewModel> imp
     super(route, router, service, notiService);
   }
 
+  onInitDataLoaded(data) {
+    super.onInitDataLoaded(data);
+    this.countryDropdownItems = data[0];
+  }
+
+  prepareModel() {
+    this.initData = [
+      { sourceUrl: `${AppUtil.apiHost}Common/CountryDropdown` }
+    ];
+
+    super.prepareModel();
+  }
+
   prepareModelForViewOrEditMode() {
-    this.initData.push({ sourceUrl: `${this.service.apiUrl}/${this.modelId}` })
+    this.initData.push({ sourceUrl: `${this.service.apiUrl}/${this.modelId}` });
   }
 
   prepareModelForAddMode() {

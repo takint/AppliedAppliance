@@ -15,7 +15,6 @@ export class DropdownComponent {
 }
 
 export interface DropDownItems {
-  title: string;
-  url: string;
-  icon: string;
+  id: string;
+  value: string;
 }

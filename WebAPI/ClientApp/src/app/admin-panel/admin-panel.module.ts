@@ -16,7 +16,8 @@ const ADMIN_PANEL_ROUTE = [
       { path: 'schools', loadChildren: () => import('./schools/schools.module').then(m => m.SchoolsModule) },
       { path: 'agents', loadChildren: () => import('./agents/agents.module').then(m => m.AgentsModule) },
       { path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) },
-      { path: 'program-categories', loadChildren: () => import('./program-categories/program-categories.module').then(m => m.ProgramCategoriesModule) }
+      { path: 'program-categories', loadChildren: () => import('./program-categories/program-categories.module').then(m => m.ProgramCategoriesModule) },
+      { path: 'documents', loadChildren: () => import('./documents/documents.module').then(m => m.DocumentsModule) }
     ]
   },
 ];
@@ -28,7 +29,7 @@ const ADMIN_PANEL_ROUTE = [
     DashboardComponent,
     AdminPanelComponent,
     PanelHeaderComponent,
-    AdminMenuComponent
+    AdminMenuComponent,
   ],
 
   imports: [

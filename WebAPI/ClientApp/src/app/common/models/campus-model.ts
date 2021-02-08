@@ -13,7 +13,8 @@ export interface CampusModel extends BaseModel {
   schoolId: number,
   brandId: number,
   submissionCode: number,
-  leadCampusId: number
+  leadCampusId: number,
+  hasLeadIntegration: boolean
 }
 
 export interface CampusFormViewModel {

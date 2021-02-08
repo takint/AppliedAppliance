@@ -17,18 +17,18 @@ namespace Application.Campuses.Queries
         public string Address { get; set; }
         public string City { get; set; }
         public string Province { get; set; }
-        public string Country { get; set; }
         public string PostalCode { get; set; }
         public string Phone { get; set; }
         public string Ext { get; set; }
         public decimal ProcessingFee { get; set; }
 
-        public SchoolDto OwnerShool { get; set; }
+        public SchoolDto OwnerShcool { get; set; }
 
         public void Mapping(Profile profile)
         {
             // Special map
-            profile.CreateMap<Campus, CampusDto>();
+            profile.CreateMap<Campus, CampusDto>()
+                .ForMember(s => s.OwnerShcool, opt => opt.Ignore());
 
             profile.CreateMap<CampusDto, Campus>()
                 .ForMember(s => s.OwnerSchool, opt => opt.Ignore())

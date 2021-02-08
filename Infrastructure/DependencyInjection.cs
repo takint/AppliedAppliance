@@ -40,6 +40,8 @@ namespace Infrastructure
             services.AddScoped<ICampusRepository, CampusRepository>();
             services.AddScoped<IProgramCategoryRepository, ProgramCategoryRepository>();
             services.AddScoped<IProgramRepository, ProgramRepository>();
+            services.AddScoped<ICampusProgramRepository, CampusProgramRepository>();
+            services.AddScoped<IDocumentRepository, DocumentRepository>();
 
             // Identity for authentication
             services.AddDefaultIdentity<ApplicationUser>()

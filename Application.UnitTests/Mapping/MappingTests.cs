@@ -1,6 +1,8 @@
 using Application.Agents.Queries;
 using Application.Campuses.Queries;
+using Application.CampusesPrograms.Queries;
 using Application.Common.Mappings;
+using Application.Documents.Queries;
 using Application.ProgramCategories.Queries;
 using Application.Programs.Queries;
 using Application.Schools.Queries;
@@ -46,6 +48,10 @@ namespace Application.UnitTests.Mapping
         [TestCase(typeof(AgentDto), typeof(Agent))]
         [TestCase(typeof(ProgramCategory), typeof(ProgramCategoryDto))]
         [TestCase(typeof(ProgramCategoryDto), typeof(ProgramCategory))]
+        [TestCase(typeof(CampusProgram), typeof(CampusProgramDto))]
+        [TestCase(typeof(CampusProgramDto), typeof(CampusProgram))]
+        [TestCase(typeof(Document), typeof(DocumentDto))]
+        [TestCase(typeof(DocumentDto), typeof(Document))]
         public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
         {
             var instance = GetInstanceOf(source);

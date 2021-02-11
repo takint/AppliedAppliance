@@ -42,6 +42,7 @@ export class ProgramFormsComponent extends FormComponent<ProgramFormViewModel> i
         programLevel: 0,
         startDate: new Date(),
         programLength: 0,
+        province: '',
         hasLeadIntegration: false
       }
     }

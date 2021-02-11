@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { SchoolListService } from '../school.service';
 import { SchoolModel } from '../../../common/models/school-model';
 import { ListComponent } from '../../../common/base.component';
 import { AppNotificationService } from '../../../common/app.service';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { AppUtil } from '../../../common/app.util';
 
 @Component({
   selector: 'app-school-list',

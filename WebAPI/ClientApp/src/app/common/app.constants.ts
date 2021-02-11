@@ -21,6 +21,15 @@ export const LoginActions = {
   Register: 'register'
 };
 
+
+export const DocumentGroup = {
+  ApplicationDoc: 'ApplicationDoc',
+  StudentDoc: 'StudentDoc',
+  SchoolDoc: 'SchoolDoc',
+  AgentDoc: 'AgentDoc',
+  Other: 'Other'
+}
+
 let applicationPaths: ApplicationPathsType = {
   DefaultLoginRedirectPath: '/admin',
   ApiAuthorizationClientConfigurationUrl: `_configuration/${ApplicationName}`,
@@ -77,5 +86,6 @@ interface ApplicationPathsType {
   readonly IdentityRegisterPath: string;
   readonly IdentityManagePath: string;
 }
+
 
 export const ApplicationPaths: ApplicationPathsType = applicationPaths;

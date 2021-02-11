@@ -13,6 +13,7 @@ namespace Domain.Entities
         {
             this.Id = id;
             this.Name = name;
+            Process |= PandaDocProcess.Uploaded;
         }
 
         // parameterless constructor for entity framework

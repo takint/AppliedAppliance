@@ -28,7 +28,7 @@ import { LowerCaseUrlSerializer } from './common/app.util';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
-    //{ provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
+    { provide: UrlSerializer, useClass: LowerCaseUrlSerializer },
     AppNotificationService
   ],
   bootstrap: [AppComponent]

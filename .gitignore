@@ -354,3 +354,4 @@ WebAPI/ClientApp/src/app/common/models/*.map
 *.js.map
 *.spec.js
 WebAPI/ClientApp/src/main.js
+WebAPI/appsettings.*.json

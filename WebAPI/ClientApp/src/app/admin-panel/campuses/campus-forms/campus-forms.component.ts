@@ -4,6 +4,7 @@ import { AppNotificationService } from '../../../common/app.service';
 import { AppUtil } from '../../../common/app.util';
 import { FormComponent } from '../../../common/base.component';
 import { CampusFormViewModel } from '../../../common/models/campus-model';
+import { DropdownModel } from '../../../common/models/dropdown-model';
 import { CampusFormService } from '../campus.service';
 
 @Component({
@@ -17,6 +18,8 @@ export class CampusFormsComponent extends FormComponent<CampusFormViewModel> imp
   listUrl = `/admin/schools/${this.modelName}`;
   formUrl = `${this.listUrl}/details/`;
 
+  provinceDropDownItems: Array<DropdownModel>;
+
   constructor(protected route: ActivatedRoute,
     protected router: Router,
     public service: CampusFormService,
@@ -24,9 +27,21 @@ export class CampusFormsComponent extends FormComponent<CampusFormViewModel> imp
     super(route, router, service, notiService);
   }
 
+  onInitDataLoaded(data) {
+    super.onInitDataLoaded(data);
+    this.provinceDropDownItems = data[0];
+  }
+
+  prepareModel() {
+    this.initData = [
+      { sourceUrl: `${AppUtil.apiHost}Common/ProvinceDropDown` }
+    ];
+
+    super.prepareModel();
+  }
+
   prepareModelForViewOrEditMode() {
     this.initData.push({ sourceUrl: `${this.service.apiUrl}/${this.modelId}` })
-    console.log(this.initData);
   }
 
   prepareModelForAddMode() {

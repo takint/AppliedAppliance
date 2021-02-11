@@ -35,6 +35,7 @@ export interface QueryState<T> {
   showDeleted?: boolean;
   page: number;
   pageSize: number;
+  parentId: number;
   searchTerm: string;
   sortColumn: SortColumn<T>;
   sortDirection: SortDirection;
@@ -119,6 +120,7 @@ export abstract class ListService<T> extends BehaviorSubject<SearchResult<T>> {
   private _state: QueryState<T> = {
     page: 1,
     pageSize: 10,
+    parentId: 0,
     searchTerm: '',
     sortColumn: '',
     sortDirection: ''
@@ -126,6 +128,7 @@ export abstract class ListService<T> extends BehaviorSubject<SearchResult<T>> {
 
   set page(page: number) { this._set({ page }); }
   set pageSize(pageSize: number) { this._set({ pageSize }); }
+  set parentId(parentId: number) { this._set({ parentId }); }
   set searchTerm(searchTerm: string) { this._set({ searchTerm }); }
   set sortColumn(sortColumn: SortColumn<T>) { this._set({ sortColumn }); }
   set sortDirection(sortDirection: SortDirection) { this._set({ sortDirection }); }
@@ -161,7 +164,8 @@ export abstract class ListService<T> extends BehaviorSubject<SearchResult<T>> {
 
   public _search(): Observable<SearchResult<T>> {
     const state = this._state;
-    return this.getData(this.apiUrl, new HttpParams().append('state', JSON.stringify(state)));
+    const params = new HttpParams().append('state', JSON.stringify(state));
+    return this.getData(this.apiUrl, params);
   }
 
   public getData(

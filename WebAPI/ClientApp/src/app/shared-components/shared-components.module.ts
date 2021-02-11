@@ -9,12 +9,17 @@ import {
   NgbModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { NavigationDropdownComponent } from './navigation-dropdown/navigation-dropdown.component';
+import { PanelMenuComponent } from './panel-menu/panel-menu.component';
+import { RouterModule } from '@angular/router';
+import { NgbdSortableHeader } from '../common/sortable.directive';
 
 @NgModule({
   declarations: [
     DropdownComponent,
     ConfirmModalComponent,
-    NavigationDropdownComponent
+    NavigationDropdownComponent,
+    PanelMenuComponent,
+    NgbdSortableHeader
   ],
   providers: [
     NgbModal,
@@ -23,12 +28,15 @@ import { NavigationDropdownComponent } from './navigation-dropdown/navigation-dr
   ],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    RouterModule
   ],
   exports: [
     DropdownComponent,
     ConfirmModalComponent,
-    NavigationDropdownComponent
+    NavigationDropdownComponent,
+    PanelMenuComponent,
+    NgbdSortableHeader
   ]
 })
 export class SharedComponentsModule { }

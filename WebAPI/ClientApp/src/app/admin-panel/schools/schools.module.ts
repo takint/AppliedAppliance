@@ -16,6 +16,10 @@ import { ProgramListComponent } from '../programs/program-list/program-list.comp
 import { CampusProgramsModule } from '../campus-programs/campus-programs.module';
 import { CampusProgramListComponent } from '../campus-programs/campus-program-list/campus-program-list.component';
 import { CampusFormsComponent } from '../campuses/campus-forms/campus-forms.component';
+import { SchoolDocumentsModule } from '../school-documents/school-documents.module';
+import { SchoolDocumentListComponent } from '../school-documents/school-document-list/school-document-list.component';
+import { SchoolDocumentFormsComponent } from '../school-documents/school-document-forms/school-document-forms.component';
+import { AuthService } from '../../common/auth.service';
 
 const ADMIN_PANEL_SCHOOL_ROUTE = [
   { path: '', component: SchoolListComponent, pathMatch: 'full' },
@@ -25,6 +29,8 @@ const ADMIN_PANEL_SCHOOL_ROUTE = [
   { path: 'programs', component: ProgramListComponent },
   { path: 'programs/details/:id/:mode', component: ProgramFormsComponent },
   { path: 'campus-programs', component: CampusProgramListComponent },
+  { path: 'school-documents', component: SchoolDocumentListComponent },
+  { path: 'school-documents/details/:id/:mode', component: SchoolDocumentFormsComponent },
   //{ path: 'campus-programs/details/:id/:mode', component: ProgramFormsComponent }
 ];
 
@@ -39,16 +45,17 @@ const ADMIN_PANEL_SCHOOL_ROUTE = [
     CampusesModule,
     ProgramsModule,
     CampusProgramsModule,
+    SchoolDocumentsModule,
     RouterModule.forChild(ADMIN_PANEL_SCHOOL_ROUTE)
   ],
   declarations: [
     SchoolListComponent,
-    SchoolFormsComponent,
-    NgbdSortableHeader
+    SchoolFormsComponent
   ],
   providers: [
     SchoolListService,
-    SchoolFormService
+    SchoolFormService,
+    AuthService
   ]
 })
 export class SchoolsModule { }

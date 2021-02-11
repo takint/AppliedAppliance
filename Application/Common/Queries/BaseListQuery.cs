@@ -12,6 +12,7 @@ namespace Application.Common.Queries
         public virtual KeyValuePair<string, string> Sorting { get; set; } = new KeyValuePair<string, string>("id", "asc");
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
+        public int ParentId { get; set; } = 0;
         public string SearchTerm { get; set; }
         public Func<IQueryable<T>, IOrderedQueryable<T>> OrderByMap { get; set; }
 
@@ -46,6 +47,7 @@ namespace Application.Common.Queries
         {
             PageNumber = queryState.Page;
             PageSize = queryState.PageSize;
+            ParentId = queryState.ParentId != 0 ? queryState.ParentId : 0;
             SearchTerm = queryState.SearchTerm ?? "";
             OrderByMap = GetOrderByMap(queryState.SortColumn, queryState.SortDirection);
         }

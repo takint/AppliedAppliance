@@ -18,5 +18,7 @@ namespace Domain.Entities
         public int ProgramLevel { get; set; }
         public DateTime? StartDate { get; set; }
         public int? ProgramLength { get; set; }
+        public string Province { get; set; }
+
     }
 }

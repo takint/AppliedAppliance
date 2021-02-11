@@ -1,0 +1,66 @@
+@import '../../../sass/styles.variables.scss';
+
+/* Navigation */
+nav#sidebarMenu {
+  position: fixed;
+  z-index: 999;
+  background: $primary-color;
+  max-width: 264px;
+  height: 100%;
+}
+
+@media only screen and (min-width : 768px) {
+  nav#sidebarMenu {
+    position: relative;
+  }
+}
+
+.left-nav-bar-button {
+  position: absolute;
+  right: -20px;
+  top: 104px;
+  z-index: 9999;
+
+  button, button:hover, button:focus, button:active {
+    background-color: $primary-color;
+    color: $color-lynx-white;
+    border: 1px solid $primary-color;
+    border-radius: 0px 8px 8px 0px;
+    box-shadow: unset;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+.left-nav-bar {
+  padding: 0 16px;
+
+  img {
+    padding: 48px 0 50px;
+  }
+
+  ul {
+    li.active-link {
+      a {
+        color: $secondary-color-yellow;
+      }
+
+      a::after {
+        content: "  ";
+        position: absolute;
+        right: 0px;
+        background: $secondary-color-yellow;
+        width: 8px;
+        height: 40px;
+        transform: translateY(-5px);
+        border-radius: 2px 0px 0px 2px;
+      }
+    }
+
+    a {
+      color: $colorWhite;
+      padding: 1rem 0;
+      font-size: 1.125rem;
+    }
+  }
+}

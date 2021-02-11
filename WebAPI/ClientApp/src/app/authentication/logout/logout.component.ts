@@ -26,16 +26,14 @@ export class LogoutComponent implements OnInit {
         if (!!window.history.state.local) {
           await this.logout(this.getReturnUrl());
         } else {
-          // This prevents regular links to <app>/authentication/logout from triggering a logout
           this.message.next('The logout was not initiated from within the page.');
         }
-
         break;
       case LogoutActions.LogoutCallback:
         await this.processLogoutCallback();
         break;
       case LogoutActions.LoggedOut:
-        this.message.next('You successfully logged out!');
+        window.location.href = '/';
         break;
       default:
         throw new Error(`Invalid action '${action}'`);
@@ -77,8 +75,6 @@ export class LogoutComponent implements OnInit {
     const result = await this.authorizeService.completeSignOut(url);
     switch (result.status) {
       case AuthenticationResultStatus.Redirect:
-        // There should not be any redirects as the only time completeAuthentication finishes
-        // is when we are doing a redirect sign in flow.
         throw new Error('Should not redirect.');
       case AuthenticationResultStatus.Success:
         await this.navigateToReturnUrl(this.getReturnUrl(result.state));
@@ -93,12 +89,9 @@ export class LogoutComponent implements OnInit {
 
   private getReturnUrl(state?: INavigationState): string {
     const fromQuery = (this.activatedRoute.snapshot.queryParams as INavigationState).returnUrl;
-    // If the url is coming from the query string, check that is either
-    // a relative url or an absolute url
     if (fromQuery &&
       !(fromQuery.startsWith(`${window.location.origin}/`) ||
         /\/[^\/].*/.test(fromQuery))) {
-      // This is an extra check to prevent open redirects.
       throw new Error('Invalid return url. The return url needs to have the same origin as the current page.');
     }
     return (state && state.returnUrl) ||

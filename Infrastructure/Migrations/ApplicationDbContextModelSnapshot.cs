@@ -17,7 +17,7 @@ namespace Infrastructure.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("Domain.Entities.Agent", b =>
                 {
@@ -261,6 +261,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Address")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
@@ -271,6 +275,11 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
@@ -297,9 +306,17 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
 
+                    b.Property<string>("PostalCode")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
                     b.Property<decimal>("ProcessingFee")
                         .HasPrecision(7, 2)
                         .HasColumnType("decimal(7,2)");
+
+                    b.Property<string>("Province")
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
@@ -661,6 +678,11 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Province")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<int>("SchoolId")
                         .HasColumnType("int");
@@ -1740,44 +1762,6 @@ namespace Infrastructure.Migrations
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.OwnsOne("Domain.ValueObjects.Address", "CampusAddress", b1 =>
-                        {
-                            b1.Property<int>("CampusId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .UseIdentityColumn();
-
-                            b1.Property<string>("Address1")
-                                .HasMaxLength(256)
-                                .HasColumnType("nvarchar(256)")
-                                .HasColumnName("Address");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasMaxLength(64)
-                                .HasColumnType("nvarchar(64)")
-                                .HasColumnName("City");
-
-                            b1.Property<string>("PostalCode")
-                                .HasMaxLength(32)
-                                .HasColumnType("nvarchar(32)")
-                                .HasColumnName("PostalCode");
-
-                            b1.Property<string>("Province")
-                                .HasMaxLength(64)
-                                .HasColumnType("nvarchar(64)")
-                                .HasColumnName("Province");
-
-                            b1.HasKey("CampusId");
-
-                            b1.ToTable("Campuses");
-
-                            b1.WithOwner()
-                                .HasForeignKey("CampusId");
-                        });
-
-                    b.Navigation("CampusAddress");
 
                     b.Navigation("OwnerSchool");
                 });

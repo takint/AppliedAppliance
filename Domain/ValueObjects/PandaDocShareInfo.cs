@@ -14,7 +14,8 @@ namespace Domain.ValueObjects
         {
             Recipient = recipient;
             SessionId = sessionId;
-            ExpiresAt = expiresAt;
+            // if passed in expires time is not valid, making the share session to expire 1 year from now.
+            ExpiresAt = expiresAt == DateTime.MinValue ? DateTime.UtcNow.AddYears(1) : expiresAt;
         }
 
         protected PandaDocShareInfo() { }
@@ -39,10 +40,7 @@ namespace Domain.ValueObjects
                 if (string.IsNullOrEmpty(SessionId)) return null;
                 return string.Format(PandaDocResources.VIEW_SHARE_DOC_LINK, SessionId);
             }
-            set
-            {
-
-            }
+            set { }
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

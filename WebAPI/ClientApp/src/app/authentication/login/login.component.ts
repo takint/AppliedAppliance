@@ -67,7 +67,6 @@ export class LoginComponent implements OnInit {
     const result = await this.authorizeService.completeSignIn(url);
     switch (result.status) {
       case AuthenticationResultStatus.Redirect:
-        // There should not be any redirects as completeSignIn never redirects.
         throw new Error('Should not redirect.');
       case AuthenticationResultStatus.Success:
         await this.navigateToReturnUrl(this.getReturnUrl(result.state));
@@ -88,8 +87,6 @@ export class LoginComponent implements OnInit {
   }
 
   private async navigateToReturnUrl(returnUrl: string) {
-    // It's important that we do a replace here so that we remove the callback uri with the
-    // fragment containing the tokens from the browser history.
     await this.router.navigateByUrl(returnUrl, {
       replaceUrl: true
     });
@@ -97,12 +94,9 @@ export class LoginComponent implements OnInit {
 
   private getReturnUrl(state?: INavigationState): string {
     const fromQuery = (this.activatedRoute.snapshot.queryParams as INavigationState).returnUrl;
-    // If the url is coming from the query string, check that is either
-    // a relative url or an absolute url
     if (fromQuery &&
       !(fromQuery.startsWith(`${window.location.origin}/`) ||
         /\/[^\/].*/.test(fromQuery))) {
-      // This is an extra check to prevent open redirects.
       throw new Error('Invalid return url. The return url needs to have the same origin as the current page.');
     }
     return (state && state.returnUrl) ||
@@ -111,9 +105,6 @@ export class LoginComponent implements OnInit {
   }
 
   private redirectToApiAuthorizationPath(apiAuthorizationPath: string) {
-    // It's important that we do a replace here so that when the user hits the back arrow on the
-    // browser they get sent back to where it was on the app instead of to an endpoint on this
-    // component.
     const redirectUrl = `${window.location.origin}/${apiAuthorizationPath}`;
     window.location.replace(redirectUrl);
   }

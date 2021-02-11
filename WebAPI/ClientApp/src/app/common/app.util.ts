@@ -54,6 +54,9 @@ export function parseResponse(response, isObject: boolean = false) {
 export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
   parse(url: string): UrlTree {
     // Optional Step: Do some stuff with the url if needed.
+    if (url.includes('authentication')) {
+      return super.parse(url);
+    }
 
     return super.parse(url.toLowerCase());
   }

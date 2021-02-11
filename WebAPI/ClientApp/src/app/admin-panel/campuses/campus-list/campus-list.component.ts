@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppNotificationService } from '../../../common/app.service';
 import { ListComponent } from '../../../common/base.component';
@@ -18,7 +18,10 @@ export class CampusListComponent extends ListComponent<CampusModel> implements O
     super(route, service, notiService);
   }
 
+  @Input() schoolId: number = 0; //to be used for getting the campus based on the school
+
   ngOnInit(): void {
+    this.service.parentId = this.schoolId;
   }
 
 }

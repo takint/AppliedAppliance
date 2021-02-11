@@ -19,19 +19,6 @@
     <ng-template ngbNavContent>
       <form #mainForm="ngForm" novalidate (ngSubmit)="onSubmit(mainForm.valid)" *ngIf="isInitDataLoaded">
         <div class="d-flex flex-column">
-          <!--<div><a [routerLink]="[listUrl]" class="color-grayLighter"><i class="fas fa-lg fa-chevron-left mr-2"></i>Back</a></div>
-
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a [routerLink]="[listUrl]">Schools</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{model.school.schoolName}}</li>
-            </ol>
-          </nav>
-          <div class="d-flex justify-content-between mb-2">
-            <h1 class="page-title mb-0 align-self-end">{{model.school.schoolName}} details</h1>
-            <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-2x fa-edit secondary-color-blue ml-2"></i></a>
-          </div>-->
-
           <div class="border rounded-lg border-top-0 p-4">
             <h6 class="page-sub-title px-2 mt-3">General Information</h6>
             <div class="form-input-container d-flex flex-wrap justify-content-between no-gutters px-2 py-3">
@@ -144,7 +131,7 @@
   <li ngbNavItem>
     <a ngbNavLink><i class="fas fa-lg fa-building mr-1"></i>Campuses</a>
     <ng-template ngbNavContent>
-      <app-campus-list></app-campus-list>
+      <app-campus-list schoolId="{{ modelId }}"></app-campus-list>
     </ng-template>
   </li>
   <li ngbNavItem>
@@ -168,7 +155,7 @@
   <li ngbNavItem>
     <a ngbNavLink><i class="fas fa-lg fa-copy mr-1"></i>Documents</a>
     <ng-template ngbNavContent>
-
+      <app-school-document-list></app-school-document-list>
     </ng-template>
   </li>
   <li ngbNavItem>

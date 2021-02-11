@@ -10,6 +10,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -49,7 +50,14 @@ namespace Application.Campuses.Queries
 
         public async Task<PaginatedList<CampusDto>> Handle(GetCampusesListQuery request, CancellationToken cancellationToken)
         {
+            Expression<Func<Campus, bool>> parentFilter = null;
+
+            if (request.ParentId != 0) {
+                parentFilter = (c => c.SchoolId == request.ParentId);
+            }
+
             return await _context.Campuses
+                .Where(parentFilter)
                 .Where(request.BasedFilter)
                 .Where(c => c.CampusName.Contains(request.SearchTerm))
                 .OrderedBy(request.OrderByMap)

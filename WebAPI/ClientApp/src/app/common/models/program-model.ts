@@ -12,6 +12,7 @@ export interface ProgramModel extends BaseModel {
   programLevel: number,
   startDate: Date,
   programLength: number,
+  province: string,
   hasLeadIntegration: boolean
 }
 

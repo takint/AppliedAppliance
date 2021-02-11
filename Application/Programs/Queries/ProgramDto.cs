@@ -22,10 +22,12 @@ namespace Application.Programs.Queries
         public int ProgramLevel { get; set; }
         public DateTime? StartDate { get; set; }
         public int? ProgramLength { get; set; }
+        public string Province { get; set; }
 
         public void Mapping(Profile profile)
         {
             profile.CreateMap<Program, ProgramDto>().ForMember(s => s.School, opt => opt.Ignore());
+
             //TODO : ForMember ProgramCategory, PandaDocTemplate
             profile.CreateMap<ProgramDto, Program>()
                 .ForMember(p => p.School, opt => opt.Ignore())

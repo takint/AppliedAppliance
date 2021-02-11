@@ -17,7 +17,9 @@ const ADMIN_PANEL_ROUTE = [
       { path: 'agents', loadChildren: () => import('./agents/agents.module').then(m => m.AgentsModule) },
       { path: 'students', loadChildren: () => import('./students/students.module').then(m => m.StudentsModule) },
       { path: 'program-categories', loadChildren: () => import('./program-categories/program-categories.module').then(m => m.ProgramCategoriesModule) },
-      { path: 'documents', loadChildren: () => import('./documents/documents.module').then(m => m.DocumentsModule) }
+      { path: 'documents', loadChildren: () => import('./documents/documents.module').then(m => m.DocumentsModule) },
+      { path: 'roles', loadChildren: () => import('./roles/roles.module').then(m => m.RolesModule) },
+      { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) }
     ]
   },
 ];

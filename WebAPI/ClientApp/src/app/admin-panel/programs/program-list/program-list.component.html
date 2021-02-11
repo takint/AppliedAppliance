@@ -21,6 +21,7 @@
           <th scope="col" sortable="id" (sort)="onSort($event)">Program ID</th>
           <th scope="col" sortable="programName" (sort)="onSort($event)">Program Name</th>
           <th scope="col" sortable="category" (sort)="onSort($event)">Category</th>
+          <th scope="col" sortable="province" (sort)="onSort($event)">Province</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -29,6 +30,8 @@
           <td aria-label="Program ID">{{ program.id }}</td>
           <td aria-label="Program Name">{{ program.programName }}</td>
           <td aria-label="Category">{{ program.programCategoryId }}</td>
+          <td aria-label="Province">{{ program.province }}</td>
+
           <td aria-label=" ">
             <a class="secondary-color-blue table-action-icon" [routerLink]="['/admin/schools/programs/details/', program.id, 'view']"><i class="fas fa-lg fa-edit"></i></a>
             <a class="danger-color table-action-icon ml-3" (click)="onDeleteClick($event, program)"><i class="fas fa-lg fa-trash-alt"></i></a>

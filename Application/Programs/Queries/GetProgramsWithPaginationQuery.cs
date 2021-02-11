@@ -29,7 +29,9 @@ namespace Application.Agents.Queries
                     { new KeyValuePair<string, string>("programName", "asc"), x => x.OrderBy(t => t.ProgramName) },
                     { new KeyValuePair<string, string>("programName", "desc"), x => x.OrderByDescending(t => t.ProgramName) },
                     { new KeyValuePair<string, string>("category", "asc"), x => x.OrderBy(t => t.ProgramCategoryId) },
-                    { new KeyValuePair<string, string>("category", "desc"), x => x.OrderByDescending(t => t.ProgramCategoryId) },                   
+                    { new KeyValuePair<string, string>("category", "desc"), x => x.OrderByDescending(t => t.ProgramCategoryId) },
+                    { new KeyValuePair<string, string>("province", "asc"), x => x.OrderBy(t => t.Province) },
+                    { new KeyValuePair<string, string>("province", "desc"), x => x.OrderByDescending(t => t.Province) },
                 };
             }
         }

@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <UserSecretsId>ebf8c666-e85e-4b28-a382-35ec37aa2e59</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +22,6 @@
     <Content Remove="ClientApp\package.json" />
     <Content Remove="ClientApp\src\tsconfig.app.json" />
     <Content Remove="ClientApp\src\tsconfig.server.json" />
-    <Content Remove="ClientApp\src\tsconfig.spec.json" />
     <Content Remove="ClientApp\src\tslint.json" />
     <Content Remove="ClientApp\tslint.json" />
   </ItemGroup>
@@ -51,7 +51,6 @@
     </None>
     <None Include="ClientApp\src\tsconfig.app.json" />
     <None Include="ClientApp\src\tsconfig.server.json" />
-    <None Include="ClientApp\src\tsconfig.spec.json" />
     <None Include="ClientApp\src\tslint.json" />
     <None Include="ClientApp\tslint.json" />
   </ItemGroup>
@@ -88,6 +87,12 @@
     <TypeScriptCompile Include="ClientApp\src\app\common\models\campus-model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\models\school-model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\common\models\user-model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config.ncconf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,97 @@
+
+<form #mainForm="ngForm" novalidate (ngSubmit)="onSubmit(mainForm.valid)" *ngIf="isInitDataLoaded">
+  <div class="d-flex flex-column">
+    <div><a class="color-grayLighter" [routerLink]="[listUrl]"><i class="fas fa-lg fa-chevron-left mr-2"></i>Back</a></div>
+
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="[listUrl]">School Documents</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ model.schoolDocument.type }}</li>
+      </ol>
+    </nav>
+    <div class="d-flex justify-content-between mb-2">
+      <h1 class="page-title mb-0 align-self-end">{{ model.schoolDocument.type }} details</h1>
+      <a *ngIf="isViewMode" class="" [routerLink]="[formUrl, modelId, 'edit']">Edit<i class="fas fa-2x fa-edit secondary-color-blue ml-2"></i></a>
+    </div>
+
+    <div class="border rounded-lg p-4">
+      <h6 class="page-sub-title px-2 mt-3">General Information</h6>
+      <div class="form-input-container d-flex flex-wrap justify-content-between no-gutters px-2 py-3">
+        <div class="form-group col-12 col-sm-6">
+          <!--TODO: Remove once programs are viewd based on schoolID soon-->
+          <label>SchoolId</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="schoolId"
+                 class="form-control"
+                 [(ngModel)]="model.schoolDocument.schoolId" />
+          <div *ngIf="formErrors.schoolId" class="has-error">
+            {{ formErrors.schoolId }}
+          </div>
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>Document Type</label>
+          <select name="documentId"
+                  [disabled]="isViewMode"
+                  [(ngModel)]="model.schoolDocument.documentId"
+                  class="form-control">
+            <option *ngFor="let item of documentTypeListDropDownItems" value="{{ item.value }}">
+              {{ item.label}}
+            </option>
+          </select>
+          <div *ngIf="formErrors.documentId" class="has-error">
+            {{ formErrors.documentId }}
+          </div>
+        </div>
+        <!--<div class="form-group col-12 col-sm-6">
+          <label>Document Id</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="documentId"
+                 class="form-control"
+                 [(ngModel)]="model.schoolDocument.documentId" />
+          <div *ngIf="formErrors.documentId" class="has-error">
+            {{ formErrors.documentId }}
+          </div>
+        </div>-->
+        <div class="form-group  col-12 col-sm-6 margin-bottom-0 align-self-center">
+          <div class="custom-control custom-switch">
+            <input type="checkbox"
+                   id="customSwitch1"
+                   [disabled]="isViewMode"
+                   name="isRequired"
+                   class="custom-control-input"
+                   [(ngModel)]="model.schoolDocument.isRequired" />
+            <label class="custom-control-label" for="customSwitch1">Is Required</label>
+            <span class="slider round"></span>
+            <div *ngIf="formErrors.isRequired" class="has-error">
+              {{ formErrors.isRequired }}
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>Description</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="description"
+                 class="form-control"
+                 [(ngModel)]="model.schoolDocument.description" />
+        </div>
+        <div class="form-group col-12 col-sm-6">
+          <label>Pre Template</label>
+          <input type="text"
+                 [disabled]="isViewMode"
+                 name="preTemplate"
+                 class="form-control"
+                 [(ngModel)]="model.schoolDocument.preTemplate" />
+        </div>
+      </div>
+
+      <div class="col-12 d-flex justify-content-end px-2 py-4">
+        <button *ngIf="isEditMode || isAddMode" [disabled]="isViewMode" class="btn-primary" type="submit">Save Changes</button>
+        <a *ngIf="isEditMode" [routerLink]="[formUrl, modelId, 'view']" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+        <a *ngIf="isAddMode" [routerLink]="[listUrl]" class="primary-color align-self-center font-weight-bold ml-4">Cancel</a>
+      </div>
+    </div>
+  </div>
+</form>

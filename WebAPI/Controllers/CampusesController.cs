@@ -39,6 +39,8 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> Update(int id, UpdateCampusCommand command)
         {
+            command.SchoolId = command.Campus.SchoolId;
+
             if (id != command.Campus.Id)
             {
                 return BadRequest();

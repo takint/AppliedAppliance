@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Constants;
+using Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +10,21 @@ namespace Domain.Entities
 {
     public partial class PandaDocDocument
     {
-
-        public static bool CreatePandaDocFromTemplate()
+        public void Share()
         {
-            return true;
+            Process |= PandaDocProcess.Shared;
         }
 
-        //public bool 
-
-        public bool Share()
+        public void Send(DateTime expiresAt)
         {
-            return true;
+            ExpiresAt = expiresAt;
+            Process |= PandaDocProcess.Sent;
+            Status = PandaDocStatus.DOCUMENT_SENT;
+        }
+
+        public void SaveToDisk()
+        {
+            Process |= PandaDocProcess.Saved;
         }
     }
 }

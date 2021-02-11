@@ -17,6 +17,8 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasOne(a => a.AdditionalDocument).WithMany().HasForeignKey(e => e.AdditionalDocumentId);
 
             builder.Property(e => e.ProgramName).HasMaxLength(256).IsRequired();
+            builder.Property(e => e.Province).HasMaxLength(64).IsRequired();
+
         }
     }
 }

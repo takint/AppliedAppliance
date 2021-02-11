@@ -4,6 +4,7 @@ import { AppNotificationService } from '../../../common/app.service';
 import { AppUtil } from '../../../common/app.util';
 import { FormComponent } from '../../../common/base.component';
 import { DocumentFormViewModel } from '../../../common/models/document-model';
+import { DropdownModel } from '../../../common/models/dropdown-model';
 import { DocumentFormService } from '../document.service';
 
 @Component({
@@ -17,11 +18,26 @@ export class DocumentFormsComponent extends FormComponent<DocumentFormViewModel>
   listUrl = `/admin/${this.modelName}`;
   formUrl = `${this.listUrl}/details/`;
 
+  documentGroupListDropDownItems: Array<DropdownModel>;
+
   constructor(protected route: ActivatedRoute,
     protected router: Router,
     public service: DocumentFormService,
     protected notiService: AppNotificationService) {
     super(route, router, service, notiService);
+  }
+
+  onInitDataLoaded(data) {
+    super.onInitDataLoaded(data);
+    this.documentGroupListDropDownItems = data[0];
+  }
+
+  prepareModel() {
+    this.initData = [
+      { sourceUrl: `${AppUtil.apiHost}Common/DocumentGroupListDropDown` }
+    ];
+
+    super.prepareModel();
   }
 
   prepareModelForViewOrEditMode() {

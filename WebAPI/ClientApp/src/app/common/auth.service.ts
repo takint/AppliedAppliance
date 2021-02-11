@@ -62,7 +62,6 @@ export class AuthService {
     settings.includeIdTokenInSilentRenew = true;
 
     this.userManager = new UserManager(settings);
-
     this.userManager.events.addUserSignedOut(async () => {
       await this.userManager.removeUser();
       this.userSubject.next(null);

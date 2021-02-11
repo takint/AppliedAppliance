@@ -17,8 +17,6 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<PaginatedList<SchoolDto>>> Get(string state)
         {
-
-
             QueryStateModel queryState = new QueryStateModel();
             if (!string.IsNullOrEmpty(state))
             {

@@ -31,12 +31,14 @@
         </div>
         <div class="form-group col-12 col-sm-6">
           <label>Document Group</label>
-          <input type="text"
-                 required
-                 [disabled]="isViewMode"
-                 name="group"
-                 class="form-control"
-                 [(ngModel)]="model.document.group" />
+          <select name="group"
+                  [disabled]="isViewMode"
+                  [(ngModel)]="model.document.group"
+                  class="form-control">
+            <option *ngFor="let item of documentGroupListDropDownItems" value="{{ item.label }}">
+              {{ item.label }}
+            </option>
+          </select>
           <div *ngIf="formErrors.group" class="has-error">
             {{ formErrors.group }}
           </div>

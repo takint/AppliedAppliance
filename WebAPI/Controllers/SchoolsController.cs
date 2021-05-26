@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
 
 
             // Demo get list by using cache:
-            //var encodedSchools = await StudyPorterCache.GetAsync("schoollist");
+            //var encodedSchools = await AppliedApplianceCache.GetAsync("schoollist");
             //string serializedSchools;
 
             //if (encodedSchools != null)
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
             //                .SetSlidingExpiration(TimeSpan.FromMinutes(5))
             //                .SetAbsoluteExpiration(DateTime.Now.AddHours(6));
 
-            //await StudyPorterCache.SetAsync("schoollist", encodedSchools, options);
+            //await AppliedApplianceCache.SetAsync("schoollist", encodedSchools, options);
             // }
 
             return results;

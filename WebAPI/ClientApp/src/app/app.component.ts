@@ -6,7 +6,7 @@ import { AppNotificationService } from './common/app.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'Study Porter';
+  title = 'Applied Appliance';
 }
 
 @Component({

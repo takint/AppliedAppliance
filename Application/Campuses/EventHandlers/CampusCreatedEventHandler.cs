@@ -20,7 +20,7 @@ namespace Application.Campuses.EventHandlers
         {
             var domainEvent = notification.DomainEvent;
 
-            _logger.LogInformation("Studyporter Domain Event: {DomainEvent}", domainEvent.GetType().Name);
+            _logger.LogInformation("AppliedAppliance Domain Event: {DomainEvent}", domainEvent.GetType().Name);
 
             return Task.CompletedTask;
         }

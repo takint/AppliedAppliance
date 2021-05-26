@@ -25,7 +25,7 @@ namespace Application.Common.Behaviours
             {
                 var requestName = typeof(TRequest).Name;
 
-                _logger.LogError(ex, "StudyPorter Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
+                _logger.LogError(ex, "AppliedAppliance Request: Unhandled Exception for Request {Name} {@Request}", requestName, request);
 
                 throw;
             }

@@ -12,11 +12,11 @@ namespace WebAPI.Controllers
 {
     public class CommonController : ApiControllerBase
     {
-        private readonly RoleManager<IdentityRole> StudyPorterRoleManager;
+        private readonly RoleManager<IdentityRole> AppliedApplianceRoleManager;
 
         public CommonController(RoleManager<IdentityRole> roleManager)
         {
-            StudyPorterRoleManager = roleManager;
+            AppliedApplianceRoleManager = roleManager;
         }
 
         [HttpGet]
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         [Route("RoleDropDown")]
         public async Task<IList<DropDownModel<string>>> GetRoleDropDown()
         {
-            var vm = await StudyPorterRoleManager.Roles
+            var vm = await AppliedApplianceRoleManager.Roles
                 .Select(r => new DropDownModel<string>
                 {
                     Label = r.Name,

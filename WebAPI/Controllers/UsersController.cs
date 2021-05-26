@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
                 queryState = JsonConvert.DeserializeObject<QueryStateModel>(state);
             }
 
-            var results = await StudyPorterUserManager.Users
+            var results = await AppliedApplianceUserManager.Users
                 .Where(u => u.Email.Contains(queryState.SearchTerm))
                 .PaginatedListAsync(queryState.Page, queryState.PageSize);
 
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ApplicationUser>> GetUser(string id)
         {
-            var vm = await StudyPorterUserManager.Users
+            var vm = await AppliedApplianceUserManager.Users
                 .FirstOrDefaultAsync(u => u.Id == id);
             return vm;
         }

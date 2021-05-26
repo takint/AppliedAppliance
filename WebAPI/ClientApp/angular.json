@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "StudyPorter": {
+    "AppliedAppliance": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -62,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "StudyPorter:build"
+            "browserTarget": "AppliedAppliance:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "StudyPorter:build:production"
+              "browserTarget": "AppliedAppliance:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "StudyPorter:build"
+            "browserTarget": "AppliedAppliance:build"
           }
         },
         "test": {
@@ -131,7 +131,7 @@
         }
       }
     },
-    "StudyPorter-e2e": {
+    "AppliedAppliance-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -139,7 +139,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "StudyPorter:serve"
+            "devServerTarget": "AppliedAppliance:serve"
           }
         },
         "lint": {
@@ -154,7 +154,7 @@
       }
     }
   },
-  "defaultProject": "StudyPorter",
+  "defaultProject": "AppliedAppliance",
   "cli": {
     "analytics": "47909c4f-387c-474d-bdf9-ce86e7c06c4b"
   }

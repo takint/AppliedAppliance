@@ -1,4 +1,4 @@
-export const ApplicationName = 'StudyPorter';
+export const ApplicationName = 'AppliedAppliance';
 
 export const ReturnUrlType = 'returnUrl';
 

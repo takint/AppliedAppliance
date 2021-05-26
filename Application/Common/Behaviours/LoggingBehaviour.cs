@@ -30,7 +30,7 @@ namespace Application.Common.Behaviours
                 userName = await _identityService.GetUserNameAsync(userId);
             }
 
-            _logger.LogInformation("StudyPorter Request: {Name} {@UserId} {@UserName} {@Request}",
+            _logger.LogInformation("AppliedAppliance Request: {Name} {@UserId} {@UserName} {@Request}",
                 requestName, userId, userName, request);
         }
     }

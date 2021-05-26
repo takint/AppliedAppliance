@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iis": {
-      "applicationUrl": "https://studyporter2.loc/",
+      "applicationUrl": "https://appliedappliance2.loc/",
       "sslPort": 0
     },
     "iisExpress": {

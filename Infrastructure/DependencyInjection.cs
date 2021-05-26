@@ -22,7 +22,7 @@ namespace Infrastructure
             if (configuration.GetValue<bool>("UseInMemoryDatabase"))
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseInMemoryDatabase("StudyPorterDb"));
+                    options.UseInMemoryDatabase("AppliedApplianceDb"));
             }
             else
             {
@@ -62,7 +62,8 @@ namespace Infrastructure
             services.AddAuthentication()
                     .AddIdentityServerJwt();
 
-            services.ConfigureApplicationCookie(options => {
+            services.ConfigureApplicationCookie(options =>
+            {
                 options.LoginPath = "/Identity/Account/Login";
                 options.Cookie.Name = ".AspNetCore.Identity.Application";
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
@@ -90,7 +91,8 @@ namespace Infrastructure
             services.AddSingleton<PandaDocServiceConfig>();
             services.Configure<PandaDocServiceConfig>(configuration.GetSection("PandaDocServiceConfig"));
             services.AddHttpClient<IPandaDocService, PandaDocService>()
-                    .ConfigureHttpClient((serviceProvider, client) => {
+                    .ConfigureHttpClient((serviceProvider, client) =>
+                    {
                         var apiKey = serviceProvider.GetRequiredService<IOptions<PandaDocServiceConfig>>().Value.ApiKey;
                         client.DefaultRequestHeaders.Add("Authorization", apiKey);
                     });

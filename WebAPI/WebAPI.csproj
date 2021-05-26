@@ -24,6 +24,7 @@
     <Content Remove="ClientApp\src\tsconfig.server.json" />
     <Content Remove="ClientApp\src\tslint.json" />
     <Content Remove="ClientApp\tslint.json" />
+    <Content Remove="wwwroot\favicon.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,13 +32,6 @@
     <None Remove="ClientApp\src\app\common\models\school-model.ts" />
     <None Remove="ClientApp\src\app\common\models\user-model.ts" />
     <None Remove="ClientApp\src\assets\favicon.svg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="ClientApp\src\assets\favicon.svg">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

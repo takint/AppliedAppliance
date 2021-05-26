@@ -15,8 +15,8 @@ namespace WebAPI.Controllers
 
         protected ISender Mediator => _mediator ??= HttpContext.RequestServices.GetService<ISender>();
 
-        protected readonly IDistributedCache StudyPorterCache;
-        protected readonly UserManager<ApplicationUser> StudyPorterUserManager;
+        protected readonly IDistributedCache AppliedApplianceCache;
+        protected readonly UserManager<ApplicationUser> AppliedApplianceUserManager;
 
         public ApiControllerBase()
         {
@@ -24,12 +24,12 @@ namespace WebAPI.Controllers
 
         public ApiControllerBase(IDistributedCache distributedCache)
         {
-            StudyPorterCache = distributedCache;
+            AppliedApplianceCache = distributedCache;
         }
 
         public ApiControllerBase(UserManager<ApplicationUser> userManager)
         {
-            StudyPorterUserManager = userManager;
+            AppliedApplianceUserManager = userManager;
         }
     }
 }

@@ -9,6 +9,8 @@ namespace Application.Common.Interfaces
 {
     public interface IRepository<TEntity, TKey> : IDisposable where TEntity : BaseEntity<TKey>
     {
+        Task<bool> IsExistedEntity(TKey id);
+
         Task<TKey> CreateAsync(TEntity entity);
         TKey Create(TEntity entity);
 

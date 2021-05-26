@@ -145,7 +145,7 @@ namespace Infrastructure.Services.PandaDoc
             var documentSendingOptions = new DocumentSendingOptions
             {
                 Subject = document.Name,
-                Message = string.Format("Hello! This document was sent from StudyPorter. Please help to fill in your registration information. This document will be expired at {0}",
+                Message = string.Format("Hello! This document was sent from AppliedAppliance. Please help to fill in your registration information. This document will be expired at {0}",
                     DateTime.UtcNow.AddSeconds(PandaDocResources.DEFAULT_DOC_EXPIRED_SECONDS).ToString(dateFormat)),
                 Silent = !sendEmail // send email if 'Slient' set to false
             };
